@@ -24,11 +24,21 @@ internal class ClanMock : IClan
 {
     public ClanMock()
     {
+        Id = $"Clan_{Count++}";
+
+        Name = Id;
+        PopCount = Count * 1000;
     }
+
+    private static int Count;
 
     public string Id { get; set; }
 
     public IReadOnlyDictionary<ProductType, IProduct> Products => MockProducts;
+
+    public string Name { get; set; }
+
+    public int PopCount { get; set; }
 
     public Dictionary<ProductType, IProduct> MockProducts = Enum.GetValues<ProductType>().ToDictionary(k => k, v => new ProductMock() { Type = v } as IProduct);
 }

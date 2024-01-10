@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://h5osxlqwk3ae"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/ClanArray/ClanArrayView.cs" id="1_vbtvg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_idqx8"]
+font_size = 20
+
+[node name="DataContainer" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -1566.0
+offset_bottom = 138.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_vbtvg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "氏族"
+label_settings = SubResource("LabelSettings_idqx8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ColumnHeader_Name" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColumnHeader_Type" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColumnHeader_PopCount" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefaultItem" parent="VBoxContainer/VBoxContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/ClanArray/ClanItem.tscn"]
+layout_mode = 2

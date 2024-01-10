@@ -25,4 +25,8 @@ internal class SessionMock : ISession
     public Dictionary<object, IWorking> MockWorkings { get; } = new Dictionary<object, IWorking>();
 
     public Dictionary<(int x, int y), ITerrain> MockTerrains { get; } = new Dictionary<(int x, int y), ITerrain>();
+
+    public IReadOnlyDictionary<object, IClan> Clans => MockClans;
+
+    public Dictionary<object, IClan> MockClans = new Dictionary<object, IClan>();
 }

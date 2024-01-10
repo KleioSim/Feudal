@@ -9,6 +9,7 @@ public interface ISession
     IReadOnlyDictionary<(int x, int y), ITerrain> Terrains { get; }
     IReadOnlyDictionary<object, IWorkHood> WorkHoods { get; }
     IReadOnlyDictionary<object, IWorking> Workings { get; }
+    IReadOnlyDictionary<object, IClan> Clans { get; }
 }
 
 public interface ITask
@@ -25,7 +26,8 @@ public interface ITask
 public interface IClan
 {
     string Id { get; }
-
+    string Name { get; }
+    int PopCount { get; }
     IReadOnlyDictionary<ProductType, IProduct> Products { get; }
 }
 

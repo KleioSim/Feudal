@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg2ium3x32npu"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/ClanArray/ClanItemView.cs" id="1_vgrpy"]
+
+[node name="ClanItem" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vgrpy")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(354, 40)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "ClanName"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Type" type="Label" parent="Button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pop" type="Label" parent="Button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
