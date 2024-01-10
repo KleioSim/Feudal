@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c07tef06p5m25"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceArray/ResourceArrayView.cs" id="1_tpd5d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osr01"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 0.588235)
+
+[node name="ResourceContainer" type="PanelContainer"]
+offset_right = 354.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_osr01")
+script = ExtResource("1_tpd5d")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+
+[node name="Item" parent="HFlowContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceArray/ResourceItem.tscn"]
+layout_mode = 2

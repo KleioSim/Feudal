@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckc5ry74jf04w"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/Tasks/TaskArrayView.cs" id="1_1xjm1"]
+
+[node name="ViewControl" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 7.0
+offset_right = 180.0
+offset_bottom = 923.0
+size_flags_vertical = 3
+script = ExtResource("1_1xjm1")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TaskItem" parent="Container" instance_placeholder="res://MainScene/GUI/Tasks/TaskItem.tscn"]
+layout_mode = 2

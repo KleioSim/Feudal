@@ -1,0 +1,120 @@
+[gd_scene load_steps=23 format=3 uid="uid://droao4y6kuttb"]
+
+[ext_resource type="Script" path="res://MainScene/GameMain/Tilemap/TilemapView.cs" id="1_3nfu8"]
+[ext_resource type="Texture2D" uid="uid://c3ndwun230sjg" path="res://MainScene/GameMain/Tilemap/Images/Plain.png" id="2_d8u4y"]
+[ext_resource type="Texture2D" uid="uid://daxmhueptlmf6" path="res://MainScene/GameMain/Tilemap/Images/Hill.png" id="3_y6mkt"]
+[ext_resource type="Texture2D" uid="uid://ccdo2niatkw6q" path="res://MainScene/GameMain/Tilemap/Images/Mountion.png" id="4_8g3cb"]
+[ext_resource type="Texture2D" uid="uid://bqlcikp3eguje" path="res://MainScene/GameMain/Tilemap/Images/Lake.png" id="5_r4pe6"]
+[ext_resource type="Texture2D" uid="uid://cjtl48bojca3u" path="res://MainScene/GameMain/Tilemap/Images/Marsh.png" id="6_vgt0l"]
+[ext_resource type="Texture2D" uid="uid://c53g0l1yeoiu4" path="res://MainScene/GameMain/Tilemap/Images/Hill_Not_Discovered.png" id="7_2k4n1"]
+[ext_resource type="Texture2D" uid="uid://bqc0017eg6njh" path="res://MainScene/GameMain/Tilemap/Images/Lake_Not_Discovered.png" id="8_h3jc2"]
+[ext_resource type="Texture2D" uid="uid://c4ajkplbed0qf" path="res://MainScene/GameMain/Tilemap/Images/Marsh_Not_Discovered.png" id="9_o3d2k"]
+[ext_resource type="Texture2D" uid="uid://cy5s7k00wkrar" path="res://MainScene/GameMain/Tilemap/Images/Mountion_Not_Discovered.png" id="10_1fg1p"]
+[ext_resource type="Texture2D" uid="uid://c30ylpx1g54r" path="res://MainScene/GameMain/Tilemap/Images/Plain_Not_Discovered.png" id="11_s0ti2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8fjh4"]
+resource_name = "Plain"
+texture = ExtResource("2_d8u4y")
+texture_region_size = Vector2i(512, 512)
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gkmjq"]
+resource_name = "Hill"
+texture = ExtResource("3_y6mkt")
+texture_region_size = Vector2i(512, 512)
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y0lwh"]
+resource_name = "Mountion"
+texture = ExtResource("4_8g3cb")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 112)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m68r6"]
+resource_name = "Lake"
+texture = ExtResource("5_r4pe6")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_76vmu"]
+resource_name = "Marsh"
+texture = ExtResource("6_vgt0l")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcpg"]
+resource_name = "Hill_Not_Discovered"
+texture = ExtResource("7_2k4n1")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xkdum"]
+resource_name = "Lake_Not_Discovered"
+texture = ExtResource("8_h3jc2")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g5di8"]
+resource_name = "Marsh_Not_Discovered"
+texture = ExtResource("9_o3d2k")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_83qli"]
+resource_name = "Mountion_Not_Discovered"
+texture = ExtResource("10_1fg1p")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mut6e"]
+resource_name = "Plain_Not_Discovered"
+texture = ExtResource("11_s0ti2")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSet" id="TileSet_2glhd"]
+tile_shape = 1
+tile_layout = 4
+tile_size = Vector2i(521, 292)
+sources/0 = SubResource("TileSetAtlasSource_8fjh4")
+sources/1 = SubResource("TileSetAtlasSource_gkmjq")
+sources/2 = SubResource("TileSetAtlasSource_y0lwh")
+sources/3 = SubResource("TileSetAtlasSource_m68r6")
+sources/4 = SubResource("TileSetAtlasSource_76vmu")
+sources/5 = SubResource("TileSetAtlasSource_awcpg")
+sources/6 = SubResource("TileSetAtlasSource_xkdum")
+sources/7 = SubResource("TileSetAtlasSource_g5di8")
+sources/8 = SubResource("TileSetAtlasSource_83qli")
+sources/9 = SubResource("TileSetAtlasSource_mut6e")
+
+[node name="ViewControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_3nfu8")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_2glhd")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-65536, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.03, 0.03)
