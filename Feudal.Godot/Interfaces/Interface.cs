@@ -19,8 +19,8 @@ public interface ITask
     string Desc { get; }
 
     float Percent { get; }
-
-    //string WorkHoodId { get; }
+    string WorkHoodId { get; }
+    string ClanId { get; }
 }
 
 public interface IClan

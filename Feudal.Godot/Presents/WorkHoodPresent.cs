@@ -1,4 +1,7 @@
-﻿namespace Feudal.Godot.Presents;
+﻿using System;
+using System.Linq;
+
+namespace Feudal.Godot.Presents;
 
 partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
 {
@@ -11,21 +14,21 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
     {
         view.WorkingArray.WorkHoodId = view.Id;
 
-        //var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHoodId == view.Id);
-        //if (task == null)
-        //{
-        //    view.CurrentLabor.Visible = false;
-        //    return;
-        //}
+        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHoodId == view.Id);
+        if (task == null)
+        {
+            view.CurrentLabor.Visible = false;
+            return;
+        }
 
-        //view.CurrentLabor.Visible = true;
+        view.CurrentLabor.Visible = true;
 
-        //var clan = model.Session.Clans.SingleOrDefault(x => x.Id == task.ClanId);
-        //if (clan == null)
-        //{
-        //    throw new Exception();
-        //}
+        var clan = model.Session.Clans[task.ClanId];
+        if (clan == null)
+        {
+            throw new Exception();
+        }
 
-        //view.ClanName.Text = clan.Name;
+        view.ClanName.Text = clan.Name;
     }
 }
