@@ -55,6 +55,15 @@ public interface ITerrain
 {
     (int x, int y) Position { get; }
     IReadOnlySet<IResource> Resources { get; }
+    TerrainType TerrainType { get; }
+    bool IsDiscoverd { get; }
+    string WorkHoodId { get; }
+}
+
+public enum TerrainType
+{
+    Plain,
+    Hill
 }
 
 public interface IWorkHood

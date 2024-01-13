@@ -35,5 +35,11 @@ class MockTerrain : ITerrain
 
     public IReadOnlySet<IResource> Resources => MockResources;
 
+    public TerrainType TerrainType { get; set; }
+
+    public bool IsDiscoverd { get; set; } = false;
+
+    public string WorkHoodId { get; set; }
+
     public HashSet<IResource> MockResources = new HashSet<IResource>();
 }

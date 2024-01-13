@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://iqtdd7cucgyx"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/TerrainPanelView.cs" id="1_icp7x"]
+[ext_resource type="PackedScene" uid="uid://c07tef06p5m25" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceArray/ResourceArray.tscn" id="1_jw038"]
+[ext_resource type="PackedScene" uid="uid://qiq0452ycsa5" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodPanel.tscn" id="2_iw6xs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_32wp5"]
+font_size = 20
+
+[node name="TerrainPanel" type="PanelContainer"]
+script = ExtResource("1_icp7x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "TerrainTitle"
+label_settings = SubResource("LabelSettings_32wp5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResourceArray" parent="VBoxContainer" instance=ExtResource("1_jw038")]
+layout_mode = 2
+
+[node name="WorkHoodPanel" parent="VBoxContainer" instance=ExtResource("2_iw6xs")]
+custom_minimum_size = Vector2(354, 0)
+layout_mode = 2
