@@ -40,7 +40,17 @@ internal class ClanMock : IClan
 
     public int PopCount { get; set; }
 
-    public Dictionary<ProductType, IProduct> MockProducts = Enum.GetValues<ProductType>().ToDictionary(k => k, v => new ProductMock() { Type = v } as IProduct);
+    public int LaborCount { get; set; }
+
+    public ILabor Labor => LaborMock;
+
+    public LaborMock LaborMock { get; } = new LaborMock();
+    public Dictionary<ProductType, IProduct> MockProducts { get; } = Enum.GetValues<ProductType>().ToDictionary(k => k, v => new ProductMock() { Type = v } as IProduct);
+}
+
+internal class LaborMock : ILabor
+{
+    public int TotalCount { get; set; }
 }
 
 internal class ProductMock : IProduct

@@ -8,7 +8,7 @@ partial class ClanArrayMock : MockControl<ClanArrayView, ISessionModel>
         {
             var session = new SessionMock();
 
-            for(int i=0; i<3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 var clan = new ClanMock();
                 session.MockClans.Add(clan.Id, clan);

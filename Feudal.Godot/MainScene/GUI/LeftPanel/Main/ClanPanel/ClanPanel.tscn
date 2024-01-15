@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://mdedadv4lpg6"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/ClanPanel/ClanPanelView.cs" id="1_db2dq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a862c"]
+font_size = 20
+
+[node name="DataContainer" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -1566.0
+offset_bottom = 114.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_db2dq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "ClanTitle"
+label_settings = SubResource("LabelSettings_a862c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Pop" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Pop"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "人口"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="VBoxContainer/HBoxContainer/Pop"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+vertical_alignment = 1
+
+[node name="Labor" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Labor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "劳力"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="VBoxContainer/HBoxContainer/Labor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+vertical_alignment = 1
