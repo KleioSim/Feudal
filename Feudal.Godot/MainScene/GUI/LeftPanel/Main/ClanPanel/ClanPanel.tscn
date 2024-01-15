@@ -5,7 +5,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_a862c"]
 font_size = 20
 
-[node name="DataContainer" type="PanelContainer"]
+[node name="ClanPanel" type="PanelContainer"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_right = -1566.0

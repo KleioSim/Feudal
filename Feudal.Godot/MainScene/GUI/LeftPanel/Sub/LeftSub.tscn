@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dfyk2vs14blwi"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1566.0
+offset_bottom = -480.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="DataContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="ControlContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="XButton" type="Button" parent="ControlContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "X"
