@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh5rhytufpsw3"]
+
+[ext_resource type="PackedScene" uid="uid://b2bwskcrfx4n3" path="res://MainScene/GUI/GUI.tscn" id="1_8myd5"]
+[ext_resource type="PackedScene" uid="uid://bnukaohmlm2bl" path="res://addons/ScreenMoveControl/MoveControl.tscn" id="2_b7dvo"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="GUI" parent="GUILayer" instance=ExtResource("1_8myd5")]
+
+[node name="MoveControl" parent="GUILayer" instance=ExtResource("2_b7dvo")]
+
+[node name="MapLayer" type="CanvasLayer" parent="."]
