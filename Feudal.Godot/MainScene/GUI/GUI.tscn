@@ -1,0 +1,212 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2bwskcrfx4n3"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/GUIView.cs" id="1_junn3"]
+[ext_resource type="PackedScene" uid="uid://ckc5ry74jf04w" path="res://MainScene/GUI/Tasks/TaskArray.tscn" id="1_wl6li"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyjcv"]
+font_size = 18
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_junn3")
+
+[node name="Top" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 150.0
+grow_horizontal = 2
+
+[node name="Player" type="Button" parent="Top"]
+custom_minimum_size = Vector2(120, 150)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Top/Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ClanName" type="Label" parent="Top/Player/VBoxContainer"]
+layout_mode = 2
+text = "ClanName"
+label_settings = SubResource("LabelSettings_dyjcv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClanPopCount" type="Label" parent="Top/Player/VBoxContainer"]
+layout_mode = 2
+text = "PopCount"
+label_settings = SubResource("LabelSettings_dyjcv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopInfos" type="HBoxContainer" parent="Top/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Clan" type="Button" parent="Top/VBoxContainer/TopInfos"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/VBoxContainer/TopInfos/Clan"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Top/VBoxContainer/TopInfos/Clan/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Clan"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Top/VBoxContainer/TopInfos/Clan/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "--"
+vertical_alignment = 1
+
+[node name="Labor" type="Button" parent="Top/VBoxContainer/TopInfos"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/VBoxContainer/TopInfos/Labor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Top/VBoxContainer/TopInfos/Labor/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Labor"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Top/VBoxContainer/TopInfos/Labor/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "--"
+vertical_alignment = 1
+
+[node name="Estate" type="Button" parent="Top/VBoxContainer/TopInfos"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/VBoxContainer/TopInfos/Estate"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Top/VBoxContainer/TopInfos/Estate/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Estate"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Top/VBoxContainer/TopInfos/Estate/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "--"
+vertical_alignment = 1
+
+[node name="Date" type="PanelContainer" parent="Top/VBoxContainer/TopInfos"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/VBoxContainer/TopInfos/Date"]
+layout_mode = 2
+alignment = 1
+
+[node name="Year" type="HBoxContainer" parent="Top/VBoxContainer/TopInfos/Date/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Value" type="Label" parent="Top/VBoxContainer/TopInfos/Date/HBoxContainer/Year"]
+layout_mode = 2
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Top/VBoxContainer/TopInfos/Date/HBoxContainer/Year"]
+layout_mode = 2
+text = "年"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Month" type="HBoxContainer" parent="Top/VBoxContainer/TopInfos/Date/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Value" type="Label" parent="Top/VBoxContainer/TopInfos/Date/HBoxContainer/Month"]
+layout_mode = 2
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Top/VBoxContainer/TopInfos/Date/HBoxContainer/Month"]
+layout_mode = 2
+text = "月"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Day" type="HBoxContainer" parent="Top/VBoxContainer/TopInfos/Date/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Value" type="Label" parent="Top/VBoxContainer/TopInfos/Date/HBoxContainer/Day"]
+layout_mode = 2
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TaskArray" parent="Right" instance=ExtResource("1_wl6li")]
+layout_mode = 2
+
+[node name="NextTurn" type="Button" parent="Right"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "NextTurn"
+
+[node name="Left" parent="." instance_placeholder="res://MainScene/GUI/LeftPanel/Left.tscn"]
+layout_mode = 0
+offset_top = 350.0
+offset_bottom = 950.0

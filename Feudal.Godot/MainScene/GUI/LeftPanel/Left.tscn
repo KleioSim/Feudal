@@ -38,7 +38,9 @@ offset_right = 0.0
 [node name="ClanArrayView" parent="Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/ClanArray/ClanArray.tscn"]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
 offset_right = 0.0
+grow_horizontal = 1
 
 [node name="ControlContainer" type="VBoxContainer" parent="Main/HBoxContainer"]
 custom_minimum_size = Vector2(30, 0)

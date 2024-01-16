@@ -4,12 +4,21 @@ using System.Collections.ObjectModel;
 public interface ISession
 {
     IClan PlayerClan { get; }
+    IDate Date { get; }
+
     IReadOnlyDictionary<object, ITask> Tasks { get; }
     IReadOnlyDictionary<object, IResource> Resources { get; }
     IReadOnlyDictionary<(int x, int y), ITerrain> Terrains { get; }
     IReadOnlyDictionary<object, IWorkHood> WorkHoods { get; }
     IReadOnlyDictionary<object, IWorking> Workings { get; }
     IReadOnlyDictionary<object, IClan> Clans { get; }
+}
+
+public interface IDate
+{
+    int Year { get; }
+    int Month { get; }
+    int Day { get; }
 }
 
 public interface ITask

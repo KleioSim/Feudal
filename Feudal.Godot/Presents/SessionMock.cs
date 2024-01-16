@@ -8,7 +8,7 @@ internal class SessionMock : ISession
 
     public Dictionary<object, ITask> MockTasks { get; } = new Dictionary<object, ITask>();
 
-    public IClan PlayerClan { get; } = new ClanMock();
+    public IClan PlayerClan { get; set; }
 
     public IReadOnlyDictionary<object, IResource> Resources => MockResources;
 
@@ -28,5 +28,18 @@ internal class SessionMock : ISession
 
     public IReadOnlyDictionary<object, IClan> Clans => MockClans;
 
+    public IDate Date => MockDate;
+
     public Dictionary<object, IClan> MockClans = new Dictionary<object, IClan>();
+
+    private MockDate MockDate { get; } = new MockDate();
+}
+
+internal class MockDate : IDate
+{
+    public int Year { get; set; } = 1;
+
+    public int Month { get; set; } = 1;
+
+    public int Day { get; set; } = 1;
 }
