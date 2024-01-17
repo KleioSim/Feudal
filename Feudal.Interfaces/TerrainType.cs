@@ -3,5 +3,8 @@
 public enum TerrainType
 {
     Plain,
-    Hill
+    Hill,
+    Lake,
+    Marsh,
+    Mountion
 }

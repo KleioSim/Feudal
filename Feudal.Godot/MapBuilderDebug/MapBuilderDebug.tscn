@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://b17yxldp1ipkk"]
+
+[ext_resource type="Script" path="res://MapBuilderDebug/MapBuilderDebugView.cs" id="1_0ss2u"]
+[ext_resource type="ButtonGroup" uid="uid://tee4bc61ojn2" path="res://MapBuilderDebug/new_button_group.tres" id="2_ffudc"]
+[ext_resource type="PackedScene" uid="uid://droao4y6kuttb" path="res://MainScene/Game/Tilemap/Tilemap.tscn" id="3_go2u4"]
+
+[node name="TilemapDebug" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_0ss2u")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -146.0
+offset_right = 211.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Plain" type="HBoxContainer" parent="UICanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Plain"]
+layout_mode = 2
+text = "Plain"
+
+[node name="CheckBox" type="CheckBox" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Plain"]
+layout_mode = 2
+button_pressed = true
+button_group = ExtResource("2_ffudc")
+
+[node name="Hill" type="HBoxContainer" parent="UICanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Hill"]
+layout_mode = 2
+text = "Hill"
+
+[node name="CheckBox" type="CheckBox" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Hill"]
+layout_mode = 2
+button_group = ExtResource("2_ffudc")
+
+[node name="Mountion" type="HBoxContainer" parent="UICanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Mountion"]
+layout_mode = 2
+text = "Mountion"
+
+[node name="CheckBox" type="CheckBox" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Mountion"]
+layout_mode = 2
+button_group = ExtResource("2_ffudc")
+
+[node name="Marsh" type="HBoxContainer" parent="UICanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Marsh"]
+layout_mode = 2
+text = "Marsh"
+
+[node name="CheckBox" type="CheckBox" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Marsh"]
+layout_mode = 2
+button_group = ExtResource("2_ffudc")
+
+[node name="Lake" type="HBoxContainer" parent="UICanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Lake"]
+layout_mode = 2
+text = "Lake"
+
+[node name="CheckBox" type="CheckBox" parent="UICanvasLayer/HBoxContainer/VBoxContainer/Lake"]
+layout_mode = 2
+button_group = ExtResource("2_ffudc")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UICanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="UICanvasLayer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+
+[node name="Button" type="Button" parent="UICanvasLayer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Generate"
+
+[node name="Map" parent="." instance=ExtResource("3_go2u4")]
+layout_mode = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
