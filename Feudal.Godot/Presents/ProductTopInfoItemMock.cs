@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Feudal.Interfaces;
+using Godot;
 using System;
 
 namespace Feudal.Godot.Presents;
@@ -6,7 +7,7 @@ namespace Feudal.Godot.Presents;
 [Tool]
 public partial class ProductTopInfoItemMock : MockControl<ProductTopInfoItemView, ISessionModel>
 {
-    private const ProductType defaultId = global::ProductType.Food;
+    private const ProductType defaultId = Feudal.Interfaces.ProductType.Food;
 
     private string productType = Enum.GetName(defaultId.GetType(), defaultId);
 

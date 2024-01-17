@@ -9,4 +9,7 @@
     <Compile Remove="MainScene\GUI\Tasks——\**" />
     <EmbeddedResource Remove="MainScene\GUI\Tasks——\**" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,4 +1,6 @@
-﻿namespace Feudal.Godot.Presents;
+﻿using Feudal.Interfaces;
+
+namespace Feudal.Godot.Presents;
 
 partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
 {

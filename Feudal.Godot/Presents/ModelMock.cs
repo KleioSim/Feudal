@@ -1,4 +1,6 @@
-﻿namespace Feudal.Godot.Presents;
+﻿using Feudal.Interfaces;
+
+namespace Feudal.Godot.Presents;
 
 internal class ModelMock : ISessionModel
 {
