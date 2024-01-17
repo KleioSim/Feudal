@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c30ylpx1g54r"
-path="res://.godot/imported/Plain_Not_Discovered.png-908a879a4eba099dc46031a421299400.ctex"
+uid="uid://c53g0l1yeoiu4"
+path="res://.godot/imported/Hill_Not_Discovered.png-2407eb0d7697ad1ffa57201417101656.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainScene/GameMain/Tilemap/Images/Plain_Not_Discovered.png"
-dest_files=["res://.godot/imported/Plain_Not_Discovered.png-908a879a4eba099dc46031a421299400.ctex"]
+source_file="res://MainScene/Game/Tilemap/Images/Hill_Not_Discovered.png"
+dest_files=["res://.godot/imported/Hill_Not_Discovered.png-2407eb0d7697ad1ffa57201417101656.ctex"]
 
 [params]
 

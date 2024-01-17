@@ -1,29 +1,17 @@
 ﻿using Godot;
 using System.Linq;
-using System;
 
 namespace Feudal.Godot.Presents;
 
-partial class GUIMock : MockControl<GUIView, ISessionModel>
+partial class TilemapMock : MockControl<TilemapView, ISessionModel>
 {
     public override ISessionModel Mock
     {
         get
         {
             var session = new SessionMock();
-            for (int i = 0; i < 3; i++)
-            {
-                var clan = new ClanMock();
-                clan.LaborMock.TotalCount = i * 10;
-                session.MockClans.Add(clan.Id, clan);
-            }
-            session.PlayerClan = session.Clans.Last().Value;
-
-            View.PlayerClanId = session.PlayerClan.Id;
 
             var terrain = new MockTerrain();
-            terrain.Position = (0, 0);
-            terrain.TerrainType = TerrainType.Plain;
             session.MockTerrains.Add(terrain.Position, terrain);
 
             for (int i = 0; i < 3; i++)
@@ -47,6 +35,15 @@ partial class GUIMock : MockControl<GUIView, ISessionModel>
             }
 
             workHood.CurrentWorking = workHood.OptionWorkings.First();
+
+            var clan = new ClanMock();
+            session.MockClans.Add(clan.Id, clan);
+
+            var task = new TaskMock();
+            task.ClanId = clan.Id;
+            task.WorkHoodId = workHood.Id;
+
+            session.MockTasks.Add(task.Id, task);
 
             return new ModelMock() { Session = session };
         }

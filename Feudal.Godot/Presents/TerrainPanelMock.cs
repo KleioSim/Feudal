@@ -31,6 +31,8 @@ partial class TerrainPanelMock : MockControl<TerrainPanelView, ISessionModel>
             var session = new SessionMock();
 
             var terrain = new MockTerrain();
+            terrain.Position = (0, 0);
+            terrain.TerrainType = TerrainType.Plain;
             View.TerrainPosition = new Vector2I(terrain.Position.x, terrain.Position.y);
 
             session.MockTerrains.Add(terrain.Position, terrain);

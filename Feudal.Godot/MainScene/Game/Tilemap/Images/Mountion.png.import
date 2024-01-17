@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqlcikp3eguje"
-path="res://.godot/imported/Lake.png-4613cce36326ed155ba3507b681b8d25.ctex"
+uid="uid://ccdo2niatkw6q"
+path="res://.godot/imported/Mountion.png-09906ce314dfebee8bd6bb9afc40aa72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainScene/GameMain/Tilemap/Images/Lake.png"
-dest_files=["res://.godot/imported/Lake.png-4613cce36326ed155ba3507b681b8d25.ctex"]
+source_file="res://MainScene/Game/Tilemap/Images/Mountion.png"
+dest_files=["res://.godot/imported/Mountion.png-09906ce314dfebee8bd6bb9afc40aa72.ctex"]
 
 [params]
 

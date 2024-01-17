@@ -19,6 +19,13 @@ public partial class TilemapView : ViewControl
         Camera.Position = Tilemap.MapToLocal(new Vector2I(0, 0));
     }
 
+    public void OnCanvasMoved(float angle)
+    {
+        GD.Print($"OnCanvasMoved {angle}");
+
+        Camera.Position = Camera.Position + (Vector2.Right * 10).Rotated(angle);
+    }
+
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event is InputEventMouseButton eventKey)

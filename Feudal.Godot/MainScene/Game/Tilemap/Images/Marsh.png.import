@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4ajkplbed0qf"
-path="res://.godot/imported/Marsh_Not_Discovered.png-b3ab23dd5411fc8263e0d3901ebbb949.ctex"
+uid="uid://cjtl48bojca3u"
+path="res://.godot/imported/Marsh.png-466dcfe848b162ff70480e11f7f0b821.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainScene/GameMain/Tilemap/Images/Marsh_Not_Discovered.png"
-dest_files=["res://.godot/imported/Marsh_Not_Discovered.png-b3ab23dd5411fc8263e0d3901ebbb949.ctex"]
+source_file="res://MainScene/Game/Tilemap/Images/Marsh.png"
+dest_files=["res://.godot/imported/Marsh.png-466dcfe848b162ff70480e11f7f0b821.ctex"]
 
 [params]
 

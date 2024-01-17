@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ndwun230sjg"
-path="res://.godot/imported/Plain.png-fe2187db7a676a6f998c92e2ee117f67.ctex"
+uid="uid://bqc0017eg6njh"
+path="res://.godot/imported/Lake_Not_Discovered.png-415ea62d21cd41de61f52da38ca6fcce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainScene/GameMain/Tilemap/Images/Plain.png"
-dest_files=["res://.godot/imported/Plain.png-fe2187db7a676a6f998c92e2ee117f67.ctex"]
+source_file="res://MainScene/Game/Tilemap/Images/Lake_Not_Discovered.png"
+dest_files=["res://.godot/imported/Lake_Not_Discovered.png-415ea62d21cd41de61f52da38ca6fcce.ctex"]
 
 [params]
 

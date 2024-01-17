@@ -18,6 +18,8 @@ public abstract partial class PresentControl<TView, TModel> : PresentBase
     private TView View => GetParent<TView>();
     private MockControl<TView, TModel> MockControl => GetNode<MockControl<TView, TModel>>("Mock");
 
+    public bool IsInitialized { get; private set; } = false;
+
     public PresentControl()
     {
         this.Ready += () =>
@@ -54,6 +56,11 @@ public abstract partial class PresentControl<TView, TModel> : PresentBase
             Model = MockControl.Mock;
 
             GD.Print($"[P]Use {this.GetType().Name} mock model");
+        }
+
+        if (!IsInitialized)
+        {
+            IsInitialized = true;
 
             Initialize(View, Model);
         }
