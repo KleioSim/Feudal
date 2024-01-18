@@ -2,9 +2,9 @@
 
 namespace Feudal.Godot.Presents;
 
-internal class ModelMock : ISessionModel
+internal class SessionModel : ISessionModel
 {
-    public ISession Session { get; set; }
+    public ISession Session { get; init; }
 
     public void OnCommand(UICommand command)
     {

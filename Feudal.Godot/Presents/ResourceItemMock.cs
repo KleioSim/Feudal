@@ -15,7 +15,7 @@ partial class ResourceItemMock : MockControl<ResourceItemView, ISessionModel>
             var session = new SessionMock();
             session.MockResources.Add(resource.Id, resource);
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

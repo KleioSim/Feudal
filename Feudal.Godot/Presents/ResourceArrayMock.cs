@@ -25,7 +25,7 @@ partial class ResourceArrayMock : MockControl<ResourceArrayView, ISessionModel>
             session.MockTerrains.Add(terrain.Position, terrain);
 
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

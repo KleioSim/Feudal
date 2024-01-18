@@ -102,7 +102,7 @@ public partial class LeftMock : MockControl<LeftView, ISessionModel>
 
             workHood.CurrentWorking = workHood.OptionWorkings.First();
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

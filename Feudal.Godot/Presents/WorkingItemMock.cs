@@ -15,7 +15,7 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
             var session = new SessionMock();
             session.MockWorkings.Add(working.Id, working);
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

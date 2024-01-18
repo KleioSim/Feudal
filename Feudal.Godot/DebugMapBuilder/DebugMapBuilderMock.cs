@@ -8,7 +8,7 @@ partial class DebugMapBuilderMock : MockControl<DebugMapBuilderView, ISessionMod
         {
             var session = new SessionMock();
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

@@ -14,7 +14,7 @@ public partial class SelectLaborPanelMock : MockControl<SelectLaborPanelView, IS
                 session.MockClans.Add(clan.Id, clan);
             }
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

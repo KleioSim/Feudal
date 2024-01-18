@@ -78,7 +78,7 @@ public partial class ProductTopInfoItemMock : MockControl<ProductTopInfoItemView
             var session = new SessionMock();
             session.PlayerClan = clan;
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

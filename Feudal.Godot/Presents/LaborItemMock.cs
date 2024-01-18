@@ -12,7 +12,7 @@ public partial class LaborItemMock : MockControl<LaborItemView, ISessionModel>
             var session = new SessionMock();
             session.MockClans.Add(clan.Id, clan);
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

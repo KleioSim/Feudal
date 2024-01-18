@@ -8,7 +8,7 @@ public partial class ProductTopInfoArrayMock : MockControl<ProductTopInfoArrayVi
         {
             var session = new SessionMock();
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

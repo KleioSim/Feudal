@@ -14,7 +14,7 @@ partial class ClanItemMock : MockControl<ClanItemView, ISessionModel>
             var session = new SessionMock();
             session.MockClans.Add(clan.Id, clan);
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

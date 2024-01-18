@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
+    <ProjectReference Include="..\Feudal.Sessions\Feudal.Sessions.csproj" />
+    <ProjectReference Include="..\Feudal.TerrainBuilders\Feudal.TerrainBuilders.csproj" />
+  </ItemGroup>
+
+</Project>

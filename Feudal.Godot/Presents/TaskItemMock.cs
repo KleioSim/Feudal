@@ -47,7 +47,7 @@ partial class TaskItemMock : MockControl<TaskItemView, ISessionModel>
             var session = new SessionMock();
             session.MockTasks.Add(task.Id, task);
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

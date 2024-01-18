@@ -27,7 +27,7 @@ partial class WorkingArrayMock : MockControl<WorkingArrayView, ISessionModel>
 
             workHood.CurrentWorking = workHood.OptionWorkings.First();
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

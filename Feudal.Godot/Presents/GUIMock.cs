@@ -49,7 +49,7 @@ partial class GUIMock : MockControl<GUIView, ISessionModel>
 
             workHood.CurrentWorking = workHood.OptionWorkings.First();
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

@@ -14,7 +14,7 @@ partial class ClanArrayMock : MockControl<ClanArrayView, ISessionModel>
                 session.MockClans.Add(clan.Id, clan);
             }
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

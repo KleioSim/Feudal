@@ -20,7 +20,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
             var task = session.MockTasks.Values.SingleOrDefault(x => x.WorkHoodId == View.Id) as TaskMock;
             if (value)
             {
-                if(task != null)
+                if (task != null)
                 {
                     return;
                 }
@@ -66,7 +66,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
             }
 
             workHood.CurrentWorking = workHood.OptionWorkings.First();
-            
+
             var clan = new ClanMock();
             session.MockClans.Add(clan.Id, clan);
 
@@ -76,7 +76,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
 
             session.MockTasks.Add(task.Id, task);
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

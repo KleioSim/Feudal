@@ -53,7 +53,7 @@ partial class TaskArrayMock : MockControl<TaskArrayView, ISessionModel>
                 session.MockTasks.Add(task.Id, task);
             }
 
-            return new ModelMock() { Session = session };
+            return new SessionModel() { Session = session };
         }
     }
 }

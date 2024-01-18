@@ -53,9 +53,15 @@ public abstract partial class PresentControl<TView, TModel> : PresentBase
 
         if (Model == null)
         {
+            if (!IsMock)
+            {
+                throw new Exception();
+            }
+
             Model = MockControl.Mock;
 
             GD.Print($"[P]Use {this.GetType().Name} mock model");
+
         }
 
         if (!IsInitialized)
