@@ -128,7 +128,7 @@ class Date : IDate
         Day = 1;
     }
 
-    void OnDayInc()
+    public void OnDaysInc()
     {
         Day += 10;
 

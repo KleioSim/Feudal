@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Feudal.Godot.Presents;
+using Godot;
 using System;
 using System.Collections.Generic;
 
@@ -77,7 +78,12 @@ public abstract partial class PresentControl<TView, TModel> : PresentBase
 
     internal void SendCommand(UICommand command)
     {
-        Model.OnCommand(command);
+        if (command is not UIRefreshCommand)
+        {
+            GD.Print($"OnCommand:{command.type}, parameters:[{(command.parameters == null ? "" : string.Join(", ", command.parameters))}]");
+
+            Model.OnCommand(command);
+        }
 
         foreach (PresentBase item in list)
         {

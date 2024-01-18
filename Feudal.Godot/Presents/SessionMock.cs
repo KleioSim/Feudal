@@ -34,6 +34,10 @@ internal class SessionMock : ISession
     public Dictionary<object, IClan> MockClans = new Dictionary<object, IClan>();
 
     private MockDate MockDate { get; } = new MockDate();
+
+    public void OnCommand(Command command, object[] parameters)
+    {
+    }
 }
 
 internal class MockDate : IDate
@@ -43,4 +47,9 @@ internal class MockDate : IDate
     public int Month { get; set; } = 1;
 
     public int Day { get; set; } = 1;
+
+    public void OnDaysInc()
+    {
+
+    }
 }

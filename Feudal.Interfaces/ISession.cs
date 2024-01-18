@@ -13,4 +13,6 @@ public interface ISession
     IReadOnlyDictionary<object, IWorkHood> WorkHoods { get; }
     IReadOnlyDictionary<object, IWorking> Workings { get; }
     IReadOnlyDictionary<object, IClan> Clans { get; }
+
+    void OnCommand(Command command, object[] parameters);
 }

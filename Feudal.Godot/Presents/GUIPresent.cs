@@ -1,3 +1,4 @@
+using Feudal.Interfaces;
 using Godot;
 using System.Linq;
 
@@ -7,7 +8,7 @@ public partial class GUIPresent : PresentControl<GUIView, ISessionModel>
 {
     protected override void Initialize(GUIView view, ISessionModel model)
     {
-        view.NextTurn.ButtonDown += () => SendCommand(new MESSAGE_NextTurn());
+        view.NextTurn.ButtonDown += () => SendCommand(new UICommand_NextTurn());
     }
 
 
@@ -38,6 +39,9 @@ public partial class GUIPresent : PresentControl<GUIView, ISessionModel>
     }
 }
 
-internal class MESSAGE_NextTurn : UICommand
+internal class UICommand_NextTurn : UICommand
 {
+    public override object[] parameters { get; }
+
+    public override Command type => Command.NextTurn;
 }

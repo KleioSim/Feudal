@@ -28,4 +28,12 @@ internal class Session : ISession
     internal readonly Dictionary<object, IWorkHood> workHoods = new Dictionary<object, IWorkHood>();
     internal readonly Dictionary<object, IWorking> workings = new Dictionary<object, IWorking>();
     internal readonly Dictionary<object, IClan> clans = new Dictionary<object, IClan>();
+
+    public void OnCommand(Command command, object[] parameters)
+    {
+        if (command == Command.NextTurn)
+        {
+            Date.OnDaysInc();
+        }
+    }
 }

@@ -8,6 +8,6 @@ internal class SessionModel : ISessionModel
 
     public void OnCommand(UICommand command)
     {
-
+        Session.OnCommand(command.type, command.parameters);
     }
 }
