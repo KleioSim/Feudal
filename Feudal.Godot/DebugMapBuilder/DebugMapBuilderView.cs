@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public partial class MapBuilderDebugView : ViewControl
+public partial class DebugMapBuilderView : ViewControl
 {
     public string SelectedTerrainType
     {

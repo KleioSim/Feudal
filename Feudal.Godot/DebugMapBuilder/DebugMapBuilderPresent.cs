@@ -5,7 +5,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class MapBuilderDebugPresent : PresentControl<MapBuilderDebugView, ISessionModel>
+public partial class DebugMapBuilderPresent : PresentControl<DebugMapBuilderView, ISessionModel>
 {
     private (int x, int y) currPos;
     private TerrainBuilder terrainBuilder;
@@ -67,7 +67,7 @@ public partial class MapBuilderDebugPresent : PresentControl<MapBuilderDebugView
     }
 
 
-    protected override void Initialize(MapBuilderDebugView view, ISessionModel model)
+    protected override void Initialize(DebugMapBuilderView view, ISessionModel model)
     {
         var mockSession = model.Session as SessionMock;
 
@@ -117,7 +117,7 @@ public partial class MapBuilderDebugPresent : PresentControl<MapBuilderDebugView
         };
     }
 
-    protected override void Update(MapBuilderDebugView view, ISessionModel model)
+    protected override void Update(DebugMapBuilderView view, ISessionModel model)
     {
 
     }

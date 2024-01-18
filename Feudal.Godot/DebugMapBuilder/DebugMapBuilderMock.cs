@@ -1,6 +1,6 @@
 ﻿using Feudal.Godot.Presents;
 
-partial class MapBuilderDebugMock : MockControl<MapBuilderDebugView, ISessionModel>
+partial class DebugMapBuilderMock : MockControl<DebugMapBuilderView, ISessionModel>
 {
     public override ISessionModel Mock
     {
