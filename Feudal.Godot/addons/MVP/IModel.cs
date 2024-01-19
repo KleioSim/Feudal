@@ -7,7 +7,7 @@ public interface IModel
 
 public abstract class UICommand
 {
-    public abstract object[] parameters { get; }
+    public abstract string[] parameters { get; }
 
     public abstract Command type { get; }
 }

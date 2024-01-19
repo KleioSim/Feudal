@@ -13,5 +13,13 @@ public partial class SelectLaborPanelView : SubPanelView
         {
             return this.GetNode<InstancePlaceholder>("VBoxContainer/VBoxContainer/DefaultItem");
         });
+
+        Container.OnAddedItem = (item) =>
+        {
+            item.Button.Pressed += () =>
+            {
+                EmitSignal(SignalName.SelectedLabor, item.Id as string);
+            };
+        };
     }
 }

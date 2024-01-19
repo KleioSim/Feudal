@@ -1,4 +1,5 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Godot.UICommands;
+using Feudal.Interfaces;
 using Godot;
 using System;
 
@@ -26,7 +27,7 @@ public partial class ProductTopInfoItemMock : MockControl<ProductTopInfoItemView
 
             View.Id = Enum.Parse<ProductType>(productType);
 
-            Present.SendCommand(new UIRefreshCommand());
+            Present.SendCommand(new UICommand_Refresh());
         }
     }
 
@@ -42,7 +43,7 @@ public partial class ProductTopInfoItemMock : MockControl<ProductTopInfoItemView
         {
             Product.Current = value;
 
-            Present.SendCommand(new UIRefreshCommand());
+            Present.SendCommand(new UICommand_Refresh());
         }
     }
 
@@ -57,7 +58,7 @@ public partial class ProductTopInfoItemMock : MockControl<ProductTopInfoItemView
         {
             Product.Surplus = value;
 
-            Present.SendCommand(new UIRefreshCommand());
+            Present.SendCommand(new UICommand_Refresh());
         }
     }
 

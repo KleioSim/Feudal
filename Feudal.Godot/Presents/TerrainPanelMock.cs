@@ -1,4 +1,5 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Godot.UICommands;
+using Feudal.Interfaces;
 using Godot;
 using System;
 using System.Linq;
@@ -21,7 +22,7 @@ partial class TerrainPanelMock : MockControl<TerrainPanelView, ISessionModel>
             var terrain = Present.Model.Session.Terrains[(View.TerrainPosition.X, View.TerrainPosition.Y)] as MockTerrain;
             terrain.IsDiscoverd = value;
 
-            Present.SendCommand(new UIRefreshCommand());
+            Present.SendCommand(new UICommand_Refresh());
         }
     }
 

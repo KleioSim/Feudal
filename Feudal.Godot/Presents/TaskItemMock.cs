@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Feudal.Godot.UICommands;
+using Godot;
 
 namespace Feudal.Godot.Presents;
 
@@ -18,7 +19,7 @@ partial class TaskItemMock : MockControl<TaskItemView, ISessionModel>
         {
             Task.Percent = value;
 
-            Present.SendCommand(new UIRefreshCommand());
+            Present.SendCommand(new UICommand_Refresh());
         }
     }
 
@@ -33,7 +34,7 @@ partial class TaskItemMock : MockControl<TaskItemView, ISessionModel>
         {
             Task.Desc = value;
 
-            Present.SendCommand(new UIRefreshCommand());
+            Present.SendCommand(new UICommand_Refresh());
         }
     }
 

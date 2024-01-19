@@ -1,4 +1,5 @@
 ﻿using Feudal.Godot.Presents;
+using Feudal.Godot.UICommands;
 using Feudal.Interfaces;
 using Feudal.TerrainBuilders;
 using Godot;
@@ -98,7 +99,7 @@ public partial class DebugMapBuilderPresent : PresentControl<DebugMapBuilderView
 
             currPos = GetNextPosition(currPos);
 
-            SendCommand(new UIRefreshCommand());
+            SendCommand(new UICommand_Refresh());
         };
 
         view.TilemapView.ClickTile += (Vector2I index) =>
@@ -113,7 +114,7 @@ public partial class DebugMapBuilderPresent : PresentControl<DebugMapBuilderView
 
             mockSession.MockTerrains.Add(currPos, new MockTerrain() { Position = pos, TerrainType = terrainType });
 
-            SendCommand(new UIRefreshCommand());
+            SendCommand(new UICommand_Refresh());
         };
     }
 

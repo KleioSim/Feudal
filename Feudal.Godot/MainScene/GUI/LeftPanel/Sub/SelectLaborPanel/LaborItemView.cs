@@ -7,5 +7,5 @@ public partial class LaborItemView : ViewControl, IItemView
     public Label ClanName => GetNode<Label>("HBoxContainer/Label");
     public Label Count => GetNode<Label>("HBoxContainer/Pop");
 
-    public Button Button => GetNode<Button>(".");
+    public Button Button => GetNode<Button>("Button");
 }

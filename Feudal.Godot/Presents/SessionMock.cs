@@ -35,7 +35,7 @@ internal class SessionMock : ISession
 
     private MockDate MockDate { get; } = new MockDate();
 
-    public void OnCommand(Command command, object[] parameters)
+    public void OnCommand(Command command, string[] parameters)
     {
     }
 }

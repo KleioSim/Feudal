@@ -1,4 +1,5 @@
 ﻿using Feudal.Godot.Presents;
+using Feudal.Godot.UICommands;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -78,7 +79,7 @@ public abstract partial class PresentControl<TView, TModel> : PresentBase
 
     internal void SendCommand(UICommand command)
     {
-        if (command is not UIRefreshCommand)
+        if (command is not UICommand_Refresh)
         {
             GD.Print($"OnCommand:{command.type}, parameters:[{(command.parameters == null ? "" : string.Join(", ", command.parameters))}]");
 

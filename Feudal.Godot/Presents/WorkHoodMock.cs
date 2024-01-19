@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Feudal.Godot.UICommands;
+using Godot;
 using System.Linq;
 
 namespace Feudal.Godot.Presents;
@@ -41,7 +42,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
                 session.MockTasks.Remove(task.Id);
             }
 
-            Present.SendCommand(new UIRefreshCommand());
+            Present.SendCommand(new UICommand_Refresh());
         }
     }
 

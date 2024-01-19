@@ -1,4 +1,5 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Godot.UICommands;
+using Feudal.Interfaces;
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ partial class TaskArrayMock : MockControl<TaskArrayView, ISessionModel>
                 dict.Remove(dict.First().Key);
             }
 
-            Present.SendCommand(new UIRefreshCommand());
+            Present.SendCommand(new UICommand_Refresh());
         }
     }
 

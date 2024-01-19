@@ -1,4 +1,4 @@
-using Feudal.Interfaces;
+using Feudal.Godot.UICommands;
 using Godot;
 using System.Linq;
 
@@ -37,11 +37,4 @@ public partial class GUIPresent : PresentControl<GUIView, ISessionModel>
 
         view.ClansCount.Text = model.Session.Clans.Count().ToString();
     }
-}
-
-internal class UICommand_NextTurn : UICommand
-{
-    public override object[] parameters { get; }
-
-    public override Command type => Command.NextTurn;
 }
