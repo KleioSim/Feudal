@@ -38,7 +38,10 @@ class Session : ISession
         switch (command)
         {
             case Command.NextTurn:
-                Date.OnDaysInc();
+                {
+                    taskManager.OnNextTurn();
+                    Date.OnDaysInc();
+                }
                 break;
             case Command.OccupyLabor:
                 {

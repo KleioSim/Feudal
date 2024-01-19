@@ -62,4 +62,16 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
     {
         return ((IEnumerable)dict).GetEnumerator();
     }
+
+    public void OnNextTurn()
+    {
+        foreach (Task task in dict.Values)
+        {
+            task.Percent++;
+            if (task.Percent >= 100)
+            {
+                dict.Remove(task.Id);
+            }
+        }
+    }
 }
