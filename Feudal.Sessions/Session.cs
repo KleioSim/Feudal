@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reflection;
@@ -11,7 +12,7 @@ internal class Session : ISession
 
     public IDate Date { get; init; }
 
-    public IReadOnlyDictionary<object, ITask> Tasks => tasks;
+    public IReadOnlyDictionary<object, ITask> Tasks => taskManager;
 
     public IReadOnlyDictionary<object, IResource> Resources => resource;
 
@@ -30,6 +31,8 @@ internal class Session : ISession
     internal readonly Dictionary<object, IWorking> workings = new Dictionary<object, IWorking>();
     internal readonly Dictionary<object, IClan> clans = new Dictionary<object, IClan>();
 
+    private TaskManager taskManager = new TaskManager();
+
     public void OnCommand(Command command, string[] parameters)
     {
         switch (command)
@@ -39,62 +42,15 @@ internal class Session : ISession
                 break;
             case Command.OccupyLabor:
                 {
-                    var clanId = parameters[0];
-                    var workHooId = parameters[1];
-
-                    var task = tasks.Values.SingleOrDefault(x => x.WorkHoodId == workHooId);
-                    if (task != null)
-                    {
-                        throw new Exception($"WorkHood{workHooId}已经关联Labor{task.ClanId}");
-                    }
-
-                    task = new Task(clanId, workHooId);
-                    tasks.Add(task.Id, task);
+                    taskManager.CreateTask(parameters[0], parameters[1]);
                 }
                 break;
             case Command.ReleaseLabor:
                 {
-                    var clanId = parameters[0];
-                    var workHooId = parameters[1];
-
-                    var task = tasks.Values.SingleOrDefault(x => x.WorkHoodId == workHooId);
-                    if (task == null)
-                    {
-                        throw new Exception($"WorkHood{workHooId}未关联Labor");
-                    }
-                    if (task.ClanId != clanId)
-                    {
-                        throw new Exception($"Task{task.Id}中, WorkHood{workHooId}关联Labor是{task.ClanId}, 不是{clanId}");
-                    }
-
-                    tasks.Remove(task.Id);
+                    taskManager.RelaseTask(parameters[0], parameters[1]);
                 }
                 break;
         }
-    }
-}
-
-internal class Task : ITask
-{
-    public static int Count;
-
-    public string Id { get; }
-
-    public string Desc { get; }
-
-    public float Percent { get; set; }
-
-    public string WorkHoodId { get; }
-
-    public string ClanId { get; private set; }
-
-    public Task(string clanId, string workHoodId)
-    {
-        Id = $"TASK{Count++}";
-
-        Desc = Id;
-        WorkHoodId = workHoodId;
-        ClanId = clanId;
     }
 }
 

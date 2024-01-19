@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
+    <ProjectReference Include="..\Feudal.Tasks\Feudal.Tasks.csproj" />
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>Feudal.SessionBuilders</_Parameter1>
     </AssemblyAttribute>
