@@ -11,7 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
-    <ProjectReference Include="..\Feudal.SessionBuilders\Feudal.SessionBuilders.csproj" />
+    <ProjectReference Include="..\Feudal.Sessions\Feudal.Sessions.csproj" />
     <ProjectReference Include="..\Feudal.TerrainBuilders\Feudal.TerrainBuilders.csproj" />
   </ItemGroup>
 </Project>

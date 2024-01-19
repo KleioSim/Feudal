@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Feudal.Sessions;
 
-internal class Session : ISession
+class Session : ISession
 {
     public IClan PlayerClan { get; set; }
 
