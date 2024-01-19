@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 
 public partial class TerrainPanelView : MainPanelView
@@ -7,7 +7,7 @@ public partial class TerrainPanelView : MainPanelView
 
     public Label Title => GetNode<Label>("VBoxContainer/Title");
 
-    public Control ResourceArray => GetNode<Control>("VBoxContainer/ResourceArray");
+    public Control ResourceArray => GetNode<Control>("VBoxContainer/ResourceContainer/ResourceArray");
 
     public WorkHoodView WorkHoodPanel => GetNode<WorkHoodView>("VBoxContainer/WorkHoodPanel");
 }

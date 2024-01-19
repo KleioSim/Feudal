@@ -7,7 +7,10 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
 {
     protected override void Initialize(WorkHoodView view, ISessionModel model)
     {
-
+        view.OccupyLabor += (string clanId) =>
+        {
+            SendCommand(new OccupyLaborCommand() { ClanId = clanId, WorkHoodId = view.Id });
+        };
     }
 
     protected override void Update(WorkHoodView view, ISessionModel model)

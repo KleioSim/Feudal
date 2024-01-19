@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using System.Collections.Generic;
 
 namespace Feudal.Godot.Presents;
 
@@ -31,5 +32,10 @@ class MockResource : IResource
     public MockResource()
     {
         Id = $"R{count++}";
+    }
+
+    public IEnumerable<IWorking> GetWorkings()
+    {
+        throw new System.NotImplementedException();
     }
 }

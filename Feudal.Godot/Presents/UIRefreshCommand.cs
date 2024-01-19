@@ -8,3 +8,15 @@ internal class UIRefreshCommand : UICommand
 
     public override Command type { get; }
 }
+
+
+internal class OccupyLaborCommand : UICommand
+{
+    public override object[] parameters => new[] { ClanId, WorkHoodId };
+
+    public override Command type => Command.OccupyLabor;
+
+    public string ClanId { get; init; }
+
+    public string WorkHoodId { get; init; }
+}

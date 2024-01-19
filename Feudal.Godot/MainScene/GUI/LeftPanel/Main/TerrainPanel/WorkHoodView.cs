@@ -15,5 +15,5 @@ public partial class WorkHoodView : ViewControl
     public WorkingArrayView WorkingArray => GetNode<WorkingArrayView>("VBoxContainer/WorkingArray");
 
     [Signal]
-    public delegate void AssginLaborEventHandler(string laborId);
+    public delegate void OccupyLaborEventHandler(string laborId);
 }

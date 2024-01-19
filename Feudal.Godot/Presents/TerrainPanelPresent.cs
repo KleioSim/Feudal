@@ -17,8 +17,11 @@ partial class TerrainPanelPresent : PresentControl<TerrainPanelView, ISessionMod
 
         view.ResourceArray.Visible = terrain.IsDiscoverd;
 
-        var workHood = model.Session.WorkHoods[terrain.WorkHoodId];
-
-        view.WorkHoodPanel.Id = workHood != null ? workHood.Id : null;
+        view.WorkHoodPanel.Visible = (terrain.WorkHoodId != null);
+        if (view.WorkHoodPanel.Visible)
+        {
+            var workHood = model.Session.WorkHoods[terrain.WorkHoodId];
+            view.WorkHoodPanel.Id = workHood != null ? workHood.Id : null;
+        }
     }
 }

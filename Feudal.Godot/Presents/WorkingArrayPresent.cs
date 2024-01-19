@@ -14,6 +14,8 @@ partial class WorkingArrayPresent : PresentControl<WorkingArrayView, ISessionMod
         var workHood = model.Session.WorkHoods[view.WorkHoodId];
         view.CurrentWorking.Id = workHood.CurrentWorking.Id;
 
-        view.OptionWorkings.Refresh(workHood.OptionWorkings.Select(x => x.Id as object).ToHashSet());
+        view.OptionWorkings.Refresh(workHood.OptionWorkings
+            .Where(x => x != view.CurrentWorking)
+            .Select(x => x.Id as object).ToHashSet());
     }
 }

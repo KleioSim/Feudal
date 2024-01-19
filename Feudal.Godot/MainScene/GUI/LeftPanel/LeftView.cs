@@ -46,7 +46,7 @@ public partial class LeftView : ViewControl
             subPanel.SelectedLabor += (Id) =>
             {
                 SubPanelContainer.ClosePanel();
-                manPanel.WorkHoodPanel.EmitSignal(WorkHoodView.SignalName.AssginLabor, Id);
+                manPanel.WorkHoodPanel.EmitSignal(WorkHoodView.SignalName.OccupyLabor, Id);
             };
         };
 

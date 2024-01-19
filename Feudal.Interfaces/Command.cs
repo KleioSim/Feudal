@@ -2,5 +2,6 @@
 
 public enum Command
 {
-    NextTurn
+    NextTurn,
+    OccupyLabor,
 }

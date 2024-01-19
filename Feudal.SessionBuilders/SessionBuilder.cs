@@ -1,6 +1,7 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Sessions;
 using Feudal.TerrainBuilders;
+using System.CodeDom.Compiler;
 using System.Threading.Tasks;
 
 namespace Feudal.SessionBuilders;
@@ -38,12 +39,81 @@ public class SessionBuilder
             }
         }
 
+        var discoverWorking = new DiscoverWorking();
+        session.workings.Add(discoverWorking.Id, discoverWorking);
+
+        Terrain.DiscoverWorking = discoverWorking;
+
+        Terrain.OccupyOrUpdateWorkHood = (ref string id, IEnumerable<IWorking> workings) =>
+        {
+            if (id == null || !session.workHoods.TryGetValue(id, out var workHood))
+            {
+                workHood = new WorkHood();
+                session.workHoods.Add(workHood.Id, workHood);
+            }
+
+            ((WorkHood)workHood).UpdateWorkings(workings);
+
+            id = workHood.Id;
+        };
+
+        Terrain.ReleaseWorkHood = (string id) =>
+        {
+            if (id != null)
+            {
+                session.workHoods.Remove(id);
+            }
+        };
+
+
         return session;
+    }
+}
+
+internal class DiscoverWorking : IWorking
+{
+    public string Id { get; } = nameof(DiscoverWorking);
+
+    public string Name => Id;
+}
+
+internal class WorkHood : IWorkHood
+{
+    public static int Count;
+
+    public string Id { get; }
+
+    public IWorking CurrentWorking { get; private set; }
+
+    public IEnumerable<IWorking> OptionWorkings { get; private set; }
+
+    internal void UpdateWorkings(IEnumerable<IWorking> workings)
+    {
+        OptionWorkings = workings;
+
+        if (OptionWorkings.Contains(CurrentWorking))
+        {
+            return;
+        }
+
+        CurrentWorking = OptionWorkings.First();
+    }
+
+    public WorkHood()
+    {
+        Id = $"WorkHood_{Count++}";
     }
 }
 
 internal class Terrain : ITerrain
 {
+    public delegate void DelegateOccupyOrUpdateWorkHood(ref string Id, IEnumerable<IWorking> workings);
+
+    public static DelegateOccupyOrUpdateWorkHood OccupyOrUpdateWorkHood;
+    public static Action<string> ReleaseWorkHood;
+
+    public static IWorking DiscoverWorking { get; set; }
+
     public (int x, int y) Position { get; }
 
     public IReadOnlySet<IResource> Resources => resources;
@@ -52,7 +122,26 @@ internal class Terrain : ITerrain
 
     public bool IsDiscoverd { get; set; }
 
-    public string WorkHoodId { get; private set; }
+    public string WorkHoodId
+    {
+        get
+        {
+            var workingOptions = GetWorkingOptions();
+            if (workingOptions.Any())
+            {
+                OccupyOrUpdateWorkHood(ref workHoodId, workingOptions);
+            }
+            else
+            {
+                ReleaseWorkHood(workHoodId);
+                workHoodId = null;
+            }
+
+            return workHoodId;
+        }
+    }
+
+    private string workHoodId;
 
     private HashSet<IResource> resources = new HashSet<IResource>();
 
@@ -60,6 +149,16 @@ internal class Terrain : ITerrain
     {
         this.Position = position;
         this.TerrainType = terrainType;
+    }
+
+    private IEnumerable<IWorking> GetWorkingOptions()
+    {
+        if (!IsDiscoverd)
+        {
+            return new[] { DiscoverWorking };
+        }
+
+        return Resources.Select(x => x.GetWorkings()).SelectMany(x => x);
     }
 }
 
