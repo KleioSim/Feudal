@@ -210,3 +210,5 @@ text = "NextTurn"
 layout_mode = 0
 offset_top = 350.0
 offset_bottom = 950.0
+
+[connection signal="ShowTerrain" from="Right/TaskArray" to="." method="ShowLeftView_Terrain"]

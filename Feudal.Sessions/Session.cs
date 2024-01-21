@@ -92,14 +92,26 @@ internal class WorkHood : IWorkHood
     }
 }
 
+class TerrainWorkHood : WorkHood, ITerrainWorkHood
+{
+    public (int x, int y) Position { get; }
+
+    public TerrainWorkHood((int x, int y) position)
+    {
+        this.Position = position;
+    }
+}
+
 internal class Terrain : ITerrain
 {
-    public delegate void DelegateOccupyOrUpdateWorkHood(ref string Id, IEnumerable<IWorking> workings);
+    //public delegate void DelegateOccupyOrUpdateWorkHood(ref string Id, IEnumerable<IWorking> workings);
 
-    public static DelegateOccupyOrUpdateWorkHood OccupyOrUpdateWorkHood;
-    public static Action<string> ReleaseWorkHood;
+    //public static DelegateOccupyOrUpdateWorkHood OccupyOrUpdateWorkHood;
+    //public static Action<string> ReleaseWorkHood;
 
-    public static IWorking DiscoverWorking { get; set; }
+    //public static IWorking DiscoverWorking { get; set; }
+
+    public static Func<ITerrain, string> GetWorkHoodId;
 
     public (int x, int y) Position { get; }
 
@@ -109,26 +121,27 @@ internal class Terrain : ITerrain
 
     public bool IsDiscoverd { get; set; }
 
-    public string WorkHoodId
-    {
-        get
-        {
-            var workingOptions = GetWorkingOptions();
-            if (workingOptions.Any())
-            {
-                OccupyOrUpdateWorkHood(ref workHoodId, workingOptions);
-            }
-            else
-            {
-                ReleaseWorkHood(workHoodId);
-                workHoodId = null;
-            }
+    public string WorkHoodId => GetWorkHoodId(this);
 
-            return workHoodId;
-        }
-    }
+    //{
+    //    get
+    //    {
+    //        var workingOptions = GetWorkingOptions();
+    //        if (workingOptions.Any())
+    //        {
+    //            OccupyOrUpdateWorkHood(ref workHoodId, workingOptions);
+    //        }
+    //        else
+    //        {
+    //            ReleaseWorkHood(workHoodId);
+    //            workHoodId = null;
+    //        }
 
-    private string workHoodId;
+    //        return workHoodId;
+    //    }
+    //}
+
+    //private string workHoodId;
 
     private HashSet<IResource> resources = new HashSet<IResource>();
 
@@ -138,15 +151,15 @@ internal class Terrain : ITerrain
         this.TerrainType = terrainType;
     }
 
-    private IEnumerable<IWorking> GetWorkingOptions()
-    {
-        if (!IsDiscoverd)
-        {
-            return new[] { DiscoverWorking };
-        }
+    //private IEnumerable<IWorking> GetWorkingOptions()
+    //{
+    //    if (!IsDiscoverd)
+    //    {
+    //        return new[] { DiscoverWorking };
+    //    }
 
-        return Resources.Select(x => x.GetWorkings()).SelectMany(x => x);
-    }
+    //    return Resources.Select(x => x.GetWorkings()).SelectMany(x => x);
+    //}
 }
 
 internal class Clan : IClan

@@ -1,5 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Feudal.TerrainBuilders;
+using System.Resources;
 
 namespace Feudal.Sessions;
 
@@ -39,28 +40,49 @@ public class SessionBuilder
         var discoverWorking = new DiscoverWorking();
         session.workings.Add(discoverWorking.Id, discoverWorking);
 
-        Terrain.DiscoverWorking = discoverWorking;
-
-        Terrain.OccupyOrUpdateWorkHood = (ref string id, IEnumerable<IWorking> workings) =>
+        Terrain.GetWorkHoodId = (terrain) =>
         {
-            if (id == null || !session.workHoods.TryGetValue(id, out var workHood))
+            var workings = !terrain.IsDiscoverd ? new[] { new DiscoverWorking() } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x).ToArray();
+            var workHood = session.workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == terrain.Position);
+            if (workings.Any())
             {
-                workHood = new WorkHood();
-                session.workHoods.Add(workHood.Id, workHood);
+                if(workHood == null)
+                {
+                    workHood = new TerrainWorkHood(terrain.Position);
+                    session.workHoods.Add(workHood.Id, workHood);
+                }
+                ((WorkHood)workHood).UpdateWorkings(workings);
+                return workHood.Id;
             }
-
-            ((WorkHood)workHood).UpdateWorkings(workings);
-
-            id = workHood.Id;
-        };
-
-        Terrain.ReleaseWorkHood = (string id) =>
-        {
-            if (id != null)
+            else
             {
-                session.workHoods.Remove(id);
+                if(workHood != null) { session.workHoods.Remove(workHood.Id); }
+                return null;
             }
         };
+
+        //Terrain.DiscoverWorking = discoverWorking;
+
+        //Terrain.OccupyOrUpdateWorkHood = (ref string id, IEnumerable<IWorking> workings) =>
+        //{
+        //    if (id == null || !session.workHoods.TryGetValue(id, out var workHood))
+        //    {
+        //        workHood = new WorkHood();
+        //        session.workHoods.Add(workHood.Id, workHood);
+        //    }
+
+        //    ((WorkHood)workHood).UpdateWorkings(workings);
+
+        //    id = workHood.Id;
+        //};
+
+        //Terrain.ReleaseWorkHood = (string id) =>
+        //{
+        //    if (id != null)
+        //    {
+        //        session.workHoods.Remove(id);
+        //    }
+        //};
 
 
         return session;

@@ -44,3 +44,8 @@ class MockWorkHood : IWorkHood
 
     public List<IWorking> MockOptionWorkings = new List<IWorking>();
 }
+
+class MockTerrainWorkHood : MockWorkHood, ITerrainWorkHood
+{
+    public (int x, int y) Position { get; set; }
+}
