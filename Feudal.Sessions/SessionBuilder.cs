@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.Tasks;
 using Feudal.TerrainBuilders;
 using System.Resources;
 
@@ -37,16 +38,16 @@ public class SessionBuilder
             }
         }
 
-        var discoverWorking = new DiscoverWorking();
+        var discoverWorking = new DiscoverWorking(session);
         session.workings.Add(discoverWorking.Id, discoverWorking);
 
         Terrain.GetWorkHoodId = (terrain) =>
         {
-            var workings = !terrain.IsDiscoverd ? new[] { new DiscoverWorking() } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x).ToArray();
+            var workings = !terrain.IsDiscoverd ? new[] { session.workings[typeof(DiscoverWorking).Name] } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x).ToArray();
             var workHood = session.workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == terrain.Position);
             if (workings.Any())
             {
-                if(workHood == null)
+                if (workHood == null)
                 {
                     workHood = new TerrainWorkHood(terrain.Position);
                     session.workHoods.Add(workHood.Id, workHood);
@@ -56,9 +57,14 @@ public class SessionBuilder
             }
             else
             {
-                if(workHood != null) { session.workHoods.Remove(workHood.Id); }
+                if (workHood != null) { session.workHoods.Remove(workHood.Id); }
                 return null;
             }
+        };
+
+        TaskManager.FindWorkHood = (id) =>
+        {
+            return session.WorkHoods[id];
         };
 
         //Terrain.DiscoverWorking = discoverWorking;

@@ -57,11 +57,40 @@ class Session : ISession
     }
 }
 
-internal class DiscoverWorking : IWorking
+internal class Working : IWorking
 {
-    public string Id { get; } = nameof(DiscoverWorking);
+    public string Id { get; }
 
     public string Name => Id;
+
+    protected ISession session;
+
+    public Working(ISession session)
+    {
+        Id = this.GetType().Name;
+
+        this.session = session;
+
+    }
+}
+
+internal class DiscoverWorking : Working, ICanFinishedWorking
+{
+    public DiscoverWorking(ISession session) : base(session)
+    {
+    }
+
+    public void Finished(IWorkHood workHood)
+    {
+        if (workHood is TerrainWorkHood terrainWorkHood)
+        {
+            ((Terrain)session.Terrains[terrainWorkHood.Position]).IsDiscoverd = true;
+        }
+        else
+        {
+            throw new Exception();
+        }
+    }
 }
 
 internal class WorkHood : IWorkHood

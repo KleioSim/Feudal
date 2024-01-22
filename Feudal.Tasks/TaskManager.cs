@@ -6,6 +6,8 @@ namespace Feudal.Tasks;
 
 public class TaskManager : IReadOnlyDictionary<object, ITask>
 {
+    public static Func<string, IWorkHood> FindWorkHood;
+
     private Dictionary<object, ITask> dict = new Dictionary<object, ITask>();
 
     public ITask this[object key] => ((IReadOnlyDictionary<object, ITask>)dict)[key];
@@ -67,11 +69,27 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
     {
         foreach (Task task in dict.Values)
         {
-            task.Percent++;
+            task.Percent += 30;
             if (task.Percent >= 100)
             {
+
+                OnTaskFinsihed(task);
+
                 dict.Remove(task.Id);
             }
+        }
+    }
+
+    private void OnTaskFinsihed(Task task)
+    {
+        var workHood = FindWorkHood(task.WorkHoodId);
+        if (workHood.CurrentWorking is ICanFinishedWorking working)
+        {
+            working.Finished(workHood);
+        }
+        else
+        {
+            throw new Exception();
         }
     }
 }
