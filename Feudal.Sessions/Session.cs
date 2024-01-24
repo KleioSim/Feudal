@@ -83,19 +83,45 @@ internal class DiscoverWorking : Working, IProgressWorking
 
     public void Finished(IWorkHood workHood)
     {
-        if (workHood is TerrainWorkHood terrainWorkHood)
-        {
-            ((Terrain)session.Terrains[terrainWorkHood.Position]).IsDiscoverd = true;
-        }
-        else
+        if (workHood is not TerrainWorkHood terrainWorkHood)
         {
             throw new Exception();
         }
+
+        ((Terrain)session.Terrains[terrainWorkHood.Position]).IsDiscoverd = true;
     }
 
     public float GetStep(IWorkHood workHood)
     {
-        throw new NotImplementedException();
+        if (workHood is not TerrainWorkHood terrainWorkHood)
+        {
+            throw new Exception();
+        }
+
+        var baseValue = 20f;
+        var terrain = session.Terrains[terrainWorkHood.Position];
+
+        var effect = GetEffect(terrain.TerrainType);
+        return baseValue * (1 + effect);
+    }
+
+    public float GetEffect(TerrainType terrainType)
+    {
+        switch (terrainType)
+        {
+            case TerrainType.Plain:
+                return 0;
+            case TerrainType.Hill:
+                return -0.6f;
+            case TerrainType.Mountion:
+                return -0.9f;
+            case TerrainType.Lake:
+                return -0.3f;
+            case TerrainType.Marsh:
+                return -0.5f;
+            default:
+                throw new Exception();
+        }
     }
 }
 

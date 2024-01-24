@@ -11,6 +11,8 @@ public partial class WorkingItemView : ViewControl, IItemView
     public Control ProductPanel => GetNode<Control>("HBoxContainer/PanelContainer/ProductContainer");
 
     public ProgressBar ProgressBar => ProgressPanel.GetNode<ProgressBar>(".");
+    public Label Step => ProgressPanel.GetNode<Label>("Step");
+
     public Label ProductType => ProductPanel.GetNode<Label>("HBoxContainer/Type");
     public Label ProductCount => ProductPanel.GetNode<Label>("HBoxContainer/Count");
 }
