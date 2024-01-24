@@ -2,6 +2,7 @@
 using Feudal.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reflection;
 
 namespace Feudal.Sessions;
@@ -74,7 +75,7 @@ internal class Working : IWorking
     }
 }
 
-internal class DiscoverWorking : Working, ICanFinishedWorking
+internal class DiscoverWorking : Working, IProgressWorking
 {
     public DiscoverWorking(ISession session) : base(session)
     {
@@ -91,6 +92,11 @@ internal class DiscoverWorking : Working, ICanFinishedWorking
             throw new Exception();
         }
     }
+
+    public float GetStep(IWorkHood workHood)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 internal class WorkHood : IWorkHood
@@ -101,18 +107,20 @@ internal class WorkHood : IWorkHood
 
     public IWorking CurrentWorking { get; private set; }
 
-    public IEnumerable<IWorking> OptionWorkings { get; private set; }
+    public IEnumerable<IWorking> OptionWorkings => optionWorkings.Where(x => x != CurrentWorking);
+
+    private IEnumerable<IWorking> optionWorkings;
 
     internal void UpdateWorkings(IEnumerable<IWorking> workings)
     {
-        OptionWorkings = workings;
+        optionWorkings = workings;
 
-        if (OptionWorkings.Contains(CurrentWorking))
+        if (optionWorkings.Contains(CurrentWorking))
         {
             return;
         }
 
-        CurrentWorking = OptionWorkings.First();
+        CurrentWorking = optionWorkings.First();
     }
 
     public WorkHood()

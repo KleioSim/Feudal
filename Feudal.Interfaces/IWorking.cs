@@ -8,7 +8,8 @@ public interface IWorking
 
 }
 
-public interface ICanFinishedWorking : IWorking
+public interface IProgressWorking : IWorking
 {
     void Finished(IWorkHood workHood);
+    float GetStep(IWorkHood workHood);
 }

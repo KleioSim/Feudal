@@ -7,6 +7,7 @@ public interface ITask
     string Desc { get; }
 
     float Percent { get; }
+    float Step { get; }
     string WorkHoodId { get; }
     string ClanId { get; }
 }

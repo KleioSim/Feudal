@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Godot;
 
 namespace Feudal.Godot.Presents;
 
@@ -8,19 +9,24 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
     {
         get
         {
+            var session = new SessionMock();
 
-            var working = new MockWorking();
+            var workHood = session.GenerateWorkHood();
+            View.WorkHoodId = workHood.Id;
+
+            var working = session.GenerateWorking(workHood);
             View.Id = working.Id;
 
-            var session = new SessionMock();
-            session.MockWorkings.Add(working.Id, working);
+            var task = session.GenerateTask();
+            task.ClanId = session.GenerateClan().Id;
+            task.WorkHoodId = workHood.Id;
 
             return new SessionModel() { Session = session };
         }
     }
 }
 
-class MockWorking : IWorking
+class MockWorking : IProgressWorking
 {
     public string Id { get; set; }
 
@@ -31,5 +37,15 @@ class MockWorking : IWorking
     public MockWorking()
     {
         Id = $"WG{Count++}";
+    }
+
+    public void Finished(IWorkHood workHood)
+    {
+        GD.Print($"Working:{Id} Finsihed, WorkHood:{workHood}");
+    }
+
+    public float GetStep(IWorkHood workHood)
+    {
+        return 3;
     }
 }

@@ -69,7 +69,10 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
     {
         foreach (Task task in dict.Values)
         {
-            task.Percent += 30;
+            //task.Step = CalcStep(task);
+
+            task.Percent += task.Step;
+
             if (task.Percent >= 100)
             {
 
@@ -80,10 +83,23 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
         }
     }
 
+    //private float CalcStep(Task task)
+    //{
+    //    var workHood = FindWorkHood(task.WorkHoodId);
+    //    if (workHood.CurrentWorking is ICanFinishedWorking working)
+    //    {
+    //        working.Finished(workHood);
+    //    }
+    //    else
+    //    {
+    //        throw new Exception();
+    //    }
+    //}
+
     private void OnTaskFinsihed(Task task)
     {
         var workHood = FindWorkHood(task.WorkHoodId);
-        if (workHood.CurrentWorking is ICanFinishedWorking working)
+        if (workHood.CurrentWorking is IProgressWorking working)
         {
             working.Finished(workHood);
         }

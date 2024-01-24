@@ -16,6 +16,8 @@ class Task : ITask
 
     public string ClanId { get; private set; }
 
+    public float Step { get; } = 30;
+
     public Task(string clanId, string workHoodId)
     {
         Id = $"TASK{Count++}";

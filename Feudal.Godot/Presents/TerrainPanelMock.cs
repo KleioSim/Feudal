@@ -32,43 +32,24 @@ partial class TerrainPanelMock : MockControl<TerrainPanelView, ISessionModel>
         {
             var session = new SessionMock();
 
-            var terrain = new MockTerrain();
-            terrain.Position = (0, 0);
-            terrain.TerrainType = TerrainType.Plain;
+            var terrain = session.GenerateTerrain((0, 0), TerrainType.Plain);
             View.TerrainPosition = new Vector2I(terrain.Position.x, terrain.Position.y);
-
-            session.MockTerrains.Add(terrain.Position, terrain);
 
             for (int i = 0; i < 3; i++)
             {
-                var resource = new MockResource();
-                terrain.MockResources.Add(resource);
-                session.MockResources.Add(resource.Id, resource);
+                session.GenerateTerrainResource(terrain);
             }
 
-            var workHood = new MockWorkHood();
-            terrain.WorkHoodId = workHood.Id;
+            var workHood = session.GenerateTerrainWorkHood(terrain);
 
-            session.MockWorkHoods.Add(workHood.Id, workHood);
-
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
-                var working = new MockWorking();
-
-                workHood.MockOptionWorkings.Add(working);
-                session.MockWorkings.Add(working.Id, working);
+                session.GenerateWorking(workHood);
             }
 
-            workHood.CurrentWorking = workHood.OptionWorkings.First();
-
-            var clan = new ClanMock();
-            session.MockClans.Add(clan.Id, clan);
-
-            var task = new TaskMock();
-            task.ClanId = clan.Id;
+            var task = session.GenerateTask();
+            task.ClanId = session.GenerateClan().Id;
             task.WorkHoodId = workHood.Id;
-
-            session.MockTasks.Add(task.Id, task);
 
             return new SessionModel() { Session = session };
         }

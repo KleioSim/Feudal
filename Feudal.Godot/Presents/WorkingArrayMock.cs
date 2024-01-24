@@ -12,20 +12,17 @@ partial class WorkingArrayMock : MockControl<WorkingArrayView, ISessionModel>
         {
             var session = new SessionMock();
 
-            var workHood = new MockWorkHood();
+            var workHood = session.GenerateWorkHood();
             View.WorkHoodId = workHood.Id;
 
-            session.MockWorkHoods.Add(workHood.Id, workHood);
-
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
-                var working = new MockWorking();
-
-                workHood.MockOptionWorkings.Add(working);
-                session.MockWorkings.Add(working.Id, working);
+                session.GenerateWorking(workHood);
             }
 
-            workHood.CurrentWorking = workHood.OptionWorkings.First();
+            var task = session.GenerateTask();
+            task.ClanId = session.GenerateClan().Id;
+            task.WorkHoodId = workHood.Id;
 
             return new SessionModel() { Session = session };
         }

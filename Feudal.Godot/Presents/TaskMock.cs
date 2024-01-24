@@ -16,6 +16,8 @@ public class TaskMock : ITask
 
     public string ClanId { get; set; }
 
+    public float Step { get; set; }
+
     public TaskMock()
     {
         Id = $"TASK{Count++}";

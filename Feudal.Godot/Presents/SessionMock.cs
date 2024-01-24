@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Feudal.Godot.Presents;
@@ -37,6 +38,73 @@ internal class SessionMock : ISession
 
     public void OnCommand(Command command, string[] parameters)
     {
+    }
+
+    internal MockWorkHood GenerateWorkHood()
+    {
+        var workHood = new MockWorkHood();
+        MockWorkHoods.Add(workHood.Id, workHood);
+        return workHood;
+    }
+
+    internal MockWorking GenerateWorking(MockWorkHood workHood = null)
+    {
+        var working = new MockWorking();
+
+        MockWorkings.Add(working.Id, working);
+
+        if (workHood != null)
+        {
+            workHood.MockOptionWorkings.Add(working);
+            workHood.CurrentWorking = working;
+        }
+
+        return working;
+    }
+
+    internal ClanMock GenerateClan()
+    {
+        var clan = new ClanMock();
+        MockClans.Add(clan.Id, clan);
+        return clan;
+    }
+
+    internal TaskMock GenerateTask()
+    {
+        var task = new TaskMock();
+        MockTasks.Add(task.Id, task);
+        return task;
+    }
+
+    internal MockTerrain GenerateTerrain((int, int) position, TerrainType terrainType)
+    {
+        var terrain = new MockTerrain();
+        terrain.Position = (0, 0);
+        terrain.TerrainType = TerrainType.Plain;
+
+        MockTerrains.Add(terrain.Position, terrain);
+
+        return terrain;
+    }
+
+    internal MockResource GenerateTerrainResource(MockTerrain terrain)
+    {
+        var resource = new MockResource();
+        terrain.MockResources.Add(resource);
+        MockResources.Add(resource.Id, resource);
+
+        return resource;
+    }
+
+    internal MockTerrainWorkHood GenerateTerrainWorkHood(MockTerrain terrain)
+    {
+        var workHood = new MockTerrainWorkHood();
+        terrain.WorkHoodId = workHood.Id;
+        workHood.Position = terrain.Position;
+
+        MockWorkHoods.Add(workHood.Id, workHood);
+
+        return workHood;
     }
 }
 

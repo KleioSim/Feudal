@@ -53,29 +53,17 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
         {
             var session = new SessionMock();
 
-            var workHood = new MockWorkHood();
+            var workHood = session.GenerateWorkHood();
             View.Id = workHood.Id;
-
-            session.MockWorkHoods.Add(workHood.Id, workHood);
 
             for (int i = 0; i < 2; i++)
             {
-                var working = new MockWorking();
-
-                workHood.MockOptionWorkings.Add(working);
-                session.MockWorkings.Add(working.Id, working);
+                session.GenerateWorking(workHood);
             }
 
-            workHood.CurrentWorking = workHood.OptionWorkings.First();
-
-            var clan = new ClanMock();
-            session.MockClans.Add(clan.Id, clan);
-
-            var task = new TaskMock();
-            task.ClanId = clan.Id;
+            var task = session.GenerateTask();
+            task.ClanId = session.GenerateClan().Id;
             task.WorkHoodId = workHood.Id;
-
-            session.MockTasks.Add(task.Id, task);
 
             return new SessionModel() { Session = session };
         }
