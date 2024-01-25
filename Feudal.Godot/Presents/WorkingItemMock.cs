@@ -1,5 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Godot;
+using System.Collections.Generic;
 
 namespace Feudal.Godot.Presents;
 
@@ -48,4 +49,27 @@ class MockWorking : IProgressWorking
     {
         return 3;
     }
+
+    public IEffectValue GetEffectValue(string workHoodId)
+    {
+        return new MockEffectValue();
+    }
+}
+
+class MockEffectValue : IEffectValue
+{
+    public float BaseValue { get; } = 100;
+
+    public IEnumerable<IEffect> Effects { get; } = new IEffect[]
+    {
+        new MockEffect() { Desc = "Effect1", Percent = 20},
+        new MockEffect() { Desc = "Effect1", Percent = -10}
+    };
+}
+
+class MockEffect : IEffect
+{
+    public string Desc { get; set; }
+
+    public float Percent { get; set; }
 }

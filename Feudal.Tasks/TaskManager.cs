@@ -41,7 +41,7 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
             var workHood = FindWorkHood(workHoodId);
             if (workHood.CurrentWorking is IProgressWorking working)
             {
-                return working.GetStep(workHood);
+                return working.GetEffectValue(workHood.Id).Value;
             }
             else
             {

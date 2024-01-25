@@ -30,7 +30,7 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
                         view.ProgressBar.Value = task.Percent;
                     }
 
-                    var step = progressWorking.GetStep(workHood);
+                    var step = progressWorking.GetEffectValue(workHood.Id).Value;
                     view.Step.Text = (step >= 0 ? "+" : "") + step.ToString("0.0");
                 }
                 break;
@@ -42,9 +42,9 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
     private string GetWorkingEffectDescString(WorkingItemView view, ISessionModel model)
     {
         var working = model.Session.Workings[view.Id] as IProgressWorking;
-        var workHood = model.Session.WorkHoods[view.WorkHoodId];
+        var effectValue = working.GetEffectValue(view.WorkHoodId as string);
 
-        var step = working.GetStep(workHood);
-        return step.ToString();
+        return $"BaseValue : {effectValue.BaseValue}\n"
+            + string.Join("\n", effectValue.Effects.Select(x => "    " + x.Desc + " " + (x.Percent >= 0 ? "+" : "") + x.Percent.ToString("0.0") + "%"));
     }
 }

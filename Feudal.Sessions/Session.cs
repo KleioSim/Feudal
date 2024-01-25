@@ -71,8 +71,21 @@ internal class Working : IWorking
         Id = this.GetType().Name;
 
         this.session = session;
-
     }
+}
+
+class EffectValue : IEffectValue
+{
+    public float BaseValue { get; init; }
+
+    public IEnumerable<IEffect> Effects { get; init; }
+}
+
+class Effect : IEffect
+{
+    public string Desc { get; init; }
+
+    public float Percent { get; init; }
 }
 
 internal class DiscoverWorking : Working, IProgressWorking
@@ -112,16 +125,34 @@ internal class DiscoverWorking : Working, IProgressWorking
             case TerrainType.Plain:
                 return 0;
             case TerrainType.Hill:
-                return -0.6f;
+                return -50f;
             case TerrainType.Mountion:
-                return -0.9f;
+                return -90f;
             case TerrainType.Lake:
-                return -0.3f;
+                return -30f;
             case TerrainType.Marsh:
-                return -0.5f;
+                return -60f;
             default:
                 throw new Exception();
         }
+    }
+
+    public IEffectValue GetEffectValue(string workHoodId)
+    {
+        var workHood = session.WorkHoods[workHoodId];
+
+        if (workHood is not TerrainWorkHood terrainWorkHood)
+        {
+            throw new Exception();
+        }
+
+        var terrain = session.Terrains[terrainWorkHood.Position];
+
+        var effects = new[] { new Effect() { Desc = terrain.TerrainType.ToString(), Percent = GetEffect(terrain.TerrainType) } };
+
+        var effectValue = new EffectValue() { BaseValue = 20, Effects = effects };
+
+        return effectValue;
     }
 }
 
