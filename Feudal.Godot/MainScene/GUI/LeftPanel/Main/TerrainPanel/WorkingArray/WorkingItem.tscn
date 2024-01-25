@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp7qx35iahofe"]
+[gd_scene load_steps=5 format=3 uid="uid://bp7qx35iahofe"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkingArray/WorkingItemView.cs" id="1_rh3bt"]
+[ext_resource type="PackedScene" uid="uid://dhhdfpbmklibk" path="res://addons/TooltipTrigger/TooltipTrigger.tscn" id="2_0pkkl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_juxwu"]
 
@@ -65,3 +66,6 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TooltipTrigger" parent="HBoxContainer/PanelContainer/ProgressBar" instance=ExtResource("2_0pkkl")]
+layout_mode = 1

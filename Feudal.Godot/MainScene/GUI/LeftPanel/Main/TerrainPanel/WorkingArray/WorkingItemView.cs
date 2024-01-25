@@ -12,6 +12,7 @@ public partial class WorkingItemView : ViewControl, IItemView
 
     public ProgressBar ProgressBar => ProgressPanel.GetNode<ProgressBar>(".");
     public Label Step => ProgressPanel.GetNode<Label>("Step");
+    public TooltipTrigger TooltipTrigger => ProgressPanel.GetNode<TooltipTrigger>("TooltipTrigger");
 
     public Label ProductType => ProductPanel.GetNode<Label>("HBoxContainer/Type");
     public Label ProductCount => ProductPanel.GetNode<Label>("HBoxContainer/Count");

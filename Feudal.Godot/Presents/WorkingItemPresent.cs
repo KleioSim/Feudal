@@ -8,7 +8,7 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
 {
     protected override void Initialize(WorkingItemView view, ISessionModel model)
     {
-
+        view.TooltipTrigger.funcGetToolTipString = () => GetWorkingEffectDescString(view, model);
     }
 
     protected override void Update(WorkingItemView view, ISessionModel model)
@@ -37,5 +37,14 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
             default:
                 throw new Exception();
         }
+    }
+
+    private string GetWorkingEffectDescString(WorkingItemView view, ISessionModel model)
+    {
+        var working = model.Session.Workings[view.Id] as IProgressWorking;
+        var workHood = model.Session.WorkHoods[view.WorkHoodId];
+
+        var step = working.GetStep(workHood);
+        return step.ToString();
     }
 }
