@@ -4,7 +4,8 @@ namespace Feudal.Tasks;
 
 class Task : ITask
 {
-    public static int Count;
+    public static Func<string, float> CalcStep;
+    private static int Count;
 
     public string Id { get; }
 
@@ -16,7 +17,7 @@ class Task : ITask
 
     public string ClanId { get; private set; }
 
-    public float Step { get; } = 30;
+    public float Step => CalcStep(WorkHoodId);
 
     public Task(string clanId, string workHoodId)
     {

@@ -1,6 +1,7 @@
 ﻿using Feudal.Interfaces;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 
 namespace Feudal.Tasks;
 
@@ -31,6 +32,22 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
     public bool TryGetValue(object key, [MaybeNullWhen(false)] out ITask value)
     {
         return ((IReadOnlyDictionary<object, ITask>)dict).TryGetValue(key, out value);
+    }
+
+    public TaskManager()
+    {
+        Task.CalcStep = (workHoodId) =>
+        {
+            var workHood = FindWorkHood(workHoodId);
+            if (workHood.CurrentWorking is IProgressWorking working)
+            {
+                return working.GetStep(workHood);
+            }
+            else
+            {
+                throw new Exception();
+            }
+        };
     }
 
     public void CreateTask(string clanId, string workHooId)
