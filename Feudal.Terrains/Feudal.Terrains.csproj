@@ -8,11 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
-    <ProjectReference Include="..\Feudal.Tasks\Feudal.Tasks.csproj" />
     <ProjectReference Include="..\Feudal.TerrainBuilders\Feudal.TerrainBuilders.csproj" />
-    <ProjectReference Include="..\Feudal.Terrains\Feudal.Terrains.csproj" />
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>Feudal.SessionBuilders</_Parameter1>
-    </AssemblyAttribute>
   </ItemGroup>
+
 </Project>

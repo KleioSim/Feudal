@@ -1,6 +1,7 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Tasks;
 using Feudal.TerrainBuilders;
+using Feudal.Terrains;
 using System.Resources;
 
 namespace Feudal.Sessions;
@@ -21,27 +22,13 @@ public class SessionBuilder
         }
 
         session.PlayerClan = session.clans.Values.First();
+        session.terrainManager.Initialize(TerrainType.Hill);
 
-        var terrainBuilder = new TerrainBuilder(TerrainType.Hill);
-        for (int x = -2; x <= 2; x++)
-        {
-            for (int y = -2; y <= 2; y++)
-            {
-                var pos = (x, y);
-                var terrain = new Terrain(pos, terrainBuilder.Build(pos));
-                if (pos == (0, 0))
-                {
-                    terrain.IsDiscoverd = true;
-                }
-
-                session.terrains.Add(terrain.Position, terrain);
-            }
-        }
 
         var discoverWorking = new DiscoverWorking(session);
         session.workings.Add(discoverWorking.Id, discoverWorking);
 
-        Terrain.GetWorkHoodId = (terrain) =>
+        TerrainManager.GetWorkHoodId = (terrain) =>
         {
             var workings = !terrain.IsDiscoverd ? new[] { session.workings[typeof(DiscoverWorking).Name] } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x).ToArray();
             var workHood = session.workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == terrain.Position);

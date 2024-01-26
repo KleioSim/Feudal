@@ -1,5 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Tasks;
+using Feudal.Terrains;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,7 +18,7 @@ class Session : ISession
 
     public IReadOnlyDictionary<object, IResource> Resources => resource;
 
-    public IReadOnlyDictionary<(int x, int y), ITerrain> Terrains => terrains;
+    public IReadOnlyDictionary<(int x, int y), ITerrain> Terrains => terrainManager;
 
     public IReadOnlyDictionary<object, IWorkHood> WorkHoods => workHoods;
 
@@ -25,14 +26,14 @@ class Session : ISession
 
     public IReadOnlyDictionary<object, IClan> Clans => clans;
 
-    internal readonly Dictionary<object, ITask> tasks = new Dictionary<object, ITask>();
     internal readonly Dictionary<object, IResource> resource = new Dictionary<object, IResource>();
     internal readonly Dictionary<(int x, int y), ITerrain> terrains = new Dictionary<(int x, int y), ITerrain>();
     internal readonly Dictionary<object, IWorkHood> workHoods = new Dictionary<object, IWorkHood>();
     internal readonly Dictionary<object, IWorking> workings = new Dictionary<object, IWorking>();
     internal readonly Dictionary<object, IClan> clans = new Dictionary<object, IClan>();
 
-    private TaskManager taskManager = new TaskManager();
+    internal readonly TaskManager taskManager = new TaskManager();
+    internal readonly TerrainManager terrainManager = new TerrainManager();
 
     public void OnCommand(Command command, string[] parameters)
     {
@@ -101,7 +102,9 @@ internal class DiscoverWorking : Working, IProgressWorking
             throw new Exception();
         }
 
-        ((Terrain)session.Terrains[terrainWorkHood.Position]).IsDiscoverd = true;
+        ((TerrainManager)session.Terrains).SetDiscoverd(terrainWorkHood.Position);
+
+        //((Terrain)session.Terrains[terrainWorkHood.Position]).IsDiscoverd = true;
     }
 
     public float GetStep(IWorkHood workHood)
@@ -196,65 +199,6 @@ class TerrainWorkHood : WorkHood, ITerrainWorkHood
     }
 }
 
-internal class Terrain : ITerrain
-{
-    //public delegate void DelegateOccupyOrUpdateWorkHood(ref string Id, IEnumerable<IWorking> workings);
-
-    //public static DelegateOccupyOrUpdateWorkHood OccupyOrUpdateWorkHood;
-    //public static Action<string> ReleaseWorkHood;
-
-    //public static IWorking DiscoverWorking { get; set; }
-
-    public static Func<ITerrain, string> GetWorkHoodId;
-
-    public (int x, int y) Position { get; }
-
-    public IReadOnlySet<IResource> Resources => resources;
-
-    public TerrainType TerrainType { get; private set; }
-
-    public bool IsDiscoverd { get; set; }
-
-    public string WorkHoodId => GetWorkHoodId(this);
-
-    //{
-    //    get
-    //    {
-    //        var workingOptions = GetWorkingOptions();
-    //        if (workingOptions.Any())
-    //        {
-    //            OccupyOrUpdateWorkHood(ref workHoodId, workingOptions);
-    //        }
-    //        else
-    //        {
-    //            ReleaseWorkHood(workHoodId);
-    //            workHoodId = null;
-    //        }
-
-    //        return workHoodId;
-    //    }
-    //}
-
-    //private string workHoodId;
-
-    private HashSet<IResource> resources = new HashSet<IResource>();
-
-    public Terrain((int x, int y) position, TerrainType terrainType)
-    {
-        this.Position = position;
-        this.TerrainType = terrainType;
-    }
-
-    //private IEnumerable<IWorking> GetWorkingOptions()
-    //{
-    //    if (!IsDiscoverd)
-    //    {
-    //        return new[] { DiscoverWorking };
-    //    }
-
-    //    return Resources.Select(x => x.GetWorkings()).SelectMany(x => x);
-    //}
-}
 
 internal class Clan : IClan
 {
