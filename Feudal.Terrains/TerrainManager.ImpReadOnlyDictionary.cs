@@ -1,32 +1,40 @@
 ﻿using Feudal.Interfaces;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Feudal.Terrains;
 
 public partial class TerrainManager : IReadOnlyDictionary<(int x, int y), ITerrain>
 {
-    public ITerrain this[(int x, int y) key] => ((IReadOnlyDictionary<(int x, int y), ITerrain>)dict)[key];
+    public ITerrain this[(int x, int y) key] => dict[key];
 
-    public IEnumerable<(int x, int y)> Keys => ((IReadOnlyDictionary<(int x, int y), ITerrain>)dict).Keys;
+    public IEnumerable<(int x, int y)> Keys => dict.Keys;
 
-    public IEnumerable<ITerrain> Values => ((IReadOnlyDictionary<(int x, int y), ITerrain>)dict).Values;
+    public IEnumerable<ITerrain> Values => dict.Values;
 
-    public int Count => ((IReadOnlyCollection<KeyValuePair<(int x, int y), ITerrain>>)dict).Count;
+    public int Count => dict.Count;
 
     public bool ContainsKey((int x, int y) key)
     {
-        return ((IReadOnlyDictionary<(int x, int y), ITerrain>)dict).ContainsKey(key);
+        return dict.ContainsKey(key);
     }
 
     public IEnumerator<KeyValuePair<(int x, int y), ITerrain>> GetEnumerator()
     {
-        return ((IEnumerable<KeyValuePair<(int x, int y), ITerrain>>)dict).GetEnumerator();
+        throw new NotImplementedException();
     }
 
     public bool TryGetValue((int x, int y) key, [MaybeNullWhen(false)] out ITerrain value)
     {
-        return ((IReadOnlyDictionary<(int x, int y), ITerrain>)dict).TryGetValue(key, out value);
+        if(dict.TryGetValue(key, out Terrain terrain))
+        {
+            value = terrain;
+            return true;
+        }
+
+        value = null;
+        return false;
     }
 
     IEnumerator IEnumerable.GetEnumerator()

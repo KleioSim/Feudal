@@ -26,10 +26,7 @@ public partial class TerrainManager
             {
                 var pos = (x, y);
                 var terrain = new Terrain(pos, terrainBuilder.Build(pos));
-                if (pos.x <= 1 || pos.y <= 1)
-                {
-                    terrain.IsDiscoverd = true;
-                }
+                terrain.IsDiscoverd = Math.Abs(pos.x) <= 1 && Math.Abs(pos.y) <= 1;
 
                 dict.Add(terrain.Position, terrain);
             }
@@ -43,6 +40,8 @@ public partial class TerrainManager
         {
             return;
         }
+
+        terrain.IsDiscoverd = true;
 
         var nearPositions = GetRound(position);
         foreach (var nearPos in nearPositions)

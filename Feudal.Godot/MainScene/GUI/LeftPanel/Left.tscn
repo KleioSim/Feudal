@@ -13,6 +13,7 @@ script = ExtResource("1_76rag")
 [node name="Main" type="Control" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Main"]
 layout_mode = 1
@@ -27,6 +28,7 @@ script = ExtResource("2_rni8l")
 [node name="Content" type="Control" parent="Main/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="TerrainPanelView" parent="Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/TerrainPanel.tscn"]
 layout_mode = 0
@@ -66,6 +68,7 @@ text = ">"
 [node name="Sub" type="Control" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Sub"]
 layout_mode = 1
