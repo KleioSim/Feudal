@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh5rhytufpsw3"]
+[gd_scene load_steps=6 format=3 uid="uid://dh5rhytufpsw3"]
 
 [ext_resource type="PackedScene" uid="uid://b2bwskcrfx4n3" path="res://MainScene/GUI/GUI.tscn" id="1_8myd5"]
+[ext_resource type="Script" path="res://MainScene/MainSceneView.cs" id="1_fifao"]
 [ext_resource type="PackedScene" uid="uid://bnukaohmlm2bl" path="res://addons/ScreenMoveControl/MoveControl.tscn" id="2_b7dvo"]
 [ext_resource type="PackedScene" uid="uid://droao4y6kuttb" path="res://MainScene/Game/Tilemap/Tilemap.tscn" id="3_ki3hw"]
+[ext_resource type="PackedScene" uid="uid://dt5pcpafnxtqd" path="res://MainScene/Game/Pawns/PawnsPanel.tscn" id="4_88acl"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -12,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_fifao")
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 layer = 99
@@ -25,6 +28,8 @@ mouse_filter = 2
 follow_viewport_enabled = true
 
 [node name="Map" parent="MapLayer" instance=ExtResource("3_ki3hw")]
+
+[node name="PawnsPanel" parent="MapLayer" instance=ExtResource("4_88acl")]
 
 [connection signal="CanvasMove" from="GUILayer/MoveControl" to="MapLayer/Map" method="OnCanvasMoved"]
 [connection signal="ClickTile" from="MapLayer/Map" to="GUILayer/GUI" method="ShowLeftView_Terrain"]

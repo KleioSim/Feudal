@@ -33,13 +33,18 @@ class MockWorkHood : IWorkHood
 {
     private static int count = 0;
 
-    public string Id { get; } = $"WH{count}";
+    public string Id { get; }
 
     public IWorking CurrentWorking { get; set; }
 
     public IEnumerable<IWorking> OptionWorkings => MockOptionWorkings;
 
     public List<IWorking> MockOptionWorkings = new List<IWorking>();
+
+    public MockWorkHood()
+    {
+        Id = $"WORK_HOOD{count++}";
+    }
 }
 
 class MockTerrainWorkHood : MockWorkHood, ITerrainWorkHood
