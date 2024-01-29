@@ -28,26 +28,26 @@ public class SessionBuilder
         var discoverWorking = new DiscoverWorking(session);
         session.workings.Add(discoverWorking.Id, discoverWorking);
 
-        TerrainManager.GetWorkHoodId = (terrain) =>
-        {
-            var workings = !terrain.IsDiscoverd ? new[] { session.workings[typeof(DiscoverWorking).Name] } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x).ToArray();
-            var workHood = session.workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == terrain.Position);
-            if (workings.Any())
-            {
-                if (workHood == null)
-                {
-                    workHood = new TerrainWorkHood(terrain.Position);
-                    session.workHoods.Add(workHood.Id, workHood);
-                }
-                ((WorkHood)workHood).UpdateWorkings(workings);
-                return workHood.Id;
-            }
-            else
-            {
-                if (workHood != null) { session.workHoods.Remove(workHood.Id); }
-                return null;
-            }
-        };
+        //TerrainManager.GetWorkHoodId = (terrain) =>
+        //{
+        //    var workings = !terrain.IsDiscoverd ? new[] { session.workings[typeof(DiscoverWorking).Name] } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x).ToArray();
+        //    var workHood = session.workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == terrain.Position);
+        //    if (workings.Any())
+        //    {
+        //        if (workHood == null)
+        //        {
+        //            workHood = new TerrainWorkHood(terrain.Position);
+        //            session.workHoods.Add(workHood.Id, workHood);
+        //        }
+        //        ((WorkHood)workHood).UpdateWorkings(workings);
+        //        return workHood.Id;
+        //    }
+        //    else
+        //    {
+        //        if (workHood != null) { session.workHoods.Remove(workHood.Id); }
+        //        return null;
+        //    }
+        //};
 
         TaskManager.FindWorkHood = (id) =>
         {

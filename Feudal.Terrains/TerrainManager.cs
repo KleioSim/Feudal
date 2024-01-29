@@ -5,12 +5,21 @@ namespace Feudal.Terrains;
 
 public partial class TerrainManager
 {
-    public static Func<ITerrain, string> GetWorkHoodId
+    //public static Func<ITerrain, string> GetWorkHoodId
+    //{
+    //    get => Terrain.GetWorkHoodId;
+    //    set
+    //    {
+    //        Terrain.GetWorkHoodId = value;
+    //    }
+    //}
+
+    public static IFinder Finder
     {
-        get => Terrain.GetWorkHoodId;
+        get => Terrain.Finder;
         set
         {
-            Terrain.GetWorkHoodId = value;
+            Terrain.Finder = value;
         }
     }
 

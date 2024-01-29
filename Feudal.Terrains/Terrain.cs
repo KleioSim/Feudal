@@ -4,6 +4,7 @@ namespace Feudal.Terrains;
 
 class Terrain : ITerrain
 {
+    public static IFinder Finder { get; set; }
     public static Func<ITerrain, string> GetWorkHoodId;
 
     public (int x, int y) Position { get; }
@@ -14,7 +15,7 @@ class Terrain : ITerrain
 
     public bool IsDiscoverd { get; set; }
 
-    public string WorkHoodId => GetWorkHoodId(this);
+    public string WorkHoodId => Finder.FindWorkHoodId(this.Position);
 
     private HashSet<IResource> resources = new HashSet<IResource>();
 

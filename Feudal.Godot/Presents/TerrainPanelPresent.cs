@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Feudal.Godot.Presents;
 
@@ -17,10 +18,11 @@ partial class TerrainPanelPresent : PresentControl<TerrainPanelView, ISessionMod
 
         view.ResourceArray.Visible = terrain.IsDiscoverd;
 
-        view.WorkHoodPanel.Visible = (terrain.WorkHoodId != null);
+        var workHood = model.Session.WorkHoods[terrain.WorkHoodId];
+
+        view.WorkHoodPanel.Visible = workHood.OptionWorkings.Any();
         if (view.WorkHoodPanel.Visible)
         {
-            var workHood = model.Session.WorkHoods[terrain.WorkHoodId];
             view.WorkHoodPanel.Id = workHood != null ? workHood.Id : null;
         }
     }

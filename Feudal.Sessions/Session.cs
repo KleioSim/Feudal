@@ -35,6 +35,30 @@ class Session : ISession
     internal readonly TaskManager taskManager = new TaskManager();
     internal readonly TerrainManager terrainManager = new TerrainManager();
 
+
+    public Session()
+    {
+        var finder = new Finder()
+        {
+            FindWorking = (name) => workings[name],
+            FindTerrain = (position) => Terrains[position],
+            FindWorkHoodId = (position) =>
+            {
+                var workHood = workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == position);
+                if (workHood == null)
+                {
+                    workHood = new TerrainWorkHood(position);
+                    workHoods.Add(workHood.Id, workHood);
+                }
+
+                return workHood.Id;
+            }
+        };
+
+        TerrainWorkHood.Finder = finder;
+        TerrainManager.Finder = finder;
+    }
+
     public void OnCommand(Command command, string[] parameters)
     {
         switch (command)
@@ -56,6 +80,15 @@ class Session : ISession
                 }
                 break;
         }
+    }
+
+    class Finder : IFinder
+    {
+        public Func<(int x, int y), ITerrain> FindTerrain { get; internal set; }
+
+        public Func<(int x, int y), string> FindWorkHoodId { get; internal set; }
+
+        public Func<string, IWorking> FindWorking { get; internal set; }
     }
 }
 
@@ -167,7 +200,21 @@ internal class WorkHood : IWorkHood
 
     public IWorking CurrentWorking { get; private set; }
 
-    public IEnumerable<IWorking> OptionWorkings => optionWorkings.Where(x => x != CurrentWorking);
+    public virtual IEnumerable<IWorking> OptionWorkings
+    {
+        get => optionWorkings.Where(x => x != CurrentWorking);
+        set
+        {
+            optionWorkings = value;
+
+            if (optionWorkings.Contains(CurrentWorking))
+            {
+                return;
+            }
+
+            CurrentWorking = optionWorkings.First();
+        }
+    }
 
     private IEnumerable<IWorking> optionWorkings;
 
@@ -191,11 +238,25 @@ internal class WorkHood : IWorkHood
 
 class TerrainWorkHood : WorkHood, ITerrainWorkHood
 {
+    public static IFinder Finder { get; set; }
+
     public (int x, int y) Position { get; }
 
     public TerrainWorkHood((int x, int y) position)
     {
         this.Position = position;
+    }
+
+    public override IEnumerable<IWorking> OptionWorkings
+    {
+        get
+        {
+            var terrain = Finder.FindTerrain(Position);
+
+            base.OptionWorkings = !terrain.IsDiscoverd ? new[] { Finder.FindWorking(typeof(DiscoverWorking).Name) } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x).ToArray();
+
+            return base.OptionWorkings;
+        }
     }
 }
 
