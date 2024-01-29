@@ -212,7 +212,7 @@ internal class WorkHood : IWorkHood
                 return;
             }
 
-            CurrentWorking = optionWorkings.First();
+            CurrentWorking = optionWorkings.FirstOrDefault();
         }
     }
 
@@ -253,7 +253,7 @@ class TerrainWorkHood : WorkHood, ITerrainWorkHood
         {
             var terrain = Finder.FindTerrain(Position);
 
-            base.OptionWorkings = !terrain.IsDiscoverd ? new[] { Finder.FindWorking(typeof(DiscoverWorking).Name) } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x).ToArray();
+            base.OptionWorkings = !terrain.IsDiscoverd ? new[] { Finder.FindWorking(typeof(DiscoverWorking).Name) } : terrain.Resources.Select(x => x.GetWorkings()).SelectMany(x => x);
 
             return base.OptionWorkings;
         }

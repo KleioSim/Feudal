@@ -18,7 +18,7 @@ public partial class PawnsPanelView : ViewControl
 
         WorkingPawns.OnAddedItem = (item) =>
         {
-            item.Position = CalcGlobalPosition(new Vector2I(item.TerrainPosition.x, item.TerrainPosition.y));
+            item.Position = CalcGlobalPosition(new Vector2I(item.TerrainPosition.x, item.TerrainPosition.y)) - item.Size/2;
         };
     }
 }

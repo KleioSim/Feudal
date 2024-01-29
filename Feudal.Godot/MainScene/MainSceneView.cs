@@ -10,8 +10,8 @@ public partial class MainSceneView : Control
     {
         PawnsPanel.CalcGlobalPosition = (TerrainPosition) =>
         {
-            var local = TilemapView.Tilemap.MapToLocal(TerrainPosition);
-            return TilemapView.Tilemap.ToGlobal(local);
+            return TilemapView.Tilemap.MapToLocal(TerrainPosition);
+            //return TilemapView.Tilemap.ToGlobal(local);
         };
     }
 }

@@ -30,6 +30,7 @@ follow_viewport_enabled = true
 [node name="Map" parent="MapLayer" instance=ExtResource("3_ki3hw")]
 
 [node name="PawnsPanel" parent="MapLayer" instance=ExtResource("4_88acl")]
+mouse_filter = 1
 
 [connection signal="CanvasMove" from="GUILayer/MoveControl" to="MapLayer/Map" method="OnCanvasMoved"]
 [connection signal="ClickTile" from="MapLayer/Map" to="GUILayer/GUI" method="ShowLeftView_Terrain"]
