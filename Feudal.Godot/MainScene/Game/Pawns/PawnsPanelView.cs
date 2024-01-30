@@ -13,7 +13,7 @@ public partial class PawnsPanelView : ViewControl
 
         WorkingPawns = new ItemContainer<WorkingPawnView>(() =>
         {
-            return GetNode<InstancePlaceholder>("WorkingPawn");
+            return GetNode<InstancePlaceholder>("ProgressWorkingPawn");
         });
 
         WorkingPawns.OnAddedItem = (item) =>
