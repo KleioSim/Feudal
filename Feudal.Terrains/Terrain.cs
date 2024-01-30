@@ -15,7 +15,7 @@ class Terrain : ITerrain
 
     public bool IsDiscoverd { get; set; }
 
-    public string WorkHoodId => Finder.FindWorkHoodId(this.Position);
+    public IWorkHood WorkHood => Finder.FindWorkHoodByPos(this.Position);
 
     private HashSet<IResource> resources = new HashSet<IResource>();
 

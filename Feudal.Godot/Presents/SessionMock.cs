@@ -99,7 +99,7 @@ internal class SessionMock : ISession
     internal MockTerrainWorkHood GenerateTerrainWorkHood(MockTerrain terrain)
     {
         var workHood = new MockTerrainWorkHood();
-        terrain.WorkHoodId = workHood.Id;
+        terrain.WorkHood = workHood;
         workHood.Position = terrain.Position;
 
         MockWorkHoods.Add(workHood.Id, workHood);

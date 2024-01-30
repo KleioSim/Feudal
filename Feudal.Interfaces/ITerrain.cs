@@ -8,5 +8,5 @@ public interface ITerrain
     IReadOnlySet<IResource> Resources { get; }
     TerrainType TerrainType { get; }
     bool IsDiscoverd { get; }
-    string WorkHoodId { get; }
+    IWorkHood WorkHood { get; }
 }

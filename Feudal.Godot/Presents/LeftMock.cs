@@ -88,7 +88,7 @@ public partial class LeftMock : MockControl<LeftView, ISessionModel>
             }
 
             var workHood = new MockWorkHood();
-            terrain.WorkHoodId = workHood.Id;
+            terrain.WorkHood = workHood;
 
             session.MockWorkHoods.Add(workHood.Id, workHood);
 

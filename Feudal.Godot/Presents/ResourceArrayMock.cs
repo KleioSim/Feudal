@@ -40,7 +40,7 @@ class MockTerrain : ITerrain
 
     public bool IsDiscoverd { get; set; } = false;
 
-    public string WorkHoodId { get; set; }
+    public IWorkHood WorkHood { get; set; }
 
     public HashSet<IResource> MockResources = new HashSet<IResource>();
 }

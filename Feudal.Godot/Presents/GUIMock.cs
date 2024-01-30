@@ -35,7 +35,7 @@ partial class GUIMock : MockControl<GUIView, ISessionModel>
             }
 
             var workHood = new MockWorkHood();
-            terrain.WorkHoodId = workHood.Id;
+            terrain.WorkHood = workHood;
 
             session.MockWorkHoods.Add(workHood.Id, workHood);
 

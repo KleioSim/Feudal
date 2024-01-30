@@ -49,10 +49,10 @@ public class SessionBuilder
         //    }
         //};
 
-        TaskManager.FindWorkHood = (id) =>
-        {
-            return session.WorkHoods[id];
-        };
+        //TaskManager.FindWorkHood = (id) =>
+        //{
+        //    return session.WorkHoods[id];
+        //};
 
         //Terrain.DiscoverWorking = discoverWorking;
 

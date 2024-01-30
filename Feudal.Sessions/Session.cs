@@ -42,7 +42,7 @@ class Session : ISession
         {
             FindWorking = (name) => workings[name],
             FindTerrain = (position) => Terrains[position],
-            FindWorkHoodId = (position) =>
+            FindWorkHoodByPos = (position) =>
             {
                 var workHood = workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == position);
                 if (workHood == null)
@@ -51,12 +51,14 @@ class Session : ISession
                     workHoods.Add(workHood.Id, workHood);
                 }
 
-                return workHood.Id;
-            }
+                return workHood;
+            },
+            FindWorkHood = (id) => workHoods[id]
         };
 
         TerrainWorkHood.Finder = finder;
         TerrainManager.Finder = finder;
+        TaskManager.Finder = finder;
     }
 
     public void OnCommand(Command command, string[] parameters)
@@ -86,9 +88,11 @@ class Session : ISession
     {
         public Func<(int x, int y), ITerrain> FindTerrain { get; internal set; }
 
-        public Func<(int x, int y), string> FindWorkHoodId { get; internal set; }
+        public Func<(int x, int y), IWorkHood> FindWorkHoodByPos { get; internal set; }
 
         public Func<string, IWorking> FindWorking { get; internal set; }
+
+        public Func<string, IWorkHood> FindWorkHood { get; internal set; }
     }
 }
 

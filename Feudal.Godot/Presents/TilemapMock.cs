@@ -22,7 +22,7 @@ partial class TilemapMock : MockControl<TilemapView, ISessionModel>
             }
 
             var workHood = new MockWorkHood();
-            terrain.WorkHoodId = workHood.Id;
+            terrain.WorkHood = workHood;
 
             session.MockWorkHoods.Add(workHood.Id, workHood);
 

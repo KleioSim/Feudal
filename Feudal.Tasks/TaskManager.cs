@@ -7,7 +7,7 @@ namespace Feudal.Tasks;
 
 public class TaskManager : IReadOnlyDictionary<object, ITask>
 {
-    public static Func<string, IWorkHood> FindWorkHood;
+    public static IFinder Finder { get; set; }
 
     private Dictionary<object, ITask> dict = new Dictionary<object, ITask>();
 
@@ -38,7 +38,7 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
     {
         Task.CalcStep = (workHoodId) =>
         {
-            var workHood = FindWorkHood(workHoodId);
+            var workHood = Finder.FindWorkHood(workHoodId);
             if (workHood.CurrentWorking is IProgressWorking working)
             {
                 return working.GetEffectValue(workHood.Id).Value;
@@ -115,7 +115,7 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
 
     private void OnTaskFinsihed(Task task)
     {
-        var workHood = FindWorkHood(task.WorkHoodId);
+        var workHood = Finder.FindWorkHood(task.WorkHoodId);
         if (workHood.CurrentWorking is IProgressWorking working)
         {
             working.Finished(workHood);
