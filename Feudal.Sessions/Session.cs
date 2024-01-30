@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace Feudal.Sessions;
 
-class Session : ISession
+partial class Session : ISession
 {
     public IClan PlayerClan { get; set; }
 
@@ -38,23 +38,7 @@ class Session : ISession
 
     public Session()
     {
-        var finder = new Finder()
-        {
-            FindWorking = (name) => workings[name],
-            FindTerrain = (position) => Terrains[position],
-            FindWorkHoodByPos = (position) =>
-            {
-                var workHood = workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == position);
-                if (workHood == null)
-                {
-                    workHood = new TerrainWorkHood(position);
-                    workHoods.Add(workHood.Id, workHood);
-                }
-
-                return workHood;
-            },
-            FindWorkHood = (id) => workHoods[id]
-        };
+        var finder = new Finder(this);
 
         TerrainWorkHood.Finder = finder;
         TerrainManager.Finder = finder;
@@ -82,17 +66,6 @@ class Session : ISession
                 }
                 break;
         }
-    }
-
-    class Finder : IFinder
-    {
-        public Func<(int x, int y), ITerrain> FindTerrain { get; internal set; }
-
-        public Func<(int x, int y), IWorkHood> FindWorkHoodByPos { get; internal set; }
-
-        public Func<string, IWorking> FindWorking { get; internal set; }
-
-        public Func<string, IWorkHood> FindWorkHood { get; internal set; }
     }
 }
 
