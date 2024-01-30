@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.WorkHoods;
 
 namespace Feudal.Sessions;
 
@@ -14,25 +15,19 @@ partial class Session
 
         public Func<string, IWorkHood> FindWorkHood { get; internal set; }
 
+        public Func<(int x, int y), IEnumerable<IWorking>> FindWorkingsInTerrain { get; internal set; }
+
         public Finder(Session session)
         {
             FindWorking = (name) => session.workings[name];
 
             FindTerrain = (position) => session.Terrains[position];
 
-            FindWorkHoodByPos = (position) =>
-            {
-                var workHood = session.workHoods.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == position);
-                if (workHood == null)
-                {
-                    workHood = new TerrainWorkHood(position);
-                    session.workHoods.Add(workHood.Id, workHood);
-                }
-
-                return workHood;
-            };
+            FindWorkHoodByPos = (position) => session.workHoodManager.AddOrFindTerrainWorkHood(position);
 
             FindWorkHood = (id) => session.workHoods[id];
+
+            FindWorkingsInTerrain = (pos) => session.workingManager.GetTerrainWorking(session.Terrains[pos]);
         }
     }
 }

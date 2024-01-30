@@ -25,8 +25,8 @@ public class SessionBuilder
         session.terrainManager.Initialize(TerrainType.Hill);
 
 
-        var discoverWorking = new DiscoverWorking(session);
-        session.workings.Add(discoverWorking.Id, discoverWorking);
+        //var discoverWorking = new DiscoverWorking(session);
+        //session.workings.Add(discoverWorking.Id, discoverWorking);
 
         //TerrainManager.GetWorkHoodId = (terrain) =>
         //{
