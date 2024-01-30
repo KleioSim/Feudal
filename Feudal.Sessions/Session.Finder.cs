@@ -19,13 +19,13 @@ partial class Session
 
         public Finder(Session session)
         {
-            FindWorking = (name) => session.workings[name];
+            FindWorking = (name) => session.Workings[name];
 
             FindTerrain = (position) => session.Terrains[position];
 
             FindWorkHoodByPos = (position) => session.workHoodManager.AddOrFindTerrainWorkHood(position);
 
-            FindWorkHood = (id) => session.workHoods[id];
+            FindWorkHood = (id) => session.WorkHoods[id];
 
             FindWorkingsInTerrain = (pos) => session.workingManager.GetTerrainWorking(session.Terrains[pos]);
         }

@@ -29,8 +29,6 @@ partial class Session : ISession
     public IReadOnlyDictionary<object, IClan> Clans => clans;
 
     internal readonly Dictionary<object, IResource> resource = new Dictionary<object, IResource>();
-    internal readonly Dictionary<object, IWorkHood> workHoods = new Dictionary<object, IWorkHood>();
-    internal readonly Dictionary<object, IWorking> workings = new Dictionary<object, IWorking>();
     internal readonly Dictionary<object, IClan> clans = new Dictionary<object, IClan>();
 
     internal readonly TaskManager taskManager = new TaskManager();

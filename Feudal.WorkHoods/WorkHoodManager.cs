@@ -8,7 +8,14 @@ public partial class WorkHoodManager : IReadOnlyDictionary<object, IWorkHood>
 {
     private Dictionary<object, IWorkHood> dict = new Dictionary<object, IWorkHood>();
 
-    public static IFinder Finder { get; set; }
+    public static IFinder Finder
+    {
+        get => TerrainWorkHood.Finder;
+        set
+        {
+            TerrainWorkHood.Finder = value;
+        }
+    }
 
     internal IWorkHood AddOrFindTerrainWorkHood((int x, int y) position)
     {
