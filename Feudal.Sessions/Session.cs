@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.Resources;
 using Feudal.Tasks;
 using Feudal.Terrains;
 using Feudal.WorkHoods;
@@ -18,7 +19,7 @@ partial class Session : ISession
 
     public IReadOnlyDictionary<object, ITask> Tasks => taskManager;
 
-    public IReadOnlyDictionary<object, IResource> Resources => resource;
+    public IReadOnlyDictionary<object, IResource> Resources => resourceManager;
 
     public IReadOnlyDictionary<(int x, int y), ITerrain> Terrains => terrainManager;
 
@@ -28,12 +29,14 @@ partial class Session : ISession
 
     public IReadOnlyDictionary<object, IClan> Clans => clans;
 
-    internal readonly Dictionary<object, IResource> resource = new Dictionary<object, IResource>();
+
     internal readonly Dictionary<object, IClan> clans = new Dictionary<object, IClan>();
 
     internal readonly TaskManager taskManager = new TaskManager();
     internal readonly TerrainManager terrainManager = new TerrainManager();
     internal readonly WorkHoodManager workHoodManager = new WorkHoodManager();
+    internal readonly ResourceManager resourceManager = new ResourceManager();
+
     internal readonly WorkingManager workingManager;
 
     public Session()

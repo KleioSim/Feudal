@@ -15,7 +15,11 @@ public partial class WorkingManager
 
     public WorkingManager(ISession session)
     {
-        var working = new DiscoverWorking(session);
+        IWorking working = new DiscoverWorking(session);
+
+        dict.Add(working.Id, working);
+
+        working = new BuildingFarm(session);
 
         dict.Add(working.Id, working);
     }

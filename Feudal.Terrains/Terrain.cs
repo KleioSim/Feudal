@@ -5,7 +5,6 @@ namespace Feudal.Terrains;
 class Terrain : ITerrain
 {
     public static IFinder Finder { get; set; }
-    public static Func<ITerrain, string> GetWorkHoodId;
 
     public (int x, int y) Position { get; }
 
@@ -23,5 +22,10 @@ class Terrain : ITerrain
     {
         this.Position = position;
         this.TerrainType = terrainType;
+
+        foreach (var resource in Finder.FindResourceByTerrainType(TerrainType))
+        {
+            resources.Add(resource);
+        }
     }
 }

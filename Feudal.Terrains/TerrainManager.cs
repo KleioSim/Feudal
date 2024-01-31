@@ -5,15 +5,6 @@ namespace Feudal.Terrains;
 
 public partial class TerrainManager
 {
-    //public static Func<ITerrain, string> GetWorkHoodId
-    //{
-    //    get => Terrain.GetWorkHoodId;
-    //    set
-    //    {
-    //        Terrain.GetWorkHoodId = value;
-    //    }
-    //}
-
     public static IFinder Finder
     {
         get => Terrain.Finder;
@@ -33,9 +24,8 @@ public partial class TerrainManager
         {
             for (int y = -2; y <= 2; y++)
             {
-                var pos = (x, y);
-                var terrain = new Terrain(pos, terrainBuilder.Build(pos));
-                terrain.IsDiscoverd = Math.Abs(pos.x) <= 1 && Math.Abs(pos.y) <= 1;
+                var terrain = CreateTerrain((x, y));
+                terrain.IsDiscoverd = Math.Abs(terrain.Position.x) <= 1 && Math.Abs(terrain.Position.y) <= 1;
 
                 dict.Add(terrain.Position, terrain);
             }
@@ -60,7 +50,7 @@ public partial class TerrainManager
                 continue;
             }
 
-            var newTerrain = new Terrain(nearPos, terrainBuilder.Build(nearPos));
+            var newTerrain = CreateTerrain(nearPos);
             dict.Add(newTerrain.Position, newTerrain);
         }
     }
@@ -79,5 +69,11 @@ public partial class TerrainManager
                 yield return (position.x + i, position.y + j);
             }
         }
+    }
+
+    private Terrain CreateTerrain((int x, int y) pos)
+    {
+        var terrain = new Terrain(pos, terrainBuilder.Build(pos));
+        return terrain;
     }
 }

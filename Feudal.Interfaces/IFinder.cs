@@ -7,4 +7,5 @@ public interface IFinder
     Func<string, IWorking> FindWorking { get; }
     Func<string, IWorkHood> FindWorkHood { get; }
     Func<(int x, int y), IEnumerable<IWorking>> FindWorkingsInTerrain { get; }
+    Func<TerrainType, IEnumerable<IResource>> FindResourceByTerrainType { get; }
 }
