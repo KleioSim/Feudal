@@ -7,7 +7,7 @@ public partial class TerrainPanelView : MainPanelView
 
     public Label Title => GetNode<Label>("VBoxContainer/Title");
 
-    public Control ResourceArray => GetNode<Control>("VBoxContainer/ResourceContainer/ResourceArray");
+    public ResourceArrayView ResourceArray => GetNode<ResourceArrayView>("VBoxContainer/PanelContainer/ResourceArray");
 
     public WorkHoodView WorkHoodPanel => GetNode<WorkHoodView>("VBoxContainer/WorkHoodPanel");
 }

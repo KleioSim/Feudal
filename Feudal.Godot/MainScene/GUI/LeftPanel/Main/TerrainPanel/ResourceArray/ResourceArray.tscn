@@ -7,12 +7,18 @@ bg_color = Color(0.176471, 0.176471, 0.176471, 0.588235)
 
 [node name="ResourceContainer" type="PanelContainer"]
 offset_right = 354.0
-offset_bottom = 40.0
+offset_bottom = 50.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_osr01")
 script = ExtResource("1_tpd5d")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Item" parent="HFlowContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceArray/ResourceItem.tscn"]
+[node name="Item" parent="MarginContainer/HBoxContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceArray/ResourceItem.tscn"]
 layout_mode = 2
+size_flags_vertical = 4

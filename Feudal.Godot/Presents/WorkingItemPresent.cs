@@ -29,6 +29,10 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
                     {
                         view.ProgressBar.Value = task.Percent;
                     }
+                    else
+                    {
+                        view.ProgressBar.Value = 0;
+                    }
 
                     var step = progressWorking.GetEffectValue(workHood.Id).Value;
                     view.Step.Text = (step >= 0 ? "+" : "") + step.ToString("0.0");

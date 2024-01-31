@@ -17,6 +17,10 @@ partial class TerrainPanelPresent : PresentControl<TerrainPanelView, ISessionMod
         view.Title.Text = terrain.TerrainType.ToString();
 
         view.ResourceArray.Visible = terrain.IsDiscoverd;
+        if (view.ResourceArray.Visible)
+        {
+            view.ResourceArray.TerrainPos = terrain.Position;
+        }
 
         view.WorkHoodPanel.Visible = terrain.WorkHood.OptionWorkings.Any() || terrain.WorkHood.CurrentWorking != null;
         if (view.WorkHoodPanel.Visible)

@@ -10,7 +10,7 @@ public partial class ResourceArrayView : ViewControl
     {
         Container = new ItemContainer<ResourceItemView>(() =>
         {
-            return this.GetNode<InstancePlaceholder>("HFlowContainer/Item");
+            return this.GetNode<InstancePlaceholder>("MarginContainer/HBoxContainer/Item");
         });
     }
 }

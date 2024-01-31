@@ -48,6 +48,7 @@ partial class Session : ISession
         WorkHoodManager.Finder = finder;
         TerrainManager.Finder = finder;
         TaskManager.Finder = finder;
+        ResourceManager.Finder = finder;
     }
 
     public void OnCommand(Command command, string[] parameters)
