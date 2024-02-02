@@ -8,6 +8,12 @@ public interface IWorking
 
 }
 
+public interface IProductWorking : IWorking
+{
+    ProductType ProductType { get; }
+    IEffectValue GetEffectValue(string workHoodId);
+}
+
 public interface IProgressWorking : IWorking
 {
     void Finished(IWorkHood workHood);

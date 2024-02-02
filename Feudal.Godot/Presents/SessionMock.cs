@@ -47,9 +47,24 @@ internal class SessionMock : ISession
         return workHood;
     }
 
-    internal MockWorking GenerateWorking(MockWorkHood workHood = null)
+    internal MockProgressWorking GenerateProgressWorking(MockWorkHood workHood = null)
     {
-        var working = new MockWorking();
+        var working = new MockProgressWorking();
+
+        MockWorkings.Add(working.Id, working);
+
+        if (workHood != null)
+        {
+            workHood.MockOptionWorkings.Add(working);
+            workHood.CurrentWorking = working;
+        }
+
+        return working;
+    }
+
+    internal MockProductWorking GenerateProductWorking(MockWorkHood workHood = null)
+    {
+        var working = new MockProductWorking();
 
         MockWorkings.Add(working.Id, working);
 

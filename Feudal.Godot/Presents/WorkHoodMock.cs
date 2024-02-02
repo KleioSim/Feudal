@@ -58,7 +58,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
 
             for (int i = 0; i < 2; i++)
             {
-                session.GenerateWorking(workHood);
+                session.GenerateProgressWorking(workHood);
             }
 
             var task = session.GenerateTask();

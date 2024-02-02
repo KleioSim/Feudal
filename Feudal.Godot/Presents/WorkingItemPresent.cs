@@ -38,6 +38,19 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
                     view.Step.Text = (step >= 0 ? "+" : "") + step.ToString("0.0");
                 }
                 break;
+            case IProductWorking productWorking:
+                {
+                    view.ProductPanel.Visible = true;
+                    view.ProgressPanel.Visible = false;
+
+                    var workHood = model.Session.WorkHoods[view.WorkHoodId];
+
+                    view.ProductType.Text = productWorking.ProductType.ToString();
+
+                    var productValue = productWorking.GetEffectValue(workHood.Id).Value;
+                    view.ProductCount.Text = (productValue >= 0 ? "+" : "") + productValue.ToString("0.0");
+                }
+                break;
             default:
                 throw new Exception();
         }

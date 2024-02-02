@@ -17,7 +17,12 @@ partial class WorkingArrayMock : MockControl<WorkingArrayView, ISessionModel>
 
             for (int i = 0; i < 2; i++)
             {
-                session.GenerateWorking(workHood);
+                session.GenerateProgressWorking(workHood);
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                session.GenerateProductWorking(workHood);
             }
 
             var task = session.GenerateTask();

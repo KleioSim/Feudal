@@ -1,11 +1,53 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Godot.UICommands;
+using Feudal.Interfaces;
 using Godot;
+using Godot.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Feudal.Godot.Presents;
 
 partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
 {
+
+    private string workingType;
+    public string WorkingType
+    {
+        get => workingType;
+        set
+        {
+            if (workingType == value)
+            {
+                return;
+            }
+
+            workingType = value;
+
+            var working = Present.Model.Session.Workings.Values.SingleOrDefault(x => x.GetType().Name == workingType);
+            View.Id = working.Id;
+
+            Present.SendCommand(new UICommand_Refresh());
+        }
+    }
+
+    public override Array<Dictionary> _GetPropertyList()
+    {
+        var properties = new Array<Dictionary>();
+
+        var workingTypes = Present.Model.Session.Workings.Select(x => x.Value.GetType().Name);
+
+        properties.Add(new Dictionary()
+        {
+            { "name", nameof(WorkingType) },
+            { "type", (int)Variant.Type.String },
+            { "usage", (int)PropertyUsageFlags.Default }, // See above assignment.
+            { "hint", (int)PropertyHint.Enum },
+            { "hint_string", string.Join(",", workingTypes) }
+        });
+
+        return properties;
+    }
+
     public override ISessionModel Mock
     {
         get
@@ -15,8 +57,11 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
             var workHood = session.GenerateWorkHood();
             View.WorkHoodId = workHood.Id;
 
-            var working = session.GenerateWorking(workHood);
-            View.Id = working.Id;
+            session.GenerateProductWorking(workHood);
+            session.GenerateProgressWorking(workHood);
+
+            View.Id = workHood.OptionWorkings.Last().Id;
+            workingType = workHood.OptionWorkings.Last().Name;
 
             var task = session.GenerateTask();
             task.ClanId = session.GenerateClan().Id;
@@ -27,7 +72,7 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
     }
 }
 
-class MockWorking : IProgressWorking
+class MockProgressWorking : IProgressWorking
 {
     public string Id { get; set; }
 
@@ -35,9 +80,9 @@ class MockWorking : IProgressWorking
 
     private static int Count = 0;
 
-    public MockWorking()
+    public MockProgressWorking()
     {
-        Id = $"WG{Count++}";
+        Id = $"PROGRESS_WORKING_{Count++}";
     }
 
     public void Finished(IWorkHood workHood)
@@ -49,6 +94,28 @@ class MockWorking : IProgressWorking
     {
         return 3;
     }
+
+    public IEffectValue GetEffectValue(string workHoodId)
+    {
+        return new MockEffectValue();
+    }
+}
+
+class MockProductWorking : IProductWorking
+{
+    public string Id { get; set; }
+
+    public string Name => Id;
+
+    public ProductType ProductType => ProductType.Food;
+
+    private static int Count = 0;
+
+    public MockProductWorking()
+    {
+        Id = $"PRODUCT_WORKING_{Count++}";
+    }
+
 
     public IEffectValue GetEffectValue(string workHoodId)
     {

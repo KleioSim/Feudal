@@ -44,7 +44,7 @@ partial class TerrainPanelMock : MockControl<TerrainPanelView, ISessionModel>
 
             for (int i = 0; i < 3; i++)
             {
-                session.GenerateWorking(workHood);
+                session.GenerateProgressWorking(workHood);
             }
 
             var task = session.GenerateTask();

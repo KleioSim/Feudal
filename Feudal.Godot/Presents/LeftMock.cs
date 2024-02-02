@@ -94,7 +94,7 @@ public partial class LeftMock : MockControl<LeftView, ISessionModel>
 
             for (int i = 0; i < 2; i++)
             {
-                var working = new MockWorking();
+                var working = new MockProgressWorking();
 
                 workHood.MockOptionWorkings.Add(working);
                 session.MockWorkings.Add(working.Id, working);

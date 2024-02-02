@@ -2,7 +2,7 @@
 
 namespace Feudal.Resources;
 
-class FatSoil : IResource
+class Deer : IResource
 {
     public string Id => Name;
 
@@ -10,6 +10,6 @@ class FatSoil : IResource
 
     public IEnumerable<IWorking> GetWorkings()
     {
-        return new[] { ResourceManager.Finder.FindWorking("BuildingFarm") };
+        return new[] { ResourceManager.Finder.FindWorking("Hunting") };
     }
 }
