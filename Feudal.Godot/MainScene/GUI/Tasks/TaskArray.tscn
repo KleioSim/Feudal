@@ -9,6 +9,7 @@ offset_top = 7.0
 offset_right = 180.0
 offset_bottom = 923.0
 size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_1xjm1")
 
 [node name="Container" type="VBoxContainer" parent="."]

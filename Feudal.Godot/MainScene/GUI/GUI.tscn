@@ -200,6 +200,7 @@ grow_vertical = 2
 
 [node name="TaskArray" parent="Right" instance=ExtResource("1_wl6li")]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="NextTurn" type="Button" parent="Right"]
 custom_minimum_size = Vector2(0, 80)
