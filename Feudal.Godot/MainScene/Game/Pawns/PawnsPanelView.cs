@@ -5,20 +5,25 @@ using System.Linq;
 public partial class PawnsPanelView : ViewControl
 {
     public ItemContainer<WorkingPawnView> WorkingPawns { get; set; }
+
+    public ItemContainer<TerrainPawnView> TerrainPawns { get; set; }
+
     public Func<Vector2I, Vector2> CalcGlobalPosition { get;  set; }
 
     public override void _Ready()
     {
         base._Ready();
 
-        WorkingPawns = new ItemContainer<WorkingPawnView>(() =>
+
+        TerrainPawns = new ItemContainer<TerrainPawnView>(() =>
         {
-            return GetNode<InstancePlaceholder>("ProgressWorkingPawn");
+            return GetNode<InstancePlaceholder>("TerrainPawn");
         });
 
-        WorkingPawns.OnAddedItem = (item) =>
+        TerrainPawns.OnAddedItem = (item) =>
         {
-            item.Position = CalcGlobalPosition(new Vector2I(item.TerrainPosition.x, item.TerrainPosition.y)) - item.Size/2;
+            var offset = new Vector2(item.Size.X / 2, item.Size.Y*4/5);
+            item.Position = CalcGlobalPosition(new Vector2I(item.TerrainPosition.x, item.TerrainPosition.y)) - offset;
         };
     }
 }

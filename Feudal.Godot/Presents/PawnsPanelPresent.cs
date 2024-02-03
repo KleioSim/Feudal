@@ -12,12 +12,14 @@ partial class PawnsPanelPresent : PresentControl<PawnsPanelView, ISessionModel>
 
     protected override void Update(PawnsPanelView view, ISessionModel model)
     {
-        var positions = model.Session.Tasks.Values
-            .Where(x => x.ClanId != null)
+        var resourcePositions = model.Session.Terrains.Values.Where(x => x.IsDiscoverd && x.Resources.Any())
+                        .Select(x => x.Position);
+
+        var workingPositions = model.Session.Tasks.Values
             .Select(x => model.Session.WorkHoods[x.WorkHoodId])
             .OfType<ITerrainWorkHood>()
             .Select(x => x.Position);
 
-        view.WorkingPawns.Refresh(positions.Select(x=>x as object).ToHashSet());
+        view.TerrainPawns.Refresh(resourcePositions.Concat(workingPositions).Select(x=>x as object).ToHashSet());
     }
 }

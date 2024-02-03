@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ld4k8vskpfna"]
+
+[ext_resource type="Script" path="res://MainScene/Game/Pawns/TerrainPawn/TerrainPawnView.cs" id="1_drn3y"]
+[ext_resource type="PackedScene" uid="uid://dgjq6bem042aw" path="res://MainScene/Game/Pawns/WorkingPawn/ProgressWorkingPawn.tscn" id="1_hdqr3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11xu0"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_11xu0")
+script = ExtResource("1_drn3y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="WorkingPawnContent" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ProgressWorkingPawn" parent="VBoxContainer/WorkingPawnContent" instance=ExtResource("1_hdqr3")]
+layout_mode = 2
+offset_top = 4.0
+offset_bottom = 184.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ResourcePawn" parent="VBoxContainer/HFlowContainer" instance_placeholder="res://MainScene/Game/Pawns/ResourcePawn/ResourcePawn.tscn"]
+layout_mode = 2
