@@ -19,6 +19,8 @@ partial class Session
 
         public Func<TerrainType, IEnumerable<IResource>> FindResourceByTerrainType { get; internal set; }
 
+        public Func<string, IClan> FindClan { get; internal set; }
+
         public Finder(Session session)
         {
             FindWorking = (name) => session.Workings[name];
@@ -32,6 +34,8 @@ partial class Session
             FindWorkingsInTerrain = (pos) => session.workingManager.GetTerrainWorking(session.Terrains[pos]);
 
             FindResourceByTerrainType = (terrainType) => session.resourceManager.GetResourcesByTerrainType(terrainType);
+
+            FindClan = (id) => session.Clans[id];
         }
     }
 }

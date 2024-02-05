@@ -16,10 +16,10 @@ partial class PawnsPanelPresent : PresentControl<PawnsPanelView, ISessionModel>
                         .Select(x => x.Position);
 
         var workingPositions = model.Session.Tasks.Values
-            .Select(x => model.Session.WorkHoods[x.WorkHoodId])
+            .Select(x => x.WorkHood)
             .OfType<ITerrainWorkHood>()
             .Select(x => x.Position);
 
-        view.TerrainPawns.Refresh(resourcePositions.Concat(workingPositions).Select(x=>x as object).ToHashSet());
+        view.TerrainPawns.Refresh(resourcePositions.Concat(workingPositions).Select(x => x as object).ToHashSet());
     }
 }

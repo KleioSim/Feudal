@@ -40,8 +40,8 @@ partial class TilemapMock : MockControl<TilemapView, ISessionModel>
             session.MockClans.Add(clan.Id, clan);
 
             var task = new TaskMock();
-            task.ClanId = clan.Id;
-            task.WorkHoodId = workHood.Id;
+            task.Clan = clan;
+            task.WorkHood = workHood;
 
             session.MockTasks.Add(task.Id, task);
 

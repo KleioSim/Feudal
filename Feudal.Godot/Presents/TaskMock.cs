@@ -18,6 +18,10 @@ public class TaskMock : ITask
 
     public float Step { get; set; }
 
+    public IClan Clan { get; set; }
+
+    public IWorkHood WorkHood { get; set; }
+
     public TaskMock()
     {
         Id = $"TASK{Count++}";

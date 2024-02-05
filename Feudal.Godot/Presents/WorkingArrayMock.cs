@@ -26,8 +26,8 @@ partial class WorkingArrayMock : MockControl<WorkingArrayView, ISessionModel>
             }
 
             var task = session.GenerateTask();
-            task.ClanId = session.GenerateClan().Id;
-            task.WorkHoodId = workHood.Id;
+            task.Clan = session.GenerateClan();
+            task.WorkHood = workHood;
 
             return new SessionModel() { Session = session };
         }

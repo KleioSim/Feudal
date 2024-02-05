@@ -8,6 +8,7 @@ public interface ITask
 
     float Percent { get; }
     float Step { get; }
-    string WorkHoodId { get; }
-    string ClanId { get; }
+
+    IClan Clan { get; }
+    IWorkHood WorkHood { get; }
 }

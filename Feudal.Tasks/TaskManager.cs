@@ -52,10 +52,10 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
 
     public void CreateTask(string clanId, string workHooId)
     {
-        var task = dict.Values.SingleOrDefault(x => x.WorkHoodId == workHooId);
+        var task = dict.Values.SingleOrDefault(x => x.WorkHood.Id == workHooId);
         if (task != null)
         {
-            throw new Exception($"WorkHood{workHooId}已经关联Labor{task.ClanId}");
+            throw new Exception($"WorkHood{workHooId}已经关联Labor{task.Clan.Id}");
         }
 
         task = new Task(clanId, workHooId);
@@ -64,14 +64,14 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
 
     public void RelaseTask(string clanId, string workHooId)
     {
-        var task = dict.Values.SingleOrDefault(x => x.WorkHoodId == workHooId);
+        var task = dict.Values.SingleOrDefault(x => x.WorkHood.Id == workHooId);
         if (task == null)
         {
             throw new Exception($"WorkHood{workHooId}未关联Labor");
         }
-        if (task.ClanId != clanId)
+        if (task.Clan.Id != clanId)
         {
-            throw new Exception($"Task{task.Id}中, WorkHood{workHooId}关联Labor是{task.ClanId}, 不是{clanId}");
+            throw new Exception($"Task{task.Id}中, WorkHood{workHooId}关联Labor是{task.Clan.Id}, 不是{clanId}");
         }
 
         dict.Remove(task.Id);
@@ -115,10 +115,9 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
 
     private void OnTaskFinsihed(Task task)
     {
-        var workHood = Finder.FindWorkHood(task.WorkHoodId);
-        if (workHood.CurrentWorking is IProgressWorking working)
+        if (task.WorkHood.CurrentWorking is IProgressWorking working)
         {
-            working.Finished(workHood);
+            working.Finished(task.WorkHood);
         }
         else
         {

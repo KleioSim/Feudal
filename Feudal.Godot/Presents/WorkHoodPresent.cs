@@ -15,13 +15,13 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
 
         view.CancelLaborButton.Pressed += () =>
         {
-            var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHoodId == view.Id);
+            var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHood.Id == view.Id);
             if (task == null)
             {
                 throw new Exception($"WorkHood{view.Id}未关联Labor");
             }
 
-            SendCommand(new UICommand_ReleaseLabor() { ClanId = task.ClanId, WorkHoodId = view.Id });
+            SendCommand(new UICommand_ReleaseLabor() { ClanId = task.Clan.Id, WorkHoodId = view.Id });
         };
     }
 
@@ -30,7 +30,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
     {
         view.WorkingArray.WorkHoodId = view.Id;
 
-        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHoodId == view.Id);
+        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHood.Id == view.Id);
         if (task == null)
         {
             view.CurrentLabor.Visible = false;
@@ -38,13 +38,6 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
         }
 
         view.CurrentLabor.Visible = true;
-
-        var clan = model.Session.Clans[task.ClanId];
-        if (clan == null)
-        {
-            throw new Exception();
-        }
-
-        view.ClanName.Text = clan.Name;
+        view.ClanName.Text = task.Clan.Name;
     }
 }

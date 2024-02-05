@@ -13,18 +13,23 @@ class Task : ITask
 
     public float Percent { get; set; }
 
-    public string WorkHoodId { get; }
+    public float Step => CalcStep(WorkHood.Id);
 
-    public string ClanId { get; private set; }
+    public IClan Clan => TaskManager.Finder.FindClan(clanId);
 
-    public float Step => CalcStep(WorkHoodId);
+    public IWorkHood WorkHood => TaskManager.Finder.FindWorkHood(workHoodId);
+
+    private string workHoodId;
+
+    private string clanId;
 
     public Task(string clanId, string workHoodId)
     {
         Id = $"TASK{Count++}";
 
         Desc = Id;
-        WorkHoodId = workHoodId;
-        ClanId = clanId;
+
+        workHoodId = workHoodId;
+        clanId = clanId;
     }
 }

@@ -24,7 +24,7 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
                     view.ProductPanel.Visible = false;
 
                     var workHood = model.Session.WorkHoods[view.WorkHoodId];
-                    var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHoodId == (string)view.WorkHoodId);
+                    var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHood == workHood);
                     if (task != null && progressWorking == workHood.CurrentWorking)
                     {
                         view.ProgressBar.Value = task.Percent;

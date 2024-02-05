@@ -49,18 +49,18 @@ partial class PawnsPanelMock : MockControl<PawnsPanelView, ISessionModel>
             {
                 new TaskMock()
                 {
-                    WorkHoodId = workHoods[0].Id,
-                    ClanId = clans[0].Id,
+                    WorkHood = workHoods[0],
+                    Clan = clans[0],
                 },
                 new TaskMock()
                 {
-                    WorkHoodId = workHoods[1].Id,
-                    ClanId = clans[1].Id,
+                    WorkHood = workHoods[1],
+                    Clan = clans[1],
                 },
                 new TaskMock()
                 {
-                    WorkHoodId = workHoods[2].Id,
-                    ClanId = clans[2].Id,
+                    WorkHood = workHoods[2],
+                    Clan = clans[2],
                 }
             };
 

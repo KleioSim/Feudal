@@ -14,7 +14,7 @@ public partial class ProgressWorkingPawnPresent : PresentControl<ProgressWorking
     {
         var terrain = model.Session.Terrains[view.TerrainPosition];
 
-        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHoodId == terrain.WorkHood.Id);
+        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHood == terrain.WorkHood);
         view.ProgressValue = task.Percent;
 
         view.Label.Text = terrain.WorkHood.CurrentWorking.Name;
