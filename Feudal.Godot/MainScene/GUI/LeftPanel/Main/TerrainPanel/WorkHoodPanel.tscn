@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://qiq0452ycsa5"]
 
-[ext_resource type="PackedScene" uid="uid://blovnbeouia7p" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkingArray/WorkingArray.tscn" id="1_rug2e"]
 [ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodView.cs" id="1_w4uo2"]
+[ext_resource type="PackedScene" uid="uid://bp7qx35iahofe" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkingArray/WorkingItem.tscn" id="2_bha3i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2nih"]
 bg_color = Color(0.27451, 0.27451, 0.27451, 1)
@@ -104,5 +104,21 @@ offset_bottom = 32.0
 grow_horizontal = 0
 text = "x"
 
-[node name="WorkingArray" parent="VBoxContainer" instance=ExtResource("1_rug2e")]
+[node name="WorkingArray" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentWorking" parent="VBoxContainer/WorkingArray" instance=ExtResource("2_bha3i")]
+layout_mode = 2
+
+[node name="OptionControl" type="Control" parent="VBoxContainer/WorkingArray"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WorkingArray/OptionControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+scale = Vector2(0.85, 0.85)
+
+[node name="OptionWorkingItem" parent="VBoxContainer/WorkingArray/OptionControl/VBoxContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkingArray/WorkingItem.tscn"]
 layout_mode = 2

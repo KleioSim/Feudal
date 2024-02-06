@@ -1,5 +1,7 @@
 ﻿using Feudal.Godot.UICommands;
+using Feudal.Interfaces;
 using Godot;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Feudal.Godot.Presents;
@@ -68,4 +70,27 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
             return new SessionModel() { Session = session };
         }
     }
+}
+
+class MockWorkHood : IWorkHood
+{
+    private static int count = 0;
+
+    public string Id { get; }
+
+    public IWorking CurrentWorking { get; set; }
+
+    public IEnumerable<IWorking> OptionWorkings => MockOptionWorkings;
+
+    public List<IWorking> MockOptionWorkings = new List<IWorking>();
+
+    public MockWorkHood()
+    {
+        Id = $"WORK_HOOD{count++}";
+    }
+}
+
+class MockTerrainWorkHood : MockWorkHood, ITerrainWorkHood
+{
+    public (int x, int y) Position { get; set; }
 }
