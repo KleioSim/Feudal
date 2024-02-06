@@ -8,18 +8,13 @@ internal class BuildingFarm : Working, IProgressWorking
     {
     }
 
-    public void Finished(IWorkHood workHood)
+    public void Finished()
     {
 
     }
 
-    public IEffectValue GetEffectValue(string workHoodId)
+    public IEffectValue GetEffectValue()
     {
         return new EffectValue() { BaseValue = 10, Effects = new IEffect[] { } };
-    }
-
-    public float GetStep(IWorkHood workHood)
-    {
-        return GetEffectValue(workHood.Id).Value;
     }
 }

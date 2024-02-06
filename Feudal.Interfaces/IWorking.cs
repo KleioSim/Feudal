@@ -17,10 +17,8 @@ public interface IProductWorking : IWorking
 
 public interface IProgressWorking : IWorking
 {
-    void Finished(IWorkHood workHood);
-    float GetStep(IWorkHood workHood);
-
-    IEffectValue GetEffectValue(string workHoodId);
+    void Finished();
+    IEffectValue GetEffectValue();
 }
 
 public interface IEffectValue

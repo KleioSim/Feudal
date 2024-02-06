@@ -41,7 +41,7 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
             var workHood = Finder.FindWorkHood(workHoodId);
             if (workHood.CurrentWorking is IProgressWorking working)
             {
-                return working.GetEffectValue(workHood.Id).Value;
+                return working.GetEffectValue().Value;
             }
             else
             {
@@ -117,7 +117,7 @@ public class TaskManager : IReadOnlyDictionary<object, ITask>
     {
         if (task.WorkHood.CurrentWorking is IProgressWorking working)
         {
-            working.Finished(task.WorkHood);
+            working.Finished();
         }
         else
         {

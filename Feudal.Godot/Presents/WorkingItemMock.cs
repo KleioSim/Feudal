@@ -86,17 +86,12 @@ class MockProgressWorking : IProgressWorking
         Id = $"PROGRESS_WORKING_{Count++}";
     }
 
-    public void Finished(IWorkHood workHood)
+    public void Finished()
     {
-        GD.Print($"Working:{Id} Finsihed, WorkHood:{workHood}");
+        GD.Print($"Working:{Id} Finsihed, WorkHood:{WorkHood.Id}");
     }
 
-    public float GetStep(IWorkHood workHood)
-    {
-        return 3;
-    }
-
-    public IEffectValue GetEffectValue(string workHoodId)
+    public IEffectValue GetEffectValue()
     {
         return new MockEffectValue();
     }

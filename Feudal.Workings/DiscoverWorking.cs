@@ -9,9 +9,9 @@ internal class DiscoverWorking : Working, IProgressWorking
     {
     }
 
-    public void Finished(IWorkHood workHood)
+    public void Finished()
     {
-        if (workHood is not ITerrainWorkHood terrainWorkHood)
+        if (WorkHood is not ITerrainWorkHood terrainWorkHood)
         {
             throw new Exception();
         }
@@ -19,21 +19,23 @@ internal class DiscoverWorking : Working, IProgressWorking
         ((TerrainManager)session.Terrains).SetDiscoverd(terrainWorkHood.Position);
     }
 
-    public float GetStep(IWorkHood workHood)
+    public IEffectValue GetEffectValue()
     {
-        if (workHood is not ITerrainWorkHood terrainWorkHood)
+        if (WorkHood is not ITerrainWorkHood terrainWorkHood)
         {
             throw new Exception();
         }
 
-        var baseValue = 20f;
         var terrain = session.Terrains[terrainWorkHood.Position];
 
-        var effect = GetEffect(terrain.TerrainType);
-        return baseValue * (1 + effect);
+        var effects = new[] { new Effect() { Desc = terrain.TerrainType.ToString(), Percent = GetEffect(terrain.TerrainType) } };
+
+        var effectValue = new EffectValue() { BaseValue = 20, Effects = effects };
+
+        return effectValue;
     }
 
-    public float GetEffect(TerrainType terrainType)
+    private float GetEffect(TerrainType terrainType)
     {
         switch (terrainType)
         {
@@ -50,23 +52,5 @@ internal class DiscoverWorking : Working, IProgressWorking
             default:
                 throw new Exception();
         }
-    }
-
-    public IEffectValue GetEffectValue(string workHoodId)
-    {
-        var workHood = session.WorkHoods[workHoodId];
-
-        if (workHood is not ITerrainWorkHood terrainWorkHood)
-        {
-            throw new Exception();
-        }
-
-        var terrain = session.Terrains[terrainWorkHood.Position];
-
-        var effects = new[] { new Effect() { Desc = terrain.TerrainType.ToString(), Percent = GetEffect(terrain.TerrainType) } };
-
-        var effectValue = new EffectValue() { BaseValue = 20, Effects = effects };
-
-        return effectValue;
     }
 }
