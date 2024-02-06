@@ -17,15 +17,8 @@ class TerrainWorkHood : WorkHood, ITerrainWorkHood
     {
         get
         {
-            var terrain = Finder.FindTerrain(Position);
-
             var workings = Finder.FindWorkingsInTerrain(Position);
-            foreach (var working in workings)
-            {
-                working.WorkHood = this;
-            }
-
-            base.OptionWorkings = workings;
+            UpdateWorkings(workings);
 
             return base.OptionWorkings;
         }

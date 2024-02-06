@@ -10,34 +10,21 @@ internal class WorkHood : IWorkHood
 
     public IWorking CurrentWorking { get; private set; }
 
-    public virtual IEnumerable<IWorking> OptionWorkings
-    {
-        get => optionWorkings.Where(x => x != CurrentWorking);
-        set
-        {
-            optionWorkings = value;
-
-            if (optionWorkings.Contains(CurrentWorking))
-            {
-                return;
-            }
-
-            CurrentWorking = optionWorkings.FirstOrDefault();
-        }
-    }
-
-    private IEnumerable<IWorking> optionWorkings;
+    public virtual IEnumerable<IWorking> OptionWorkings { get; private set; }
 
     internal void UpdateWorkings(IEnumerable<IWorking> workings)
     {
-        optionWorkings = workings;
-
-        if (optionWorkings.Contains(CurrentWorking))
+        foreach (var working in workings)
         {
-            return;
+            working.WorkHood = this;
         }
 
-        CurrentWorking = optionWorkings.First();
+        if (!workings.Contains(CurrentWorking))
+        {
+            CurrentWorking = workings.FirstOrDefault();
+        }
+
+        OptionWorkings = workings.Where(x => x != CurrentWorking);
     }
 
     public WorkHood()
