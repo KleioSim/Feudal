@@ -30,12 +30,11 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
     {
         var workHood = model.Session.WorkHoods[view.Id];
 
-        view.CurrentWorking.WorkHoodId = view.Id;
-        view.CurrentWorking.Id = workHood.CurrentWorking.Id;
+        view.CurrentWorking.Id = workHood.CurrentWorking;
 
         view.OptionWorkings.Refresh(workHood.OptionWorkings
-            .Where(x => x != view.CurrentWorking)
-            .Select(x => x.Id as object).ToHashSet());
+            .Where(x => x != view.CurrentWorking.Id)
+            .Select(x => x as object).ToHashSet());
 
 
         var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHood.Id == view.Id);

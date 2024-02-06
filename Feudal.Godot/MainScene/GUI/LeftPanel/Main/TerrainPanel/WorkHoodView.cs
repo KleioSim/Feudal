@@ -28,8 +28,6 @@ public partial class WorkHoodView : ViewControl
         base._Ready();
 
         OptionWorkingsPanel.Visible = false;
-
-        CurrentWorking.WorkHoodId = Id;
         CurrentWorking.Button.Pressed += () =>
         {
             OptionWorkingsPanel.Visible = !OptionWorkingsPanel.Visible;

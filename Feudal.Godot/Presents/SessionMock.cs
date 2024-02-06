@@ -50,6 +50,7 @@ internal class SessionMock : ISession
     internal MockProgressWorking GenerateProgressWorking(MockWorkHood workHood = null)
     {
         var working = new MockProgressWorking();
+        working.WorkHood = workHood;
 
         MockWorkings.Add(working.Id, working);
 
@@ -65,6 +66,7 @@ internal class SessionMock : ISession
     internal MockProductWorking GenerateProductWorking(MockWorkHood workHood = null)
     {
         var working = new MockProductWorking();
+        working.WorkHood = workHood;
 
         MockWorkings.Add(working.Id, working);
 

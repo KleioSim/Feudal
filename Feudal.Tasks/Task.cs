@@ -29,7 +29,7 @@ class Task : ITask
 
         Desc = Id;
 
-        workHoodId = workHoodId;
-        clanId = clanId;
+        this.workHoodId = workHoodId;
+        this.clanId = clanId;
     }
 }

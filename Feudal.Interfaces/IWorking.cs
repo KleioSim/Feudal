@@ -6,6 +6,7 @@ public interface IWorking
 
     string Name { get; }
 
+    IWorkHood WorkHood { get; set; }
 }
 
 public interface IProductWorking : IWorking

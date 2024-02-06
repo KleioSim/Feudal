@@ -10,6 +10,8 @@ internal class Working : IWorking
 
     public string Name => Id;
 
+    public IWorkHood WorkHood { get; set; }
+
     protected ISession session;
 
     public Working(ISession session)

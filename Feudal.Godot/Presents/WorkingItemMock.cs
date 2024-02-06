@@ -55,12 +55,11 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
             var session = new SessionMock();
 
             var workHood = session.GenerateWorkHood();
-            View.WorkHoodId = workHood.Id;
 
             session.GenerateProductWorking(workHood);
             session.GenerateProgressWorking(workHood);
 
-            View.Id = workHood.OptionWorkings.Last().Id;
+            View.Id = workHood.OptionWorkings.Last();
             workingType = workHood.OptionWorkings.Last().Name;
 
             var task = session.GenerateTask();
@@ -77,6 +76,8 @@ class MockProgressWorking : IProgressWorking
     public string Id { get; set; }
 
     public string Name => Id;
+
+    public IWorkHood WorkHood { get; set; }
 
     private static int Count = 0;
 
@@ -104,6 +105,8 @@ class MockProgressWorking : IProgressWorking
 class MockProductWorking : IProductWorking
 {
     public string Id { get; set; }
+
+    public IWorkHood WorkHood { get; set; }
 
     public string Name => Id;
 
