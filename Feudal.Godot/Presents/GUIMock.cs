@@ -39,13 +39,8 @@ partial class GUIMock : MockControl<GUIView, ISessionModel>
 
             session.MockWorkHoods.Add(workHood.Id, workHood);
 
-            for (int i = 0; i < 2; i++)
-            {
-                var working = new MockProgressWorking();
-
-                workHood.MockOptionWorkings.Add(working);
-                session.MockWorkings.Add(working.Id, working);
-            }
+            session.GenerateProductWorking(workHood);
+            session.GenerateProgressWorking(workHood);
 
             workHood.CurrentWorking = workHood.OptionWorkings.First();
 

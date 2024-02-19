@@ -26,13 +26,8 @@ partial class TilemapMock : MockControl<TilemapView, ISessionModel>
 
             session.MockWorkHoods.Add(workHood.Id, workHood);
 
-            for (int i = 0; i < 2; i++)
-            {
-                var working = new MockProgressWorking();
-
-                workHood.MockOptionWorkings.Add(working);
-                session.MockWorkings.Add(working.Id, working);
-            }
+            session.GenerateProgressWorking(workHood);
+            session.GenerateProductWorking(workHood);
 
             workHood.CurrentWorking = workHood.OptionWorkings.First();
 

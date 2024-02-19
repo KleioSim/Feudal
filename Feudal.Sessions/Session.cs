@@ -25,7 +25,7 @@ partial class Session : ISession
 
     public IReadOnlyDictionary<object, IWorkHood> WorkHoods => workHoodManager;
 
-    public IReadOnlyDictionary<object, IWorking> Workings => workingManager;
+    //public IReadOnlyDictionary<object, IWorking> Workings => workingManager;
 
     public IReadOnlyDictionary<object, IClan> Clans => clans;
 
@@ -37,11 +37,11 @@ partial class Session : ISession
     internal readonly WorkHoodManager workHoodManager = new WorkHoodManager();
     internal readonly ResourceManager resourceManager = new ResourceManager();
 
-    internal readonly WorkingManager workingManager;
+    //internal readonly WorkingManager workingManager;
 
     public Session()
     {
-        workingManager = new WorkingManager(this);
+        //workingManager = new WorkingManager(this);
 
         var finder = new Finder(this);
 

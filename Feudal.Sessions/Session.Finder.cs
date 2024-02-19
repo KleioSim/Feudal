@@ -23,7 +23,7 @@ partial class Session
 
         public Finder(Session session)
         {
-            FindWorking = (name) => session.Workings[name];
+            //FindWorking = (name) => session.Workings[name];
 
             FindTerrain = (position) => session.Terrains[position];
 
@@ -31,7 +31,7 @@ partial class Session
 
             FindWorkHood = (id) => session.WorkHoods[id];
 
-            FindWorkingsInTerrain = (pos) => session.workingManager.GetTerrainWorking(session.Terrains[pos]);
+            //FindWorkingsInTerrain = (pos) => session.workingManager.GetTerrainWorking(session.Terrains[pos]);
 
             FindResourceByTerrainType = (terrainType) => session.resourceManager.GetResourcesByTerrainType(terrainType);
 

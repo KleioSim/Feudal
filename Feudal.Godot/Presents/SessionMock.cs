@@ -22,10 +22,6 @@ internal class SessionMock : ISession
 
     public Dictionary<object, IWorkHood> MockWorkHoods { get; } = new Dictionary<object, IWorkHood>();
 
-    public IReadOnlyDictionary<object, IWorking> Workings => MockWorkings;
-
-    public Dictionary<object, IWorking> MockWorkings { get; } = new Dictionary<object, IWorking>();
-
     public Dictionary<(int x, int y), ITerrain> MockTerrains { get; } = new Dictionary<(int x, int y), ITerrain>();
 
     public IReadOnlyDictionary<object, IClan> Clans => MockClans;
@@ -52,8 +48,6 @@ internal class SessionMock : ISession
         var working = new MockProgressWorking();
         working.WorkHood = workHood;
 
-        MockWorkings.Add(working.Id, working);
-
         if (workHood != null)
         {
             workHood.MockOptionWorkings.Add(working);
@@ -67,8 +61,6 @@ internal class SessionMock : ISession
     {
         var working = new MockProductWorking();
         working.WorkHood = workHood;
-
-        MockWorkings.Add(working.Id, working);
 
         if (workHood != null)
         {

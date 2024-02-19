@@ -23,8 +23,8 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
 
             workingType = value;
 
-            var working = Present.Model.Session.Workings.Values.SingleOrDefault(x => x.GetType().Name == workingType);
-            View.Id = working.Id;
+            var working = workHood.OptionWorkings.SingleOrDefault(x => x.GetType().Name == workingType);
+            View.Id = working;
 
             Present.SendCommand(new UICommand_Refresh());
         }
@@ -34,7 +34,7 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
     {
         var properties = new Array<Dictionary>();
 
-        var workingTypes = Present.Model.Session.Workings.Select(x => x.Value.GetType().Name);
+        var workingTypes = workHood.OptionWorkings.Select(x => x.GetType().Name);
 
         properties.Add(new Dictionary()
         {
@@ -69,6 +69,8 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
             return new SessionModel() { Session = session };
         }
     }
+
+    private IWorkHood workHood => Present.Model.Session.WorkHoods.Values.SingleOrDefault();
 }
 
 class MockProgressWorking : IProgressWorking

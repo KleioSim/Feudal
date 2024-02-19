@@ -11,7 +11,6 @@ public interface ISession
     IReadOnlyDictionary<object, IResource> Resources { get; }
     IReadOnlyDictionary<(int x, int y), ITerrain> Terrains { get; }
     IReadOnlyDictionary<object, IWorkHood> WorkHoods { get; }
-    IReadOnlyDictionary<object, IWorking> Workings { get; }
     IReadOnlyDictionary<object, IClan> Clans { get; }
 
     void OnCommand(Command command, string[] parameters);
