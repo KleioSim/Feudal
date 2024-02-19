@@ -62,10 +62,6 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
             View.Id = workHood.OptionWorkings.Last();
             workingType = workHood.OptionWorkings.Last().Name;
 
-            var task = session.GenerateTask();
-            task.Clan = session.GenerateClan();
-            task.WorkHood = workHood;
-
             return new SessionModel() { Session = session };
         }
     }
@@ -80,6 +76,8 @@ class MockProgressWorking : IProgressWorking
     public string Name => Id;
 
     public IWorkHood WorkHood { get; set; }
+
+    public float Percent { get; set; } = 33f;
 
     private static int Count = 0;
 

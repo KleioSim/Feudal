@@ -13,7 +13,7 @@ partial class TaskArrayPresent : PresentControl<TaskArrayView, ISessionModel>
             item.Button.Pressed += () =>
             {
                 var task = model.Session.Tasks[item.Id];
-                switch (task.WorkHood)
+                switch (task.Working.WorkHood)
                 {
                     case ITerrainWorkHood terrainWorkHood:
                         var terrainPos = terrainWorkHood.Position;

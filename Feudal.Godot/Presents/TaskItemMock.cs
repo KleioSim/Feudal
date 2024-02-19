@@ -13,11 +13,11 @@ partial class TaskItemMock : MockControl<TaskItemView, ISessionModel>
     {
         get
         {
-            return Task.Percent;
+            return ((MockProgressWorking)Task.Working).Percent;
         }
         set
         {
-            Task.Percent = value;
+            ((MockProgressWorking)Task.Working).Percent = value;
 
             Present.SendCommand(new UICommand_Refresh());
         }
@@ -42,11 +42,14 @@ partial class TaskItemMock : MockControl<TaskItemView, ISessionModel>
     {
         get
         {
-            var task = new TaskMock();
-            View.Id = task.Id;
 
             var session = new SessionMock();
-            session.MockTasks.Add(task.Id, task);
+
+            var task = session.GenerateTask();
+            View.Id = task.Id;
+
+            var workHood = session.GenerateWorkHood();
+            task.Working = session.GenerateProgressWorking(workHood);
 
             return new SessionModel() { Session = session };
         }

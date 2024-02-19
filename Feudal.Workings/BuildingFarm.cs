@@ -8,6 +8,8 @@ internal class BuildingFarm : Working, IProgressWorking
     {
     }
 
+    public float Percent { get; set; }
+
     public void Finished()
     {
 

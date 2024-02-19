@@ -18,7 +18,7 @@ public abstract partial class PresentControl<TView, TModel> : PresentBase
     }
 
     private TView View => GetParent<TView>();
-    private MockControl<TView, TModel> MockControl => GetNode<MockControl<TView, TModel>>("Mock");
+    private MockControl<TView, TModel> MockControl => GetNodeOrNull<MockControl<TView, TModel>>("Mock");
 
     public bool IsInitialized { get; private set; } = false;
 

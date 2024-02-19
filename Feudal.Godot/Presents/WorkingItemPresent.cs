@@ -22,16 +22,7 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
                 {
                     view.ProgressPanel.Visible = true;
                     view.ProductPanel.Visible = false;
-
-                    var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHood == working.WorkHood);
-                    if (task != null && progressWorking == working.WorkHood.CurrentWorking)
-                    {
-                        view.ProgressBar.Value = task.Percent;
-                    }
-                    else
-                    {
-                        view.ProgressBar.Value = 0;
-                    }
+                    view.ProgressBar.Value = progressWorking.Percent;
 
                     var step = progressWorking.GetEffectValue().Value;
                     view.Step.Text = (step >= 0 ? "+" : "") + step.ToString("0.0");

@@ -11,42 +11,42 @@ public partial class TaskManager
 
     public TaskManager()
     {
-        Task.CalcStep = (workHoodId) =>
-        {
-            var workHood = Finder.FindWorkHood(workHoodId);
-            if (workHood.CurrentWorking is IProgressWorking working)
-            {
-                return working.GetEffectValue().Value;
-            }
-            else
-            {
-                throw new Exception();
-            }
-        };
+        //Task.CalcStep = (workHoodId) =>
+        //{
+        //    var workHood = Finder.FindWorkHood(workHoodId);
+        //    if (workHood.CurrentWorking is IProgressWorking working)
+        //    {
+        //        return working.GetEffectValue().Value;
+        //    }
+        //    else
+        //    {
+        //        throw new Exception();
+        //    }
+        //};
     }
 
-    public void CreateTask(string clanId, string workHooId)
+    public void CreateTask(string clanId, string workingId)
     {
-        var task = dict.Values.SingleOrDefault(x => x.WorkHood.Id == workHooId);
+        var task = dict.Values.SingleOrDefault(x => x.Working.Id == workingId);
         if (task != null)
         {
-            throw new Exception($"WorkHood{workHooId}已经关联Labor{task.Clan.Id}");
+            throw new Exception($"Working{workingId}已经关联Labor{task.Clan.Id}");
         }
 
-        task = new Task(clanId, workHooId);
+        task = new Task(clanId, workingId);
         dict.Add(task.Id, task);
     }
 
-    public void RelaseTask(string clanId, string workHooId)
+    public void RelaseTask(string clanId, string workingId)
     {
-        var task = dict.Values.SingleOrDefault(x => x.WorkHood.Id == workHooId);
+        var task = dict.Values.SingleOrDefault(x => x.Working.Id == workingId);
         if (task == null)
         {
-            throw new Exception($"WorkHood{workHooId}未关联Labor");
+            throw new Exception($"Working{workingId}未关联Labor");
         }
         if (task.Clan.Id != clanId)
         {
-            throw new Exception($"Task{task.Id}中, WorkHood{workHooId}关联Labor是{task.Clan.Id}, 不是{clanId}");
+            throw new Exception($"Task{task.Id}中, Working{workingId}关联Labor是{task.Clan.Id}, 不是{clanId}");
         }
 
         dict.Remove(task.Id);
@@ -63,13 +63,12 @@ public partial class TaskManager
         {
             //task.Step = CalcStep(task);
 
-            task.Percent += task.Step;
+            //task.Percent += task.Step;
 
-            if (task.Percent >= 100)
+            task.OnNextTurn();
+
+            if (task.IsEnd)
             {
-
-                OnTaskFinsihed(task);
-
                 dict.Remove(task.Id);
             }
         }
@@ -88,15 +87,15 @@ public partial class TaskManager
     //    }
     //}
 
-    private void OnTaskFinsihed(Task task)
-    {
-        if (task.WorkHood.CurrentWorking is IProgressWorking working)
-        {
-            working.Finished();
-        }
-        else
-        {
-            throw new Exception();
-        }
-    }
+    //private void OnTaskFinsihed(Task task)
+    //{
+    //    if (task.WorkHood.CurrentWorking is IProgressWorking working)
+    //    {
+    //        working.Finished();
+    //    }
+    //    else
+    //    {
+    //        throw new Exception();
+    //    }
+    //}
 }

@@ -19,17 +19,19 @@ partial class TaskArrayMock : MockControl<TaskArrayView, ISessionModel>
         }
         set
         {
-            var dict = Present.Model.Session.Tasks as Dictionary<object, ITask>;
-            if (value > dict.Count())
+            var session = Present.Model.Session as SessionMock;
+
+            while (value > session.MockTasks.Count())
             {
-                foreach (var newTask in Enumerable.Range(0, value - dict.Count()).Select(_ => new TaskMock()).ToArray())
-                {
-                    dict.Add(newTask.Id, newTask);
-                }
+                var task = session.GenerateTask();
+
+                var workHood = session.GenerateWorkHood();
+                task.Working = session.GenerateProgressWorking(workHood);
             }
-            while (value < dict.Count())
+
+            while (value < session.MockTasks.Count())
             {
-                dict.Remove(dict.First().Key);
+                session.MockTasks.Remove(session.MockTasks.First().Key);
             }
 
             Present.SendCommand(new UICommand_Refresh());
@@ -42,16 +44,12 @@ partial class TaskArrayMock : MockControl<TaskArrayView, ISessionModel>
         {
             var session = new SessionMock();
 
-            var tasks = new List<TaskMock>()
+            for (int i = 0; i < 3; i++)
             {
-                new TaskMock(),
-                new TaskMock(),
-                new TaskMock(),
-            };
+                var task = session.GenerateTask();
 
-            foreach (var task in tasks)
-            {
-                session.MockTasks.Add(task.Id, task);
+                var workHood = session.GenerateWorkHood();
+                task.Working = session.GenerateProgressWorking(workHood);
             }
 
             return new SessionModel() { Session = session };

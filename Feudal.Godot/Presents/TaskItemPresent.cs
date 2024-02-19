@@ -15,7 +15,7 @@ partial class TaskItemPresent : PresentControl<TaskItemView, ISessionModel>
         var taskObj = model.Session.Tasks[view.Id];
 
         view.Label.Text = taskObj.Desc;
-        view.Progress.Value = taskObj.Percent;
+        view.Progress.Value = ((IProgressWorking)taskObj.Working).Percent;
     }
 }
 

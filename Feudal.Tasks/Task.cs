@@ -4,7 +4,6 @@ namespace Feudal.Tasks;
 
 class Task : ITask
 {
-    public static Func<string, float> CalcStep;
     private static int Count;
 
     public string Id { get; }
@@ -13,23 +12,30 @@ class Task : ITask
 
     public float Percent { get; set; }
 
-    public float Step => CalcStep(WorkHood.Id);
+    public bool IsEnd { get; set; }
 
     public IClan Clan => TaskManager.Finder.FindClan(clanId);
 
-    public IWorkHood WorkHood => TaskManager.Finder.FindWorkHood(workHoodId);
+    //public IWorkHood WorkHood => TaskManager.Finder.FindWorkHood(workHoodId);
 
-    private string workHoodId;
+    public IWorking Working => TaskManager.Finder.FindWorking(workingId);
+
+    private string workingId;
 
     private string clanId;
 
-    public Task(string clanId, string workHoodId)
+    public Task(string clanId, string workingId)
     {
         Id = $"TASK{Count++}";
 
         Desc = Id;
 
-        this.workHoodId = workHoodId;
+        this.workingId = workingId;
         this.clanId = clanId;
+    }
+
+    internal void OnNextTurn()
+    {
+        throw new NotImplementedException();
     }
 }

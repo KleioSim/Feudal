@@ -10,7 +10,6 @@ public class TaskMock : ITask
 
     public string Desc { get; set; }
 
-    public float Percent { get; set; }
 
     public string WorkHoodId { get; set; }
 
@@ -20,13 +19,14 @@ public class TaskMock : ITask
 
     public IClan Clan { get; set; }
 
-    public IWorkHood WorkHood { get; set; }
+    //public IWorkHood WorkHood { get; set; }
+
+    public IWorking Working { get; set; }
 
     public TaskMock()
     {
         Id = $"TASK{Count++}";
 
         Desc = Id;
-        Percent = 33;
     }
 }

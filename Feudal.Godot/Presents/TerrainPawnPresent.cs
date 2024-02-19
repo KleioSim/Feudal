@@ -14,7 +14,7 @@ public partial class TerrainPawnPresent : PresentControl<TerrainPawnView, ISessi
     {
         var terrain = model.Session.Terrains[view.TerrainPosition];
 
-        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHood == terrain.WorkHood);
+        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood == terrain.WorkHood);
         view.WorkingPawn.Visible = task != null;
 
         view.ResourcePawns.Refresh(!terrain.IsDiscoverd ? new HashSet<object>() : terrain.Resources.Select(x => x.Id as object).ToHashSet());

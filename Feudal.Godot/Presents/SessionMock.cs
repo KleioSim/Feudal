@@ -1,6 +1,7 @@
 ﻿using Feudal.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Feudal.Godot.Presents;
 
@@ -43,21 +44,18 @@ internal class SessionMock : ISession
         return workHood;
     }
 
-    internal MockProgressWorking GenerateProgressWorking(MockWorkHood workHood = null)
+    internal MockProgressWorking GenerateProgressWorking(MockWorkHood workHood)
     {
         var working = new MockProgressWorking();
         working.WorkHood = workHood;
 
-        if (workHood != null)
-        {
-            workHood.MockOptionWorkings.Add(working);
-            workHood.CurrentWorking = working;
-        }
+        workHood.MockOptionWorkings.Add(working);
+        workHood.CurrentWorking = working;
 
         return working;
     }
 
-    internal MockProductWorking GenerateProductWorking(MockWorkHood workHood = null)
+    internal MockProductWorking GenerateProductWorking(MockWorkHood workHood)
     {
         var working = new MockProductWorking();
         working.WorkHood = workHood;
@@ -88,7 +86,7 @@ internal class SessionMock : ISession
     internal MockTerrain GenerateTerrain((int, int) position, TerrainType terrainType)
     {
         var terrain = new MockTerrain();
-        terrain.Position = (0, 0);
+        terrain.Position = position;
         terrain.TerrainType = TerrainType.Plain;
 
         MockTerrains.Add(terrain.Position, terrain);

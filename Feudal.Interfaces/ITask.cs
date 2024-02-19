@@ -6,9 +6,7 @@ public interface ITask
 
     string Desc { get; }
 
-    float Percent { get; }
-    float Step { get; }
-
     IClan Clan { get; }
-    IWorkHood WorkHood { get; }
+    //IWorkHood WorkHood { get; }
+    IWorking Working { get; }
 }

@@ -9,6 +9,8 @@ internal class DiscoverWorking : Working, IProgressWorking
     {
     }
 
+    public float Percent { get; set; }
+
     public void Finished()
     {
         if (WorkHood is not ITerrainWorkHood terrainWorkHood)

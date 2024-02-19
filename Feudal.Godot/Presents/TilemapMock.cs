@@ -21,24 +21,24 @@ partial class TilemapMock : MockControl<TilemapView, ISessionModel>
                 session.MockResources.Add(resource.Id, resource);
             }
 
-            var workHood = new MockWorkHood();
-            terrain.WorkHood = workHood;
+            //var workHood = new MockWorkHood();
+            //terrain.WorkHood = workHood;
 
-            session.MockWorkHoods.Add(workHood.Id, workHood);
+            //session.MockWorkHoods.Add(workHood.Id, workHood);
 
-            session.GenerateProgressWorking(workHood);
-            session.GenerateProductWorking(workHood);
+            //session.GenerateProgressWorking(workHood);
+            //session.GenerateProductWorking(workHood);
 
-            workHood.CurrentWorking = workHood.OptionWorkings.First();
+            //workHood.CurrentWorking = workHood.OptionWorkings.First();
 
-            var clan = new ClanMock();
-            session.MockClans.Add(clan.Id, clan);
+            //var clan = new ClanMock();
+            //session.MockClans.Add(clan.Id, clan);
 
-            var task = new TaskMock();
-            task.Clan = clan;
-            task.WorkHood = workHood;
+            //var task = new TaskMock();
+            //task.Clan = clan;
+            //task.WorkHood = workHood;
 
-            session.MockTasks.Add(task.Id, task);
+            //session.MockTasks.Add(task.Id, task);
 
             return new SessionModel() { Session = session };
         }

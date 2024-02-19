@@ -17,6 +17,8 @@ public interface IProductWorking : IWorking
 
 public interface IProgressWorking : IWorking
 {
+    float Percent { get; }
+
     void Finished();
     IEffectValue GetEffectValue();
 }

@@ -14,11 +14,11 @@ public partial class ProgressWorkingPawnPresent : PresentControl<ProgressWorking
     {
         var terrain = model.Session.Terrains[view.TerrainPosition];
 
-        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.WorkHood == terrain.WorkHood);
-        view.ProgressValue = task.Percent;
+        var working = terrain.WorkHood.CurrentWorking as IProgressWorking;
+        view.ProgressValue = working.Percent;
+        view.Label.Text = working.Name;
 
-        view.Label.Text = terrain.WorkHood.CurrentWorking.Name;
-
-        view.Value.Text = (task.Step >= 0 ? "+" : "") + task.Step.ToString("0.0");
+        var step = working.GetEffectValue().Value;
+        view.Value.Text = (step >= 0 ? "+" : "") + step.ToString("0.0");
     }
 }
