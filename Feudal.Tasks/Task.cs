@@ -36,6 +36,9 @@ class Task : ITask
 
     internal void OnNextTurn()
     {
-        throw new NotImplementedException();
+        if (Working is IProgressWorking progressWorking)
+        {
+            progressWorking.Percent += progressWorking.GetEffectValue().Value;
+        }
     }
 }

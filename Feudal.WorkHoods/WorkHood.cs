@@ -4,27 +4,42 @@ namespace Feudal.WorkHoods;
 
 internal class WorkHood : IWorkHood
 {
+    public static Action<IWorking> OnAddWorking;
+    public static Action<IWorking> OnRemoveWorking;
+
     public static int Count;
 
     public string Id { get; }
 
     public IWorking CurrentWorking { get; private set; }
 
-    public virtual IEnumerable<IWorking> OptionWorkings { get; private set; }
+    public virtual IEnumerable<IWorking> OptionWorkings => optionWorkings.Where(x => x != CurrentWorking);
 
-    internal void UpdateWorkings(IEnumerable<IWorking> workings)
+    private List<IWorking> optionWorkings = new List<IWorking>();
+
+    internal void UpdateWorkings(IEnumerable<Type> workingTypes)
     {
-        foreach (var working in workings)
+        var expiredWorkings = optionWorkings.Where(x => !workingTypes.Contains(x.GetType()));
+        foreach (var expiredWorking in expiredWorkings)
         {
-            working.WorkHood = this;
+            optionWorkings.Remove(expiredWorking);
+            OnRemoveWorking?.Invoke(expiredWorking);
         }
 
-        if (!workings.Contains(CurrentWorking))
+        foreach (var workingType in workingTypes)
         {
-            CurrentWorking = workings.FirstOrDefault();
+            if (optionWorkings.GetType() != workingType)
+            {
+                var newWorking = Activator.CreateInstance(workingType, new object[] { this }) as IWorking;
+                optionWorkings.Add(newWorking);
+                OnAddWorking?.Invoke(newWorking);
+            }
         }
 
-        OptionWorkings = workings.Where(x => x != CurrentWorking);
+        if (!optionWorkings.Contains(CurrentWorking))
+        {
+            CurrentWorking = optionWorkings.FirstOrDefault();
+        }
     }
 
     public WorkHood()

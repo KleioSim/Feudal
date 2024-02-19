@@ -23,7 +23,7 @@ partial class Session
 
         public Finder(Session session)
         {
-            //FindWorking = (name) => session.Workings[name];
+            FindWorking = (id) => session.workHoodManager.FindWorking(id);
 
             FindTerrain = (position) => session.Terrains[position];
 

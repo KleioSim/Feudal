@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.WorkHoods.Workings;
 
 namespace Feudal.WorkHoods;
 
@@ -17,10 +18,21 @@ class TerrainWorkHood : WorkHood, ITerrainWorkHood
     {
         get
         {
-            var workings = Finder.FindWorkingsInTerrain(Position);
-            UpdateWorkings(workings);
+            var workingTypes = FindWorkingsInTerrain(Position);
+            UpdateWorkings(workingTypes);
 
             return base.OptionWorkings;
         }
+    }
+
+    private IEnumerable<Type> FindWorkingsInTerrain((int x, int y) position)
+    {
+        var terrain = Finder.FindTerrain(position);
+        if (!terrain.IsDiscoverd)
+        {
+            return new[] { typeof(DiscoverWorking) };
+        }
+
+        return new Type[] { };
     }
 }

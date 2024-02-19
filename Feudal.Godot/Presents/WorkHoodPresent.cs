@@ -10,7 +10,9 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
     {
         view.OccupyLabor += (string clanId) =>
         {
-            SendCommand(new UICommand_OccupyLabor() { ClanId = clanId, WorkHoodId = view.Id });
+            var workHood = model.Session.WorkHoods[view.Id];
+
+            SendCommand(new UICommand_OccupyLabor() { ClanId = clanId, WorkingId = workHood.CurrentWorking.Id });
         };
 
         view.CancelLaborButton.Pressed += () =>
@@ -21,7 +23,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
                 throw new Exception($"WorkHood{view.Id}未关联Labor");
             }
 
-            SendCommand(new UICommand_ReleaseLabor() { ClanId = task.Clan.Id, WorkHoodId = view.Id });
+            SendCommand(new UICommand_ReleaseLabor() { ClanId = task.Clan.Id, WorkingId = task.Working.Id });
         };
     }
 

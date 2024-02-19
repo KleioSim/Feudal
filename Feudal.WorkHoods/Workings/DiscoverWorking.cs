@@ -1,11 +1,12 @@
 ﻿using Feudal.Interfaces;
-using Feudal.Terrains;
+using Feudal.WorkHoods;
+//using Feudal.Terrains;
 
-namespace Feudal.Workings;
+namespace Feudal.WorkHoods.Workings;
 
 internal class DiscoverWorking : Working, IProgressWorking
 {
-    public DiscoverWorking(ISession session) : base(session)
+    public DiscoverWorking(IWorkHood workHood) : base(workHood)
     {
     }
 
@@ -18,7 +19,7 @@ internal class DiscoverWorking : Working, IProgressWorking
             throw new Exception();
         }
 
-        ((TerrainManager)session.Terrains).SetDiscoverd(terrainWorkHood.Position);
+        //((TerrainManager)session.Terrains).SetDiscoverd(terrainWorkHood.Position);
     }
 
     public IEffectValue GetEffectValue()
@@ -28,7 +29,7 @@ internal class DiscoverWorking : Working, IProgressWorking
             throw new Exception();
         }
 
-        var terrain = session.Terrains[terrainWorkHood.Position];
+        var terrain = WorkHoodManager.Finder.FindTerrain(terrainWorkHood.Position);
 
         var effects = new[] { new Effect() { Desc = terrain.TerrainType.ToString(), Percent = GetEffect(terrain.TerrainType) } };
 

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Feudal.Workings;
+namespace Feudal.WorkHoods.Workings;
 
 internal class Hunting : Working, IProductWorking
 {
-    public Hunting(ISession session) : base(session)
+    public Hunting(IWorkHood workHood) : base(workHood)
     {
     }
 

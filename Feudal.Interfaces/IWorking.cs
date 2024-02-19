@@ -6,7 +6,7 @@ public interface IWorking
 
     string Name { get; }
 
-    IWorkHood WorkHood { get; set; }
+    IWorkHood WorkHood { get; }
 }
 
 public interface IProductWorking : IWorking
@@ -17,7 +17,7 @@ public interface IProductWorking : IWorking
 
 public interface IProgressWorking : IWorking
 {
-    float Percent { get; }
+    float Percent { get; set; }
 
     void Finished();
     IEffectValue GetEffectValue();

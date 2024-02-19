@@ -8,6 +8,8 @@ public partial class WorkHoodManager : IReadOnlyDictionary<object, IWorkHood>
 {
     private Dictionary<object, IWorkHood> dict = new Dictionary<object, IWorkHood>();
 
+    private Dictionary<object, IWorking> workings = new Dictionary<object, IWorking>();
+
     public static IFinder Finder
     {
         get => TerrainWorkHood.Finder;
@@ -27,5 +29,23 @@ public partial class WorkHoodManager : IReadOnlyDictionary<object, IWorkHood>
         }
 
         return workHood;
+    }
+
+    internal IWorking FindWorking(string id)
+    {
+        return workings[id];
+    }
+
+    public WorkHoodManager()
+    {
+        WorkHood.OnAddWorking = (working) =>
+        {
+            workings.Add(working.Id, working);
+        };
+
+        WorkHood.OnRemoveWorking = (working) =>
+        {
+            workings.Remove(working.Id);
+        };
     }
 }
