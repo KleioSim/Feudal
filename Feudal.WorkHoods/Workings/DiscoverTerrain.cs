@@ -5,9 +5,9 @@ using Feudal.WorkHoods;
 
 namespace Feudal.WorkHoods.Workings;
 
-internal class DiscoverWorking : Working, IProgressWorking
+internal class DiscoverTerrain : Working, IProgressWorking
 {
-    public DiscoverWorking(IWorkHood workHood) : base(workHood)
+    public DiscoverTerrain(IWorkHood workHood) : base(workHood)
     {
     }
 

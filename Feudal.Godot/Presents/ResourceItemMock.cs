@@ -34,7 +34,7 @@ class MockResource : IResource
         Id = $"R{count++}";
     }
 
-    public IEnumerable<IWorking> GetWorkings()
+    public IEnumerable<string> GetWorkings()
     {
         throw new System.NotImplementedException();
     }

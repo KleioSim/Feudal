@@ -8,8 +8,8 @@ class FatSoil : IResource
 
     public string Name => this.GetType().Name;
 
-    public IEnumerable<IWorking> GetWorkings()
+    public IEnumerable<string> GetWorkings()
     {
-        return new[] { ResourceManager.Finder.FindWorking("BuildingFarm") };
+        return new[] { "BuildingFarm" };
     }
 }

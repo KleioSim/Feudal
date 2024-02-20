@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2bwskcrfx4n3"]
+[gd_scene load_steps=5 format=3 uid="uid://b2bwskcrfx4n3"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/GUIView.cs" id="1_junn3"]
 [ext_resource type="PackedScene" uid="uid://ckc5ry74jf04w" path="res://MainScene/GUI/Tasks/TaskArray.tscn" id="1_wl6li"]
+[ext_resource type="PackedScene" uid="uid://tm4yuk2v5bg7" path="res://MainScene/GUI/TopInfos/ProductTopInfoArray.tscn" id="2_pg48l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dyjcv"]
 font_size = 18
@@ -136,6 +137,9 @@ size_flags_horizontal = 3
 text = "--"
 vertical_alignment = 1
 
+[node name="PanelContainer" parent="Top/VBoxContainer/TopInfos" instance=ExtResource("2_pg48l")]
+layout_mode = 2
+
 [node name="Date" type="PanelContainer" parent="Top/VBoxContainer/TopInfos"]
 layout_mode = 2
 
@@ -200,7 +204,6 @@ grow_vertical = 2
 
 [node name="TaskArray" parent="Right" instance=ExtResource("1_wl6li")]
 layout_mode = 2
-mouse_filter = 1
 
 [node name="NextTurn" type="Button" parent="Right"]
 custom_minimum_size = Vector2(0, 80)

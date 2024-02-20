@@ -28,12 +28,14 @@ internal class WorkHood : IWorkHood
 
         foreach (var workingType in workingTypes)
         {
-            if (optionWorkings.GetType() != workingType)
+            if (optionWorkings.Any(x=>x.GetType() == workingType))
             {
-                var newWorking = Activator.CreateInstance(workingType, new object[] { this }) as IWorking;
-                optionWorkings.Add(newWorking);
-                OnAddWorking?.Invoke(newWorking);
+                continue;
             }
+
+            var newWorking = Activator.CreateInstance(workingType, new object[] { this }) as IWorking;
+            optionWorkings.Add(newWorking);
+            OnAddWorking?.Invoke(newWorking);
         }
 
         if (!optionWorkings.Contains(CurrentWorking))

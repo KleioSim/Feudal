@@ -8,7 +8,9 @@ public partial class ResourceManager
 
     public ResourceManager()
     {
-        var resource = new FatSoil();
+        IResource resource = new FatSoil();
+        dict.Add(resource.Id, resource);
+        resource = new Deer();
         dict.Add(resource.Id, resource);
     }
 
@@ -18,7 +20,8 @@ public partial class ResourceManager
 
         if (terrainType == TerrainType.Plain)
         {
-            result.Add(dict[nameof(FatSoil)]);
+            //result.Add(dict[nameof(FatSoil)]);
+            result.Add(dict[nameof(Deer)]);
         }
 
         return result;
