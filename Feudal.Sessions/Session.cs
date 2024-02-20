@@ -22,15 +22,13 @@ partial class Session : ISession
 
     public IReadOnlyDictionary<object, IWorkHood> WorkHoods => workHoodManager;
 
-    public IReadOnlyDictionary<object, IClan> Clans => clans;
-
-
-    internal readonly Dictionary<object, IClan> clans = new Dictionary<object, IClan>();
+    public IReadOnlyDictionary<object, IClan> Clans => clanManager;
 
     internal readonly TaskManager taskManager = new TaskManager();
     internal readonly TerrainManager terrainManager = new TerrainManager();
     internal readonly WorkHoodManager workHoodManager = new WorkHoodManager();
     internal readonly ResourceManager resourceManager = new ResourceManager();
+    internal readonly ClanManager clanManager = new ClanManager();
 
     public Session()
     {

@@ -12,13 +12,8 @@ public class SessionBuilder
             Date = new Date(),
         };
 
-        for (int i = 0; i < 3; i++)
-        {
-            var clan = new Clan($"clan{i}", i * 1000);
-            session.clans.Add(clan.Id, clan);
-        }
-
-        session.PlayerClan = session.clans.Values.First();
+        session.clanManager.Initialize();
+        session.PlayerClan = session.Clans.Values.First();
         session.terrainManager.Initialize(TerrainType.Hill);
 
 
