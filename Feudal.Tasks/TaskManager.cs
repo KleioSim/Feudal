@@ -7,22 +7,16 @@ namespace Feudal.Tasks;
 
 public partial class TaskManager
 {
-    public static IFinder Finder { get; set; }
-
-    public TaskManager()
+    public static IFinder Finder
     {
-        //Task.CalcStep = (workHoodId) =>
-        //{
-        //    var workHood = Finder.FindWorkHood(workHoodId);
-        //    if (workHood.CurrentWorking is IProgressWorking working)
-        //    {
-        //        return working.GetEffectValue().Value;
-        //    }
-        //    else
-        //    {
-        //        throw new Exception();
-        //    }
-        //};
+        get => Task.Finder;
+        set => Task.Finder = value;
+    }
+
+    public static Action<Command, string[]> CommandSender
+    {
+        get => Task.CommandSender;
+        set => Task.CommandSender = value;
     }
 
     public void CreateTask(string clanId, string workingId)
@@ -61,10 +55,6 @@ public partial class TaskManager
     {
         foreach (Task task in dict.Values)
         {
-            //task.Step = CalcStep(task);
-
-            //task.Percent += task.Step;
-
             task.OnNextTurn();
 
             if (task.IsEnd)
@@ -73,29 +63,4 @@ public partial class TaskManager
             }
         }
     }
-
-    //private float CalcStep(Task task)
-    //{
-    //    var workHood = FindWorkHood(task.WorkHoodId);
-    //    if (workHood.CurrentWorking is ICanFinishedWorking working)
-    //    {
-    //        working.Finished(workHood);
-    //    }
-    //    else
-    //    {
-    //        throw new Exception();
-    //    }
-    //}
-
-    //private void OnTaskFinsihed(Task task)
-    //{
-    //    if (task.WorkHood.CurrentWorking is IProgressWorking working)
-    //    {
-    //        working.Finished();
-    //    }
-    //    else
-    //    {
-    //        throw new Exception();
-    //    }
-    //}
 }

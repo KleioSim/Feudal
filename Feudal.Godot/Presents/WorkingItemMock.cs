@@ -2,6 +2,7 @@
 using Feudal.Interfaces;
 using Godot;
 using Godot.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -86,14 +87,14 @@ class MockProgressWorking : IProgressWorking
         Id = $"PROGRESS_WORKING_{Count++}";
     }
 
-    public void Finished()
-    {
-        GD.Print($"Working:{Id} Finsihed, WorkHood:{WorkHood.Id}");
-    }
-
     public IEffectValue GetEffectValue()
     {
         return new MockEffectValue();
+    }
+
+    public void OnFinish(Action<Command, string[]> SendCommand)
+    {
+        GD.Print($"Working:{Id} Finsihed, WorkHood:{WorkHood.Id}");
     }
 }
 

@@ -4,6 +4,9 @@ namespace Feudal.Tasks;
 
 class Task : ITask
 {
+    public static IFinder Finder { get; set; }
+    public static Action<Command, string[]> CommandSender { get; set; }
+
     private static int Count;
 
     public string Id { get; }
@@ -14,11 +17,9 @@ class Task : ITask
 
     public bool IsEnd { get; set; }
 
-    public IClan Clan => TaskManager.Finder.FindClan(clanId);
+    public IClan Clan => Finder.FindClan(clanId);
 
-    //public IWorkHood WorkHood => TaskManager.Finder.FindWorkHood(workHoodId);
-
-    public IWorking Working => TaskManager.Finder.FindWorking(workingId);
+    public IWorking Working => Finder.FindWorking(workingId);
 
     private string workingId;
 
@@ -39,6 +40,12 @@ class Task : ITask
         if (Working is IProgressWorking progressWorking)
         {
             progressWorking.Percent += progressWorking.GetEffectValue().Value;
+            if (progressWorking.Percent >= 100)
+            {
+                progressWorking.OnFinish(CommandSender);
+
+                IsEnd = true;
+            }
         }
     }
 }

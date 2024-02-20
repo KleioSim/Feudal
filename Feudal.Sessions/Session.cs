@@ -3,7 +3,6 @@ using Feudal.Resources;
 using Feudal.Tasks;
 using Feudal.Terrains;
 using Feudal.WorkHoods;
-using Feudal.Workings;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -49,6 +48,8 @@ partial class Session : ISession
         TerrainManager.Finder = finder;
         TaskManager.Finder = finder;
         ResourceManager.Finder = finder;
+
+        TaskManager.CommandSender = OnCommand;
     }
 
     public void OnCommand(Command command, string[] parameters)
@@ -69,6 +70,11 @@ partial class Session : ISession
             case Command.ReleaseLabor:
                 {
                     taskManager.RelaseTask(parameters[0], parameters[1]);
+                }
+                break;
+            case Command.DiscoverTerrain:
+                {
+                    terrainManager.SetDiscoverd((int.Parse(parameters[0]), int.Parse(parameters[1])));
                 }
                 break;
         }

@@ -5,4 +5,5 @@ public enum Command
     NextTurn,
     OccupyLabor,
     ReleaseLabor,
+    DiscoverTerrain,
 }

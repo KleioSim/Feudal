@@ -19,8 +19,9 @@ public interface IProgressWorking : IWorking
 {
     float Percent { get; set; }
 
-    void Finished();
     IEffectValue GetEffectValue();
+
+    void OnFinish(Action<Command, string[]> SendCommand);
 }
 
 public interface IEffectValue

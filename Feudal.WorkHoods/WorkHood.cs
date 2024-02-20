@@ -19,7 +19,7 @@ internal class WorkHood : IWorkHood
 
     internal void UpdateWorkings(IEnumerable<Type> workingTypes)
     {
-        var expiredWorkings = optionWorkings.Where(x => !workingTypes.Contains(x.GetType()));
+        var expiredWorkings = optionWorkings.Where(x => !workingTypes.Contains(x.GetType())).ToArray();
         foreach (var expiredWorking in expiredWorkings)
         {
             optionWorkings.Remove(expiredWorking);

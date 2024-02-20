@@ -12,12 +12,14 @@ internal class DiscoverWorking : Working, IProgressWorking
 
     public float Percent { get; set; }
 
-    public void Finished()
+    public void OnFinish(Action<Command, string[]> SendCommand)
     {
         if (WorkHood is not ITerrainWorkHood terrainWorkHood)
         {
             throw new Exception();
         }
+
+        SendCommand(Command.DiscoverTerrain, new string[] { terrainWorkHood.Position.x.ToString(), terrainWorkHood.Position.y.ToString() });
 
         //((TerrainManager)session.Terrains).SetDiscoverd(terrainWorkHood.Position);
     }
