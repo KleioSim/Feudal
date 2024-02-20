@@ -6,7 +6,7 @@ internal class Product : IProduct
 {
     public ProductType Type { get; }
 
-    public float Current { get; private set; }
+    public float Current { get; set; }
 
     public float Surplus
     {

@@ -25,7 +25,7 @@ internal class Clan : IClan
         this.Labor = new Labor(this);
     }
 
-    internal void AddProductTask(ITask task)
+    public void AddProductTask(ITask task)
     {
         if (task.Working is not IProductWorking productWorking)
         {
@@ -33,10 +33,10 @@ internal class Clan : IClan
         }
 
         var product = Products[productWorking.ProductType] as Product;
-        product.AddProductTask(task);
+        product!.AddProductTask(task);
     }
 
-    internal void RemoveProductTask(ITask task)
+    public void RemoveProductTask(ITask task)
     {
         if (task.Working is not IProductWorking productWorking)
         {
@@ -44,6 +44,6 @@ internal class Clan : IClan
         }
 
         var product = Products[productWorking.ProductType] as Product;
-        product.RemoveProductTask(task);
+        product!.RemoveProductTask(task);
     }
 }

@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Feudal.Clans;
 
-public partial class ClanManager : IReadOnlyDictionary<object, IClan>
+internal partial class ClanManager : IReadOnlyDictionary<object, IClan>
 {
     private Dictionary<object, IClan> dict = new Dictionary<object, IClan>();
 

@@ -70,6 +70,7 @@ partial class Session : ISession
             case Command_NextTurn:
                 {
                     taskManager.OnNextTurn();
+                    clanManager.OnNextTurn(Date);
                     Date.OnDaysInc();
                 }
                 break;
