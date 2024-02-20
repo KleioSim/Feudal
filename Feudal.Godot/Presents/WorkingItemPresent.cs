@@ -36,7 +36,7 @@ partial class WorkingItemPresent : PresentControl<WorkingItemView, ISessionModel
 
                     view.ProductType.Text = productWorking.ProductType.ToString();
 
-                    var productValue = productWorking.GetEffectValue(working.WorkHood.Id).Value;
+                    var productValue = productWorking.GetEffectValue().Value;
                     view.ProductCount.Text = (productValue >= 0 ? "+" : "") + productValue.ToString("0.0");
                 }
                 break;

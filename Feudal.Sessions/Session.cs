@@ -25,8 +25,6 @@ partial class Session : ISession
 
     public IReadOnlyDictionary<object, IWorkHood> WorkHoods => workHoodManager;
 
-    //public IReadOnlyDictionary<object, IWorking> Workings => workingManager;
-
     public IReadOnlyDictionary<object, IClan> Clans => clans;
 
 
@@ -37,11 +35,8 @@ partial class Session : ISession
     internal readonly WorkHoodManager workHoodManager = new WorkHoodManager();
     internal readonly ResourceManager resourceManager = new ResourceManager();
 
-    //internal readonly WorkingManager workingManager;
-
     public Session()
     {
-        //workingManager = new WorkingManager(this);
 
         var finder = new Finder(this);
 
@@ -51,6 +46,26 @@ partial class Session : ISession
         ResourceManager.Finder = finder;
 
         TaskManager.CommandSender = OnCommand;
+
+        TaskManager.OnTaskAdded = (task) =>
+        {
+            if (task.Working is IProductWorking productWorking)
+            {
+                var clan = PlayerClan as Clan;
+
+                clan.AddProductTask(task);
+            }
+        };
+
+        TaskManager.OnTaskRemoved = (task) =>
+        {
+            if (task.Working is IProductWorking productWorking)
+            {
+                var clan = PlayerClan as Clan;
+
+                clan.RemoveProductTask(task);
+            }
+        };
     }
 
     public void OnCommand(ICommand command)
@@ -80,34 +95,6 @@ partial class Session : ISession
                 break;
         }
     }
-
-    public void OnCommand(Command command, string[] parameters)
-    {
-        switch (command)
-        {
-            case Command.NextTurn:
-                {
-                    taskManager.OnNextTurn();
-                    Date.OnDaysInc();
-                }
-                break;
-            case Command.OccupyLabor:
-                {
-                    taskManager.CreateTask(parameters[0], parameters[1]);
-                }
-                break;
-            case Command.ReleaseLabor:
-                {
-                    taskManager.RelaseTask(parameters[0], parameters[1]);
-                }
-                break;
-            case Command.DiscoverTerrain:
-                {
-                    terrainManager.SetDiscoverd((int.Parse(parameters[0]), int.Parse(parameters[1])));
-                }
-                break;
-        }
-    }
 }
 
 internal class Clan : IClan
@@ -132,6 +119,28 @@ internal class Clan : IClan
         this.PopCount = popCount;
         this.Labor = new Labor(this);
     }
+
+    internal void AddProductTask(ITask task)
+    {
+        if (task.Working is not IProductWorking productWorking)
+        {
+            throw new Exception();
+        }
+
+        var product = Products[productWorking.ProductType] as Product;
+        product.AddProductTask(task);
+    }
+
+    internal void RemoveProductTask(ITask task)
+    {
+        if (task.Working is not IProductWorking productWorking)
+        {
+            throw new Exception();
+        }
+
+        var product = Products[productWorking.ProductType] as Product;
+        product.RemoveProductTask(task);
+    }
 }
 
 internal class Product : IProduct
@@ -140,11 +149,29 @@ internal class Product : IProduct
 
     public float Current { get; private set; }
 
-    public float Surplus { get; private set; }
+    public float Surplus
+    {
+        get
+        {
+            return productTasks.Select(x => x.Working).OfType<IProductWorking>().Sum(x => x.GetEffectValue().Value);
+        }
+    }
+
+    private List<ITask> productTasks = new List<ITask>();
 
     public Product(ProductType type)
     {
         this.Type = type;
+    }
+
+    internal void AddProductTask(ITask task)
+    {
+        productTasks.Add(task);
+    }
+
+    internal void RemoveProductTask(ITask task)
+    {
+        productTasks.Remove(task);
     }
 }
 

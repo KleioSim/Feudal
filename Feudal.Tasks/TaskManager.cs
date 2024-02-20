@@ -20,6 +20,9 @@ public partial class TaskManager
         set => Task.CommandSender = value;
     }
 
+    public static Action<ITask> OnTaskAdded;
+    public static Action<ITask> OnTaskRemoved;
+
     public void CreateTask(string clanId, string workingId)
     {
         var task = dict.Values.SingleOrDefault(x => x.Working.Id == workingId);
@@ -30,6 +33,8 @@ public partial class TaskManager
 
         task = new Task(clanId, workingId);
         dict.Add(task.Id, task);
+
+        OnTaskAdded?.Invoke(task);
     }
 
     public void RelaseTask(string clanId, string workingId)
@@ -45,6 +50,7 @@ public partial class TaskManager
         }
 
         dict.Remove(task.Id);
+        OnTaskRemoved?.Invoke(task);
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -61,6 +67,7 @@ public partial class TaskManager
             if (task.IsEnd)
             {
                 dict.Remove(task.Id);
+                OnTaskRemoved?.Invoke(task);
             }
         }
     }

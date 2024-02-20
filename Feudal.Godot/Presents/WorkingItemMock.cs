@@ -117,7 +117,7 @@ class MockProductWorking : IProductWorking
     }
 
 
-    public IEffectValue GetEffectValue(string workHoodId)
+    public IEffectValue GetEffectValue()
     {
         return new MockEffectValue();
     }

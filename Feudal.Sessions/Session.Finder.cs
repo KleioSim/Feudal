@@ -31,8 +31,6 @@ partial class Session
 
             FindWorkHood = (id) => session.WorkHoods[id];
 
-            //FindWorkingsInTerrain = (pos) => session.workingManager.GetTerrainWorking(session.Terrains[pos]);
-
             FindResourceByTerrainType = (terrainType) => session.resourceManager.GetResourcesByTerrainType(terrainType);
 
             FindClan = (id) => session.Clans[id];
