@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ld4k8vskpfna"]
+[gd_scene load_steps=5 format=3 uid="uid://ld4k8vskpfna"]
 
 [ext_resource type="Script" path="res://MainScene/Game/Pawns/TerrainPawn/TerrainPawnView.cs" id="1_drn3y"]
 [ext_resource type="PackedScene" uid="uid://dgjq6bem042aw" path="res://MainScene/Game/Pawns/WorkingPawn/ProgressWorkingPawn.tscn" id="1_hdqr3"]
+[ext_resource type="PackedScene" uid="uid://dp7fgtybbiqtx" path="res://MainScene/Game/Pawns/WorkingPawn/ProductWorkingPawn.tscn" id="3_84iqx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11xu0"]
 
@@ -24,6 +25,20 @@ mouse_filter = 1
 layout_mode = 2
 offset_top = 4.0
 offset_bottom = 184.0
+
+[node name="ProductWorkingPawn" parent="VBoxContainer/WorkingPawnContent" instance=ExtResource("3_84iqx")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer"]
 layout_mode = 2

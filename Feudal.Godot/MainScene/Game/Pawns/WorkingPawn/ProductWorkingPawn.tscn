@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp7fgtybbiqtx"]
+
+[ext_resource type="Script" path="res://MainScene/Game/Pawns/WorkingPawn/ProductWorkingPawnView.cs" id="1_8n5ow"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_34mry"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_wrqgx"]
+font_size = 25
+
+[node name="ProductWorkingPawn" type="Control"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 180.0
+offset_bottom = 180.0
+mouse_filter = 1
+script = ExtResource("1_8n5ow")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "??"
+label_settings = SubResource("LabelSettings_34mry")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "??"
+label_settings = SubResource("LabelSettings_wrqgx")
+horizontal_alignment = 1
+vertical_alignment = 1

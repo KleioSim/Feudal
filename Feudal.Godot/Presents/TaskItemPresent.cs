@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using System;
 
 namespace Feudal.Godot.Presents;
 
@@ -15,7 +16,27 @@ partial class TaskItemPresent : PresentControl<TaskItemView, ISessionModel>
         var taskObj = model.Session.Tasks[view.Id];
 
         view.Label.Text = taskObj.Desc;
-        view.Progress.Value = ((IProgressWorking)taskObj.Working).Percent;
+        switch (taskObj.Working)
+        {
+            case IProgressWorking progressWorking:
+                {
+                    view.ProgressWorking.Visible = true;
+                    view.ProductWorking.Visible = false;
+                    view.Progress.Value = progressWorking.Percent;
+                }
+                break;
+            case IProductWorking productWorking:
+                {
+                    view.ProgressWorking.Visible = false;
+                    view.ProductWorking.Visible = true;
+                    view.ProductType.Text = productWorking.ProductType.ToString();
+                    view.ProductValue.Text = productWorking.GetEffectValue().Value.ToString();
+                }
+                break;
+            default:
+                throw new Exception();
+        }
+
     }
 }
 

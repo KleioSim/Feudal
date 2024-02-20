@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Feudal.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Feudal.Godot.Presents;
@@ -14,9 +15,26 @@ public partial class TerrainPawnPresent : PresentControl<TerrainPawnView, ISessi
     {
         var terrain = model.Session.Terrains[view.TerrainPosition];
 
-        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood == terrain.WorkHood);
-        view.WorkingPawn.Visible = task != null;
-
         view.ResourcePawns.Refresh(!terrain.IsDiscoverd ? new HashSet<object>() : terrain.Resources.Select(x => x.Id as object).ToHashSet());
+
+        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood == terrain.WorkHood);
+        if (task == null)
+        {
+            view.ProgressWorkingPawn.Visible = false;
+            view.ProductWorkingPawn.Visible = false;
+            return;
+        }
+
+        switch (task?.Working)
+        {
+            case IProgressWorking:
+                view.ProgressWorkingPawn.Visible = true;
+                view.ProductWorkingPawn.Visible = false;
+                break;
+            case IProductWorking:
+                view.ProgressWorkingPawn.Visible = false;
+                view.ProductWorkingPawn.Visible = true;
+                break;
+        }
     }
 }
