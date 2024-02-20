@@ -1,4 +1,5 @@
-﻿using Feudal.Godot.UICommands;
+﻿using Feudal.Commands;
+using Feudal.Godot.UICommands;
 using Feudal.Interfaces;
 using Godot;
 using Godot.Collections;
@@ -92,7 +93,7 @@ class MockProgressWorking : IProgressWorking
         return new MockEffectValue();
     }
 
-    public void OnFinish(Action<Command, string[]> SendCommand)
+    public void OnFinish(Action<ICommand> SendCommand)
     {
         GD.Print($"Working:{Id} Finsihed, WorkHood:{WorkHood.Id}");
     }

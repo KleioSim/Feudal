@@ -1,4 +1,5 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Commands;
+using Feudal.Interfaces;
 using Feudal.Resources;
 using Feudal.Tasks;
 using Feudal.Terrains;
@@ -50,6 +51,34 @@ partial class Session : ISession
         ResourceManager.Finder = finder;
 
         TaskManager.CommandSender = OnCommand;
+    }
+
+    public void OnCommand(ICommand command)
+    {
+        switch (command)
+        {
+            case Command_NextTurn:
+                {
+                    taskManager.OnNextTurn();
+                    Date.OnDaysInc();
+                }
+                break;
+            case Command_OccupyLabor cmdOccupyLabor:
+                {
+                    taskManager.CreateTask(cmdOccupyLabor.ClanId, cmdOccupyLabor.WorkingId);
+                }
+                break;
+            case Command_ReleaseLabor cmdReleaseLabor:
+                {
+                    taskManager.RelaseTask(cmdReleaseLabor.ClanId, cmdReleaseLabor.WorkingId);
+                }
+                break;
+            case Command_DiscoverTerrain cmdDiscoverTerrain:
+                {
+                    terrainManager.SetDiscoverd((int.Parse(cmdDiscoverTerrain.Position_X), int.Parse(cmdDiscoverTerrain.Position_Y)));
+                }
+                break;
+        }
     }
 
     public void OnCommand(Command command, string[] parameters)

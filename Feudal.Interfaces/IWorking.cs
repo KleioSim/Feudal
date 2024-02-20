@@ -1,4 +1,6 @@
-﻿namespace Feudal.Interfaces;
+﻿using Feudal.Commands;
+
+namespace Feudal.Interfaces;
 
 public interface IWorking
 {
@@ -21,7 +23,7 @@ public interface IProgressWorking : IWorking
 
     IEffectValue GetEffectValue();
 
-    void OnFinish(Action<Command, string[]> SendCommand);
+    void OnFinish(Action<ICommand> SendCommand);
 }
 
 public interface IEffectValue

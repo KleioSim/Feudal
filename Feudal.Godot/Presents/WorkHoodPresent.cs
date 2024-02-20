@@ -1,4 +1,5 @@
-﻿using Feudal.Godot.UICommands;
+﻿using Feudal.Commands;
+using Feudal.Godot.UICommands;
 using System;
 using System.Linq;
 
@@ -12,7 +13,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
         {
             var workHood = model.Session.WorkHoods[view.Id];
 
-            SendCommand(new UICommand_OccupyLabor() { ClanId = clanId, WorkingId = workHood.CurrentWorking.Id });
+            SendCommand(new Command_OccupyLabor() { ClanId = clanId, WorkingId = workHood.CurrentWorking.Id });
         };
 
         view.CancelLaborButton.Pressed += () =>
@@ -23,7 +24,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
                 throw new Exception($"WorkHood{view.Id}未关联Labor");
             }
 
-            SendCommand(new UICommand_ReleaseLabor() { ClanId = task.Clan.Id, WorkingId = task.Working.Id });
+            SendCommand(new Command_ReleaseLabor() { ClanId = task.Clan.Id, WorkingId = task.Working.Id });
         };
     }
 

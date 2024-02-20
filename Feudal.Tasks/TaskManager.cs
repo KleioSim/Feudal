@@ -1,4 +1,5 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Commands;
+using Feudal.Interfaces;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ public partial class TaskManager
         set => Task.Finder = value;
     }
 
-    public static Action<Command, string[]> CommandSender
+    public static Action<ICommand> CommandSender
     {
         get => Task.CommandSender;
         set => Task.CommandSender = value;

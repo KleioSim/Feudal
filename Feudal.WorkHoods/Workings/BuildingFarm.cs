@@ -1,4 +1,5 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Commands;
+using Feudal.Interfaces;
 
 namespace Feudal.WorkHoods.Workings;
 
@@ -10,7 +11,7 @@ internal class BuildingFarm : Working, IProgressWorking
     {
     }
 
-    public void OnFinish(Action<Command, string[]> SendCommand)
+    public void OnFinish(Action<ICommand> SendCommand)
     {
         throw new NotImplementedException();
     }

@@ -1,6 +1,6 @@
-﻿namespace Feudal.Interfaces;
+﻿using Feudal.Commands;
 
-using System.Collections.Generic;
+namespace Feudal.Interfaces;
 
 public interface ISession
 {
@@ -13,5 +13,5 @@ public interface ISession
     IReadOnlyDictionary<object, IWorkHood> WorkHoods { get; }
     IReadOnlyDictionary<object, IClan> Clans { get; }
 
-    void OnCommand(Command command, string[] parameters);
+    void OnCommand(ICommand command);
 }

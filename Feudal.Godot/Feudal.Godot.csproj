@@ -10,6 +10,7 @@
     <EmbeddedResource Remove="MainScene\GUI\Tasks——\**" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Feudal.Commands\Feudal.Commands.csproj" />
     <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
     <ProjectReference Include="..\Feudal.Sessions\Feudal.Sessions.csproj" />
     <ProjectReference Include="..\Feudal.TerrainBuilders\Feudal.TerrainBuilders.csproj" />

@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Feudal.Commands\Feudal.Commands.csproj" />
-    <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
-  </ItemGroup>
-
 </Project>

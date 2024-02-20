@@ -1,10 +1,8 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Commands;
 
 namespace Feudal.Godot.UICommands;
 
-class UICommand_Refresh : UICommand
+class UICommand_Refresh : ICommand
 {
-    public override string[] parameters { get; }
 
-    public override Command type { get; }
 }

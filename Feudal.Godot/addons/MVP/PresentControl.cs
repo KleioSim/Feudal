@@ -1,4 +1,5 @@
-﻿using Feudal.Godot.Presents;
+﻿using Feudal.Commands;
+using Feudal.Godot.Presents;
 using Feudal.Godot.UICommands;
 using Godot;
 using System;
@@ -77,11 +78,11 @@ public abstract partial class PresentControl<TView, TModel> : PresentBase
     }
 
 
-    internal void SendCommand(UICommand command)
+    internal void SendCommand(ICommand command)
     {
         if (command is not UICommand_Refresh)
         {
-            GD.Print($"OnCommand:{command.type}, parameters:[{(command.parameters == null ? "" : string.Join(", ", command.parameters))}]");
+            GD.Print($"OnUICommand:{command.GetType()}");
 
             Model.OnCommand(command);
         }

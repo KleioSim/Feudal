@@ -1,8 +1,9 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Commands;
+using Feudal.Interfaces;
 
 public interface IModel
 {
-    void OnCommand(UICommand command);
+    void OnCommand(ICommand command);
 }
 
 public abstract class UICommand

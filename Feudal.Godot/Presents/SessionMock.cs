@@ -1,4 +1,5 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Commands;
+using Feudal.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ internal class SessionMock : ISession
 
     private MockDate MockDate { get; } = new MockDate();
 
-    public void OnCommand(Command command, string[] parameters)
+    public void OnCommand(ICommand command)
     {
     }
 

@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.WorkHoods", "..\Feud
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.Resources", "..\Feudal.Resources\Feudal.Resources.csproj", "{64802A20-F4BE-4DCF-BE37-C4C6D101121D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.Commands", "..\Feudal.Commands\Feudal.Commands.csproj", "{1E0375C0-A77C-4935-92CD-3180E4EBE780}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,14 @@ Global
 		{64802A20-F4BE-4DCF-BE37-C4C6D101121D}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
 		{64802A20-F4BE-4DCF-BE37-C4C6D101121D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64802A20-F4BE-4DCF-BE37-C4C6D101121D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E0375C0-A77C-4935-92CD-3180E4EBE780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E0375C0-A77C-4935-92CD-3180E4EBE780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E0375C0-A77C-4935-92CD-3180E4EBE780}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E0375C0-A77C-4935-92CD-3180E4EBE780}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{1E0375C0-A77C-4935-92CD-3180E4EBE780}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{1E0375C0-A77C-4935-92CD-3180E4EBE780}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
+		{1E0375C0-A77C-4935-92CD-3180E4EBE780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E0375C0-A77C-4935-92CD-3180E4EBE780}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

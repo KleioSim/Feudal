@@ -1,4 +1,5 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Commands;
+using Feudal.Interfaces;
 using Feudal.WorkHoods;
 //using Feudal.Terrains;
 
@@ -12,16 +13,20 @@ internal class DiscoverWorking : Working, IProgressWorking
 
     public float Percent { get; set; }
 
-    public void OnFinish(Action<Command, string[]> SendCommand)
+    public void OnFinish(Action<ICommand> SendCommand)
     {
         if (WorkHood is not ITerrainWorkHood terrainWorkHood)
         {
             throw new Exception();
         }
 
-        SendCommand(Command.DiscoverTerrain, new string[] { terrainWorkHood.Position.x.ToString(), terrainWorkHood.Position.y.ToString() });
+        var command = new Command_DiscoverTerrain()
+        {
+            Position_X = terrainWorkHood.Position.x.ToString(),
+            Position_Y = terrainWorkHood.Position.y.ToString()
+        };
 
-        //((TerrainManager)session.Terrains).SetDiscoverd(terrainWorkHood.Position);
+        SendCommand(command);
     }
 
     public IEffectValue GetEffectValue()
