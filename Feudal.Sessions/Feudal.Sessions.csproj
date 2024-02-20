@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Feudal.Clans\Feudal.Clans.csproj" />
     <ProjectReference Include="..\Feudal.Commands\Feudal.Commands.csproj" />
     <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
     <ProjectReference Include="..\Feudal.Resources\Feudal.Resources.csproj" />
