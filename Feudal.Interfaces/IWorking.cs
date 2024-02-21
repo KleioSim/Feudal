@@ -9,19 +9,18 @@ public interface IWorking
     string Name { get; }
 
     IWorkHood WorkHood { get; }
+
+    IEffectValue GetEffectValue();
 }
 
 public interface IProductWorking : IWorking
 {
     ProductType ProductType { get; }
-    IEffectValue GetEffectValue();
 }
 
 public interface IProgressWorking : IWorking
 {
     float Percent { get; set; }
-
-    IEffectValue GetEffectValue();
 
     void OnFinish(Action<ICommand> SendCommand);
 }

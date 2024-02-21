@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using System.Linq;
 
 namespace Feudal.Clans;
 
@@ -14,8 +15,6 @@ internal class Clan : IClan
 
     public int PopCount { get; private set; }
 
-    public ILabor Labor { get; }
-
     public IReadOnlyDictionary<ProductType, IProduct> Products { get; } = Enum.GetValues<ProductType>().ToDictionary(k => k, v => new Product(v) as IProduct);
 
     public IEnumerable<ILabor> Labors => laborManager;
@@ -28,9 +27,11 @@ internal class Clan : IClan
         this.Id = $"CLAN_{count++}";
 
         this.PopCount = popCount;
-        this.Labor = new Labor(this);
 
         laborManager = new LaborManager(this);
+
+        var foodProduct = Products[ProductType.Food] as Product;
+        foodProduct!.AddOutput(this, () => Labors.Count());
     }
 
     public void AddProductTask(ITask task)
@@ -41,7 +42,7 @@ internal class Clan : IClan
         }
 
         var product = Products[productWorking.ProductType] as Product;
-        product!.AddProductTask(task);
+        product!.AddIncome(task, () => task.Working.GetEffectValue().Value);
     }
 
     public void RemoveProductTask(ITask task)
@@ -52,6 +53,6 @@ internal class Clan : IClan
         }
 
         var product = Products[productWorking.ProductType] as Product;
-        product!.RemoveProductTask(task);
+        product!.RemoveIncome(task);
     }
 }

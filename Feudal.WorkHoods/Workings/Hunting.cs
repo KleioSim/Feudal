@@ -10,7 +10,7 @@ internal class Hunting : Working, IProductWorking
     {
     }
 
-    public IEffectValue GetEffectValue()
+    public override IEffectValue GetEffectValue()
     {
         return new EffectValue() { BaseValue = 2, Effects = new IEffect[] { } };
     }

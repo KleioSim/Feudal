@@ -2,7 +2,7 @@
 
 namespace Feudal.WorkHoods.Workings;
 
-internal class Working : IWorking
+internal abstract class Working : IWorking
 {
     public static IFinder Finder { get; set; }
 
@@ -13,6 +13,8 @@ internal class Working : IWorking
     public string Name => Id;
 
     public IWorkHood WorkHood { get; }
+
+    public abstract IEffectValue GetEffectValue();
 
     public Working(IWorkHood workHood)
     {

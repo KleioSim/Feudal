@@ -29,7 +29,7 @@ internal class DiscoverTerrain : Working, IProgressWorking
         SendCommand(command);
     }
 
-    public IEffectValue GetEffectValue()
+    public override IEffectValue GetEffectValue()
     {
         if (WorkHood is not ITerrainWorkHood terrainWorkHood)
         {

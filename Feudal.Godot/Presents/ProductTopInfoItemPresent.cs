@@ -84,4 +84,8 @@ internal class ProductMock : IProduct
     public float Current { get; set; }
 
     public float Surplus { get; set; }
+
+    public IReadOnlyDictionary<object, Func<float>> Incomes => throw new NotImplementedException();
+
+    public IReadOnlyDictionary<object, Func<float>> Outputs => throw new NotImplementedException();
 }

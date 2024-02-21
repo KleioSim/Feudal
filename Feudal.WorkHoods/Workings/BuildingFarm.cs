@@ -16,7 +16,7 @@ internal class BuildingFarm : Working, IProgressWorking
         throw new NotImplementedException();
     }
 
-    public IEffectValue GetEffectValue()
+    public override IEffectValue GetEffectValue()
     {
         return new EffectValue() { BaseValue = 10, Effects = new IEffect[] { } };
     }
