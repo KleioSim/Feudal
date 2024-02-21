@@ -99,7 +99,8 @@ partial class Session : ISession
                 {
                     workHoodManager.SwitchCurrentWorking(cmdSwitchCurrentWorking.WorkingId);
 
-                    var task = taskManager.Values.SingleOrDefault(x => x.Working.Id == cmdSwitchCurrentWorking.WorkingId);
+                    var working = workHoodManager.FindWorking(cmdSwitchCurrentWorking.WorkingId);
+                    var task = taskManager.Values.SingleOrDefault(x => x.Working.WorkHood == working.WorkHood);
                     if (task != null)
                     {
                         taskManager.RelaseTask(task.Labor.Id, task.Working.Id);
