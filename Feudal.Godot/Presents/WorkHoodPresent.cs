@@ -39,7 +39,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
 
     protected override void Update(WorkHoodView view, ISessionModel model)
     {
-        var workHood = model.Session.WorkHoods[view.Id];
+        var workHood = view.Id as IWorkHood;
         view.CurrentWorking.Id ??= workHood.OptionWorkings.FirstOrDefault();
 
         view.OptionWorkings.Refresh(workHood.OptionWorkings
