@@ -21,6 +21,10 @@ partial class Session
 
         public Func<string, IClan> FindClan { get; internal set; }
 
+        public Func<string, ILabor> FindLabor { get; internal set; }
+
+        public Func<ILabor, ITask> FindTaskByLabor { get; internal set; }
+
         public Finder(Session session)
         {
             FindWorking = (id) => session.workHoodManager.FindWorking(id);
@@ -33,7 +37,11 @@ partial class Session
 
             FindResourceByTerrainType = (terrainType) => session.resourceManager.GetResourcesByTerrainType(terrainType);
 
-            FindClan = (id) => session.Clans[id];
+            FindClan = (id) => session.clanManager[id];
+
+            FindLabor = (id) => session.clanManager.FindLabor(id);
+
+            FindTaskByLabor = (labor) => session.Tasks.Values.SingleOrDefault(x => x.Labor == labor);
         }
     }
 }

@@ -2,5 +2,9 @@
 
 public interface ILabor
 {
-    public int TotalCount { get; }
+    string Id { get; }
+
+    IClan From { get; }
+
+    ITask Task { get; }
 }

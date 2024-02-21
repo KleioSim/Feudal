@@ -1,4 +1,6 @@
-﻿namespace Feudal.Godot.Presents;
+﻿using System.Linq;
+
+namespace Feudal.Godot.Presents;
 
 public partial class LaborItemPresent : PresentControl<LaborItemView, ISessionModel>
 {
@@ -12,6 +14,13 @@ public partial class LaborItemPresent : PresentControl<LaborItemView, ISessionMo
         var clan = model.Session.Clans[view.Id];
 
         view.ClanName.Text = clan.Name;
-        view.Count.Text = clan.Labor.TotalCount.ToString();
+
+        var idleLabors = clan.Labors.Where(x => x.Task == null);
+
+        view.Button.Disabled = !idleLabors.Any();
+
+        view.IdleCount.Text = idleLabors.Count().ToString();
+        view.TotalCount.Text = clan.Labors.Count().ToString();
+
     }
 }

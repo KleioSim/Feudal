@@ -8,7 +8,7 @@ public interface IClan
     string Name { get; }
     int PopCount { get; }
 
-    ILabor Labor { get; }
+    IEnumerable<ILabor> Labors { get; }
 
     IReadOnlyDictionary<ProductType, IProduct> Products { get; }
 }

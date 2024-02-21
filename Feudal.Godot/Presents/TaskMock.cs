@@ -10,18 +10,11 @@ public class TaskMock : ITask
 
     public string Desc { get; set; }
 
-
-    public string WorkHoodId { get; set; }
-
-    public string ClanId { get; set; }
-
-    public float Step { get; set; }
-
     public IClan Clan { get; set; }
 
-    //public IWorkHood WorkHood { get; set; }
-
     public IWorking Working { get; set; }
+
+    public ILabor Labor { get; set; }
 
     public TaskMock()
     {

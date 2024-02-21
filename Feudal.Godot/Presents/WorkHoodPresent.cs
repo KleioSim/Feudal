@@ -24,7 +24,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
                 throw new Exception($"WorkHood{view.Id}未关联Labor");
             }
 
-            SendCommand(new Command_ReleaseLabor() { ClanId = task.Clan.Id, WorkingId = task.Working.Id });
+            SendCommand(new Command_ReleaseLabor() { ClanId = task.Labor.Id, WorkingId = task.Working.Id });
         };
     }
 
@@ -48,6 +48,6 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
         }
 
         view.CurrentLabor.Visible = true;
-        view.ClanName.Text = task.Clan.Name;
+        view.ClanName.Text = task.Labor.From.Name;
     }
 }

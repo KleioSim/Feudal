@@ -12,12 +12,12 @@ partial class GUIMock : MockControl<GUIView, ISessionModel>
         get
         {
             var session = new SessionMock();
-            for (int i = 0; i < 3; i++)
+            var clans = session.GenerateClans(3);
+            foreach (var clan in clans)
             {
-                var clan = new ClanMock();
-                clan.LaborMock.TotalCount = i * 10;
-                session.MockClans.Add(clan.Id, clan);
+                clan.GenerateLabors(3);
             }
+
             session.PlayerClan = session.Clans.Last().Value;
 
             View.PlayerClanId = session.PlayerClan.Id;

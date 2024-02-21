@@ -6,13 +6,12 @@ partial class ClanPanelMock : MockControl<ClanPanelView, ISessionModel>
     {
         get
         {
-            var clan = new ClanMock();
-            clan.LaborMock.TotalCount = 10;
+            var session = new SessionMock();
 
+            var clan = session.GenerateClan();
             View.Id = clan.Id;
 
-            var session = new SessionMock();
-            session.MockClans.Add(clan.Id, clan);
+            clan.GenerateLabors(3);
 
             return new SessionModel() { Session = session };
         }

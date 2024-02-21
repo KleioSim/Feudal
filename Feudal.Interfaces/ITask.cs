@@ -6,7 +6,7 @@ public interface ITask
 
     string Desc { get; }
 
-    IClan Clan { get; }
-    //IWorkHood WorkHood { get; }
+    ILabor Labor { get; }
+
     IWorking Working { get; }
 }

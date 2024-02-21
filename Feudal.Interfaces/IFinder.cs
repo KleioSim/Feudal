@@ -9,4 +9,6 @@ public interface IFinder
     Func<string, IClan> FindClan { get; }
     Func<(int x, int y), IEnumerable<IWorking>> FindWorkingsInTerrain { get; }
     Func<TerrainType, IEnumerable<IResource>> FindResourceByTerrainType { get; }
+    Func<string, ILabor> FindLabor { get; }
+    Func<ILabor, ITask> FindTaskByLabor { get; }
 }

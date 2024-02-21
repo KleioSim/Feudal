@@ -18,22 +18,22 @@ class Task : ITask
 
     public bool IsEnd { get; set; }
 
-    public IClan Clan => Finder.FindClan(clanId);
-
     public IWorking Working => Finder.FindWorking(workingId);
+
+    public ILabor Labor => Finder.FindLabor(laborId);
 
     private string workingId;
 
-    private string clanId;
+    private string laborId;
 
-    public Task(string clanId, string workingId)
+    public Task(string laborId, string workingId)
     {
         Id = $"TASK{Count++}";
 
         Desc = Id;
 
         this.workingId = workingId;
-        this.clanId = clanId;
+        this.laborId = laborId;
     }
 
     internal void OnNextTurn()

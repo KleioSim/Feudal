@@ -29,7 +29,8 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
                 }
 
                 task = session.GenerateTask();
-                task.Clan = session.Clans.Values.Last();
+                task.Labor = session.GenerateClan().GenerateLabor();
+
                 task.Working = session.WorkHoods[View.Id].CurrentWorking;
             }
             else
@@ -62,7 +63,8 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
             }
 
             var task = session.GenerateTask();
-            task.Clan = session.GenerateClan();
+            task.Labor = session.GenerateClan().GenerateLabor();
+
             task.Working = workHood.CurrentWorking;
 
             return new SessionModel() { Session = session };

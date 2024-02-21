@@ -48,7 +48,7 @@ partial class TerrainPanelMock : MockControl<TerrainPanelView, ISessionModel>
             }
 
             var task = session.GenerateTask();
-            task.Clan = session.GenerateClan();
+            task.Labor = session.GenerateClan().GenerateLabor();
             task.Working = workHood.CurrentWorking;
 
             return new SessionModel() { Session = session };

@@ -70,9 +70,11 @@ internal class SessionMock : ISession
         return working;
     }
 
-    internal ClanMock GenerateClan()
+    internal ClanMock GenerateClan(int popCount = 0)
     {
         var clan = new ClanMock();
+        clan.PopCount = popCount;
+
         MockClans.Add(clan.Id, clan);
         return clan;
     }
@@ -113,6 +115,11 @@ internal class SessionMock : ISession
         MockWorkHoods.Add(workHood.Id, workHood);
 
         return workHood;
+    }
+
+    internal IEnumerable<ClanMock> GenerateClans(int count)
+    {
+        return Enumerable.Range(0, count).Select(x => GenerateClan((x + 1) * 100));
     }
 }
 

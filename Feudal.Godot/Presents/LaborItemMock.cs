@@ -1,4 +1,6 @@
-﻿namespace Feudal.Godot.Presents;
+﻿using System.Linq;
+
+namespace Feudal.Godot.Presents;
 
 public partial class LaborItemMock : MockControl<LaborItemView, ISessionModel>
 {
@@ -6,11 +8,13 @@ public partial class LaborItemMock : MockControl<LaborItemView, ISessionModel>
     {
         get
         {
-            var clan = new ClanMock();
+            var session = new SessionMock();
+
+            var clan = session.GenerateClan();
             View.Id = clan.Id;
 
-            var session = new SessionMock();
-            session.MockClans.Add(clan.Id, clan);
+            var labors = clan.GenerateLabors(3);
+            labors.First().Task = session.GenerateTask();
 
             return new SessionModel() { Session = session };
         }

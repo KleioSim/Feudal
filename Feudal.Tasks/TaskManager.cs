@@ -23,30 +23,30 @@ public partial class TaskManager
     public static Action<ITask> OnTaskAdded;
     public static Action<ITask> OnTaskRemoved;
 
-    public void CreateTask(string clanId, string workingId)
+    public void CreateTask(string laborId, string workingId)
     {
         var task = dict.Values.SingleOrDefault(x => x.Working.Id == workingId);
         if (task != null)
         {
-            throw new Exception($"Working{workingId}已经关联Labor{task.Clan.Id}");
+            throw new Exception($"Working{workingId}已经关联Labor{task.Labor.Id}");
         }
 
-        task = new Task(clanId, workingId);
+        task = new Task(laborId, workingId);
         dict.Add(task.Id, task);
 
         OnTaskAdded?.Invoke(task);
     }
 
-    public void RelaseTask(string clanId, string workingId)
+    public void RelaseTask(string laborId, string workingId)
     {
         var task = dict.Values.SingleOrDefault(x => x.Working.Id == workingId);
         if (task == null)
         {
             throw new Exception($"Working{workingId}未关联Labor");
         }
-        if (task.Clan.Id != clanId)
+        if (task.Labor.Id != laborId)
         {
-            throw new Exception($"Task{task.Id}中, Working{workingId}关联Labor是{task.Clan.Id}, 不是{clanId}");
+            throw new Exception($"Task{task.Id}中, Working{workingId}关联Labor是{task.Labor.Id}, 不是{laborId}");
         }
 
         dict.Remove(task.Id);

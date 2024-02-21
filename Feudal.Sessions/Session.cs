@@ -39,6 +39,7 @@ partial class Session : ISession
         TerrainManager.Finder = finder;
         TaskManager.Finder = finder;
         ResourceManager.Finder = finder;
+        ClanManager.Finder = finder;
 
         TaskManager.CommandSender = OnCommand;
 
@@ -48,7 +49,7 @@ partial class Session : ISession
             {
                 var clan = PlayerClan as Clan;
 
-                clan.AddProductTask(task);
+                clan!.AddProductTask(task);
             }
         };
 
@@ -58,7 +59,7 @@ partial class Session : ISession
             {
                 var clan = PlayerClan as Clan;
 
-                clan.RemoveProductTask(task);
+                clan!.RemoveProductTask(task);
             }
         };
     }
@@ -76,7 +77,10 @@ partial class Session : ISession
                 break;
             case Command_OccupyLabor cmdOccupyLabor:
                 {
-                    taskManager.CreateTask(cmdOccupyLabor.ClanId, cmdOccupyLabor.WorkingId);
+                    var clan = clanManager[cmdOccupyLabor.ClanId];
+                    var labor = clan.Labors.First(x => x.Task == null);
+
+                    taskManager.CreateTask(labor.Id, cmdOccupyLabor.WorkingId);
                 }
                 break;
             case Command_ReleaseLabor cmdReleaseLabor:

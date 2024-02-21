@@ -1,4 +1,6 @@
-﻿namespace Feudal.Godot.Presents;
+﻿using System.Linq;
+
+namespace Feudal.Godot.Presents;
 
 partial class ClanPanelPresent : PresentControl<ClanPanelView, ISessionModel>
 {
@@ -13,6 +15,6 @@ partial class ClanPanelPresent : PresentControl<ClanPanelView, ISessionModel>
 
         view.Title.Text = clan.Name;
         view.PopCount.Text = clan.PopCount.ToString();
-        view.LaborCount.Text = clan.Labor.TotalCount.ToString();
+        view.LaborCount.Text = clan.Labors.Count().ToString();
     }
 }

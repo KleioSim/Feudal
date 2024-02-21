@@ -44,9 +44,29 @@ text = "--"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Pop" type="Label" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="IdleCount" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Splash" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalCount" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
 size_flags_vertical = 1
 text = "--"
 horizontal_alignment = 1

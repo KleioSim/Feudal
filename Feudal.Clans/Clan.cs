@@ -4,6 +4,8 @@ namespace Feudal.Clans;
 
 internal class Clan : IClan
 {
+    public static IFinder Finder { get; set; }
+
     public static int count;
 
     public string Id { get; }
@@ -16,6 +18,10 @@ internal class Clan : IClan
 
     public IReadOnlyDictionary<ProductType, IProduct> Products { get; } = Enum.GetValues<ProductType>().ToDictionary(k => k, v => new Product(v) as IProduct);
 
+    public IEnumerable<ILabor> Labors => laborManager;
+
+    private LaborManager laborManager;
+
     public Clan(string name, int popCount)
     {
         this.Name = name;
@@ -23,6 +29,8 @@ internal class Clan : IClan
 
         this.PopCount = popCount;
         this.Labor = new Labor(this);
+
+        laborManager = new LaborManager(this);
     }
 
     public void AddProductTask(ITask task)
