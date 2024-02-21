@@ -11,7 +11,7 @@ internal class WorkHood : IWorkHood
 
     public string Id { get; }
 
-    public IWorking CurrentWorking { get; private set; }
+    public IWorking CurrentWorking { get; internal set; }
 
     public virtual IEnumerable<IWorking> OptionWorkings => optionWorkings.Where(x => x != CurrentWorking);
 
@@ -28,7 +28,7 @@ internal class WorkHood : IWorkHood
 
         foreach (var workingType in workingTypes)
         {
-            if (optionWorkings.Any(x=>x.GetType() == workingType))
+            if (optionWorkings.Any(x => x.GetType() == workingType))
             {
                 continue;
             }

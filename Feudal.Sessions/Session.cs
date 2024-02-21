@@ -5,6 +5,8 @@ using Feudal.Resources;
 using Feudal.Tasks;
 using Feudal.Terrains;
 using Feudal.WorkHoods;
+using Feudal.WorkHoods.Workings;
+using System.Reflection.Emit;
 
 namespace Feudal.Sessions;
 
@@ -91,6 +93,19 @@ partial class Session : ISession
             case Command_DiscoverTerrain cmdDiscoverTerrain:
                 {
                     terrainManager.SetDiscoverd((int.Parse(cmdDiscoverTerrain.Position_X), int.Parse(cmdDiscoverTerrain.Position_Y)));
+                }
+                break;
+            case Command_SwitchCurrentWorking cmdSwitchCurrentWorking:
+                {
+                    workHoodManager.SwitchCurrentWorking(cmdSwitchCurrentWorking.WorkingId);
+
+                    var task = taskManager.Values.SingleOrDefault(x => x.Working.Id == cmdSwitchCurrentWorking.WorkingId);
+                    if (task != null)
+                    {
+                        taskManager.RelaseTask(task.Labor.Id, task.Working.Id);
+                        taskManager.CreateTask(task.Labor.Id, cmdSwitchCurrentWorking.WorkingId);
+                    }
+
                 }
                 break;
         }

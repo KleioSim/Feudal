@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.WorkHoods.Workings;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 
@@ -47,5 +48,23 @@ public partial class WorkHoodManager : IReadOnlyDictionary<object, IWorkHood>
         {
             workings.Remove(working.Id);
         };
+    }
+
+    public void SwitchCurrentWorking(string workingId)
+    {
+        var working = workings[workingId];
+
+        var workHood = workings[workingId].WorkHood as WorkHood;
+        if (workHood!.CurrentWorking == working)
+        {
+            return;
+        }
+
+        if (!workHood.OptionWorkings.Contains(working))
+        {
+            throw new Exception();
+        }
+
+        workHood.CurrentWorking = working;
     }
 }

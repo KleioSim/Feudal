@@ -17,6 +17,9 @@ public partial class WorkHoodView : ViewControl
     [Signal]
     public delegate void OccupyLaborEventHandler(string laborId);
 
+    [Signal]
+    public delegate void SwitchWorkingEventHandler(WorkingItemView workingItem);
+
     public WorkingItemView CurrentWorking => GetNode<WorkingItemView>("VBoxContainer/WorkingArray/CurrentWorking");
 
     public Control OptionWorkingsPanel => GetNode<Control>("VBoxContainer/WorkingArray/OptionControl");
@@ -45,6 +48,8 @@ public partial class WorkHoodView : ViewControl
             item.Button.Pressed += () =>
             {
                 OptionWorkingsPanel.Visible = false;
+
+                EmitSignal(SignalName.SwitchWorking, item);
             };
         };
     }

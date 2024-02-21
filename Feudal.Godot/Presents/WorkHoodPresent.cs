@@ -1,5 +1,6 @@
 ﻿using Feudal.Commands;
 using Feudal.Godot.UICommands;
+using Feudal.Interfaces;
 using System;
 using System.Linq;
 
@@ -25,6 +26,13 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
             }
 
             SendCommand(new Command_ReleaseLabor() { ClanId = task.Labor.Id, WorkingId = task.Working.Id });
+        };
+
+        view.SwitchWorking += (workingItem) =>
+        {
+            var working = workingItem.Id as IWorking;
+
+            SendCommand(new Command_SwitchCurrentWorking() { WorkingId = working.Id });
         };
     }
 
