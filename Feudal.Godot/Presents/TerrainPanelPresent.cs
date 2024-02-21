@@ -25,7 +25,7 @@ partial class TerrainPanelPresent : PresentControl<TerrainPanelView, ISessionMod
         view.WorkHoodPanel.Visible = terrain.WorkHood.OptionWorkings.Any();
         if (view.WorkHoodPanel.Visible)
         {
-            view.WorkHoodPanel.Id = terrain.WorkHood.Id;
+            view.WorkHoodPanel.Id = terrain.WorkHood;
         }
     }
 }

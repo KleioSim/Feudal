@@ -2,7 +2,7 @@
 
 public partial class WorkHoodView : ViewControl
 {
-    public string Id { get; set; }
+    public object Id { get; set; }
 
     public Control LaborPanel => GetNode<Control>("VBoxContainer/LaborPanel");
     public Control SelectLabor => LaborPanel.GetNode<Control>("SelectLabor");

@@ -14,13 +14,15 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
     {
         get
         {
-            return Present.Model.Session.Tasks.Values.Any(x => x.Working.WorkHood.Id == View.Id);
+            return Present.Model.Session.Tasks.Values.Any(x => x.Working.WorkHood == View.Id);
         }
         set
         {
             var session = Present.Model.Session as SessionMock;
 
-            var task = session.MockTasks.Values.SingleOrDefault(x => x.Working.WorkHood.Id == View.Id) as TaskMock;
+            var workHood = View.Id as IWorkHood;
+
+            var task = session.MockTasks.Values.SingleOrDefault(x => x.Working.WorkHood == workHood) as TaskMock;
             if (value)
             {
                 if (task != null)
@@ -31,7 +33,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
                 task = session.GenerateTask();
                 task.Labor = session.GenerateClan().GenerateLabor();
 
-                task.Working = session.WorkHoods[View.Id].OptionWorkings.FirstOrDefault();
+                task.Working = workHood.OptionWorkings.FirstOrDefault();
             }
             else
             {
@@ -55,7 +57,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
             var session = new SessionMock();
 
             var workHood = session.GenerateWorkHood();
-            View.Id = workHood.Id;
+            View.Id = workHood;
 
             for (int i = 0; i < 2; i++)
             {

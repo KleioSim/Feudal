@@ -19,7 +19,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
 
         view.CancelLaborButton.Pressed += () =>
         {
-            var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood.Id == view.Id);
+            var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood == view.Id);
             if (task == null)
             {
                 throw new Exception($"WorkHood{view.Id}未关联Labor");
@@ -46,7 +46,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
             .Where(x => x != view.CurrentWorking.Id)
             .Select(x => x as object).ToHashSet());
 
-        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood.Id == view.Id);
+        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood == view.Id);
         if (task == null)
         {
             view.CurrentLabor.Visible = false;
