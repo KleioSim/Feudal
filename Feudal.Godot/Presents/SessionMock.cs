@@ -51,7 +51,7 @@ internal class SessionMock : ISession
         working.WorkHood = workHood;
 
         workHood.MockOptionWorkings.Add(working);
-        workHood.CurrentWorking = working;
+        //workHood.CurrentWorking = working;
 
         return working;
     }
@@ -64,7 +64,7 @@ internal class SessionMock : ISession
         if (workHood != null)
         {
             workHood.MockOptionWorkings.Add(working);
-            workHood.CurrentWorking = working;
+            //workHood.CurrentWorking = working;
         }
 
         return working;

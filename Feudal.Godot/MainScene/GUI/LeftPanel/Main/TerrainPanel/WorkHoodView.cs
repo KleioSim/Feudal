@@ -12,8 +12,6 @@ public partial class WorkHoodView : ViewControl
     public Button CancelLaborButton => CurrentLabor.GetNode<Button>("CancelLabor");
     public Label ClanName => CurrentLabor.GetNode<Label>("Label");
 
-    //public WorkingArrayView WorkingArray => GetNode<WorkingArrayView>("VBoxContainer/WorkingArray");
-
     [Signal]
     public delegate void OccupyLaborEventHandler(string laborId);
 
@@ -31,6 +29,7 @@ public partial class WorkHoodView : ViewControl
         base._Ready();
 
         OptionWorkingsPanel.Visible = false;
+
         CurrentWorking.Button.Pressed += () =>
         {
             OptionWorkingsPanel.Visible = !OptionWorkingsPanel.Visible;
@@ -43,11 +42,11 @@ public partial class WorkHoodView : ViewControl
 
         OptionWorkings.OnAddedItem = (item) =>
         {
-            item.WorkHoodId = Id;
-
             item.Button.Pressed += () =>
             {
                 OptionWorkingsPanel.Visible = false;
+
+                CurrentWorking.Id = item.Id;
 
                 EmitSignal(SignalName.SwitchWorking, item);
             };

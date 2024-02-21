@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using System.Linq;
 
 namespace Feudal.Godot.Presents;
 
@@ -11,9 +12,17 @@ public partial class ProductWorkingPawnPresent : PresentControl<ProductWorkingPa
 
     protected override void Update(ProductWorkingPawnView view, ISessionModel model)
     {
-        var terrain = model.Session.Terrains[view.TerrainPosition];
+        var task = model.Session.Tasks.Values.Single(x =>
+        {
+            if (x.Working.WorkHood is ITerrainWorkHood terrainWorkHood)
+            {
+                return terrainWorkHood.Position == view.TerrainPosition;
+            }
 
-        var working = terrain.WorkHood.CurrentWorking as IProductWorking;
+            return false;
+        });
+
+        var working = task.Working as IProductWorking;
 
         view.Label.Text = working.ProductType.ToString();
 

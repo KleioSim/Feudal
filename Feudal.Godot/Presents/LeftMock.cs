@@ -93,7 +93,7 @@ public partial class LeftMock : MockControl<LeftView, ISessionModel>
             session.GenerateProgressWorking(workHood);
             session.GenerateProductWorking(workHood);
 
-            workHood.CurrentWorking = workHood.OptionWorkings.First();
+            //workHood.CurrentWorking = workHood.OptionWorkings.First();
 
             return new SessionModel() { Session = session };
         }

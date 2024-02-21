@@ -12,9 +12,17 @@ public partial class ProgressWorkingPawnPresent : PresentControl<ProgressWorking
 
     protected override void Update(ProgressWorkingPawnView view, ISessionModel model)
     {
-        var terrain = model.Session.Terrains[view.TerrainPosition];
+        var task = model.Session.Tasks.Values.Single(x =>
+        {
+            if (x.Working.WorkHood is ITerrainWorkHood terrainWorkHood)
+            {
+                return terrainWorkHood.Position == view.TerrainPosition;
+            }
 
-        var working = terrain.WorkHood.CurrentWorking as IProgressWorking;
+            return false;
+        });
+
+        var working = task.Working as IProgressWorking;
         view.ProgressValue = working.Percent;
         view.Label.Text = working.Name;
 

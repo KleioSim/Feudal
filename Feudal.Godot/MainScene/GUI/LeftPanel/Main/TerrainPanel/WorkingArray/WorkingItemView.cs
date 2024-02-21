@@ -2,7 +2,6 @@
 
 public partial class WorkingItemView : ViewControl, IItemView
 {
-    public object WorkHoodId { get; set; }
     public object Id { get; set; }
 
     public Button Button => GetNode<Button>("HBoxContainer/Button");

@@ -42,7 +42,7 @@ partial class GUIMock : MockControl<GUIView, ISessionModel>
             session.GenerateProductWorking(workHood);
             session.GenerateProgressWorking(workHood);
 
-            workHood.CurrentWorking = workHood.OptionWorkings.First();
+            //workHood.CurrentWorking = workHood.OptionWorkings.First();
 
             return new SessionModel() { Session = session };
         }

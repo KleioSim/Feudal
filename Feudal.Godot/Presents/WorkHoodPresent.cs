@@ -12,9 +12,9 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
     {
         view.OccupyLabor += (string clanId) =>
         {
-            var workHood = model.Session.WorkHoods[view.Id];
+            var working = view.CurrentWorking.Id as IWorking;
 
-            SendCommand(new Command_OccupyLabor() { ClanId = clanId, WorkingId = workHood.CurrentWorking.Id });
+            SendCommand(new Command_OccupyLabor() { ClanId = clanId, WorkingId = working.Id });
         };
 
         view.CancelLaborButton.Pressed += () =>
@@ -40,13 +40,11 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
     protected override void Update(WorkHoodView view, ISessionModel model)
     {
         var workHood = model.Session.WorkHoods[view.Id];
-
-        view.CurrentWorking.Id = workHood.CurrentWorking;
+        view.CurrentWorking.Id ??= workHood.OptionWorkings.FirstOrDefault();
 
         view.OptionWorkings.Refresh(workHood.OptionWorkings
             .Where(x => x != view.CurrentWorking.Id)
             .Select(x => x as object).ToHashSet());
-
 
         var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood.Id == view.Id);
         if (task == null)

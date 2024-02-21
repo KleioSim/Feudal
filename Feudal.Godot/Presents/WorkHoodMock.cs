@@ -31,7 +31,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
                 task = session.GenerateTask();
                 task.Labor = session.GenerateClan().GenerateLabor();
 
-                task.Working = session.WorkHoods[View.Id].CurrentWorking;
+                task.Working = session.WorkHoods[View.Id].OptionWorkings.FirstOrDefault();
             }
             else
             {
@@ -65,7 +65,7 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
             var task = session.GenerateTask();
             task.Labor = session.GenerateClan().GenerateLabor();
 
-            task.Working = workHood.CurrentWorking;
+            task.Working = workHood.OptionWorkings.First();
 
             return new SessionModel() { Session = session };
         }
@@ -78,7 +78,7 @@ class MockWorkHood : IWorkHood
 
     public string Id { get; }
 
-    public IWorking CurrentWorking { get; set; }
+    public IWorking CurrentWorking => throw new System.Exception();
 
     public IEnumerable<IWorking> OptionWorkings => MockOptionWorkings;
 
