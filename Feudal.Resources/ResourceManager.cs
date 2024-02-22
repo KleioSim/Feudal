@@ -20,7 +20,7 @@ public partial class ResourceManager
 
         if (terrainType == TerrainType.Plain)
         {
-            //result.Add(dict[nameof(FatSoil)]);
+            result.Add(dict[nameof(FatSoil)]);
             result.Add(dict[nameof(Deer)]);
         }
 

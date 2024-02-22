@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://MainScene/Game/Pawns/TerrainPawn/TerrainPawnView.cs" id="1_drn3y"]
 [ext_resource type="PackedScene" uid="uid://dgjq6bem042aw" path="res://MainScene/Game/Pawns/WorkingPawn/ProgressWorkingPawn.tscn" id="1_hdqr3"]
-[ext_resource type="PackedScene" path="res://MainScene/Game/Pawns/WorkingPawn/ProductWorkingPawn.tscn" id="3_84iqx"]
+[ext_resource type="PackedScene" uid="uid://dp7fgtybbiqtx" path="res://MainScene/Game/Pawns/WorkingPawn/ProductWorkingPawn.tscn" id="3_84iqx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11xu0"]
 
