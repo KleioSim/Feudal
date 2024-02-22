@@ -47,25 +47,16 @@ internal class SessionMock : ISession
 
     internal MockProgressWorking GenerateProgressWorking(MockWorkHood workHood)
     {
-        var working = new MockProgressWorking();
-        working.WorkHood = workHood;
-
+        var working = new MockProgressWorking(workHood);
         workHood.MockOptionWorkings.Add(working);
-        //workHood.CurrentWorking = working;
 
         return working;
     }
 
     internal MockProductWorking GenerateProductWorking(MockWorkHood workHood)
     {
-        var working = new MockProductWorking();
-        working.WorkHood = workHood;
-
-        if (workHood != null)
-        {
-            workHood.MockOptionWorkings.Add(working);
-            //workHood.CurrentWorking = working;
-        }
+        var working = new MockProductWorking(workHood);
+        workHood.MockOptionWorkings.Add(working);
 
         return working;
     }
@@ -104,17 +95,6 @@ internal class SessionMock : ISession
         MockResources.Add(resource.Id, resource);
 
         return resource;
-    }
-
-    internal MockTerrainWorkHood GenerateTerrainWorkHood(MockTerrain terrain)
-    {
-        var workHood = new MockTerrainWorkHood();
-        terrain.WorkHood = workHood;
-        workHood.Position = terrain.Position;
-
-        MockWorkHoods.Add(workHood.Id, workHood);
-
-        return workHood;
     }
 
     internal IEnumerable<ClanMock> GenerateClans(int count)

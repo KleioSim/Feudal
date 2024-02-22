@@ -85,15 +85,8 @@ public partial class LeftMock : MockControl<LeftView, ISessionModel>
                 session.MockResources.Add(resource.Id, resource);
             }
 
-            var workHood = new MockWorkHood();
-            terrain.WorkHood = workHood;
-
-            session.MockWorkHoods.Add(workHood.Id, workHood);
-
-            session.GenerateProgressWorking(workHood);
-            session.GenerateProductWorking(workHood);
-
-            //workHood.CurrentWorking = workHood.OptionWorkings.First();
+            terrain.GenerateProgressWorking();
+            terrain.GenerateProductWorking();
 
             return new SessionModel() { Session = session };
         }

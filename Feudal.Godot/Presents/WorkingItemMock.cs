@@ -77,15 +77,17 @@ class MockProgressWorking : IProgressWorking
 
     public string Name => Id;
 
-    public IWorkHood WorkHood { get; set; }
+    public IWorkHood WorkHood { get; }
 
     public float Percent { get; set; } = 33f;
 
     private static int Count = 0;
 
-    public MockProgressWorking()
+    public MockProgressWorking(IWorkHood workHood)
     {
         Id = $"PROGRESS_WORKING_{Count++}";
+
+        WorkHood = workHood;
     }
 
     public IEffectValue GetEffectValue()
@@ -103,7 +105,7 @@ class MockProductWorking : IProductWorking
 {
     public string Id { get; set; }
 
-    public IWorkHood WorkHood { get; set; }
+    public IWorkHood WorkHood { get; }
 
     public string Name => Id;
 
@@ -111,9 +113,10 @@ class MockProductWorking : IProductWorking
 
     private static int Count = 0;
 
-    public MockProductWorking()
+    public MockProductWorking(IWorkHood workHood)
     {
         Id = $"PRODUCT_WORKING_{Count++}";
+        WorkHood = workHood;
     }
 
 

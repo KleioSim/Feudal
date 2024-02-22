@@ -14,8 +14,7 @@ public partial class ProgressWorkingPawnMock : MockControl<ProgressWorkingPawnVi
             var terrain = session.GenerateTerrain((0, 0), TerrainType.Plain);
             View.Id = terrain.Position;
 
-            var workHood = session.GenerateTerrainWorkHood(terrain);
-            var working = session.GenerateProgressWorking(workHood);
+            var working = terrain.GenerateProgressWorking();
             working.Percent = 33;
 
             return new SessionModel() { Session = session };

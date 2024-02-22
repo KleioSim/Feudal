@@ -34,13 +34,8 @@ partial class GUIMock : MockControl<GUIView, ISessionModel>
                 session.MockResources.Add(resource.Id, resource);
             }
 
-            var workHood = new MockWorkHood();
-            terrain.WorkHood = workHood;
-
-            session.MockWorkHoods.Add(workHood.Id, workHood);
-
-            session.GenerateProductWorking(workHood);
-            session.GenerateProgressWorking(workHood);
+            terrain.GenerateProgressWorking();
+            terrain.GenerateProductWorking();
 
             //workHood.CurrentWorking = workHood.OptionWorkings.First();
 

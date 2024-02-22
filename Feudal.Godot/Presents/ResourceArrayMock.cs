@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Feudal.Godot.Presents;
@@ -30,7 +31,7 @@ partial class ResourceArrayMock : MockControl<ResourceArrayView, ISessionModel>
     }
 }
 
-class MockTerrain : ITerrain
+class MockTerrain : ITerrain, IWorkHood
 {
     public (int x, int y) Position { get; set; }
 
@@ -42,5 +43,27 @@ class MockTerrain : ITerrain
 
     public IWorkHood WorkHood { get; set; }
 
+    public string Id => throw new System.NotImplementedException();
+
+    public IWorking CurrentWorking => throw new System.NotImplementedException();
+
+    public IEnumerable<IWorking> OptionWorkings => optionWorkings;
+
     public HashSet<IResource> MockResources = new HashSet<IResource>();
+
+    private List<IWorking> optionWorkings = new List<IWorking>();
+
+    internal MockProgressWorking GenerateProgressWorking()
+    {
+        var working = new MockProgressWorking(this);
+        optionWorkings.Add(working);
+        return working;
+    }
+
+    internal MockProductWorking GenerateProductWorking()
+    {
+        var working = new MockProductWorking(this);
+        optionWorkings.Add(working);
+        return working;
+    }
 }

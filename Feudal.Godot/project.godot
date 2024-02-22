@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Feudal.Godot"
-run/main_scene="res://MainScene/GUI/LeftPanel/Sub/SelectLaborPanel/LaborItem.tscn"
+run/main_scene="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/TerrainPanel.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"

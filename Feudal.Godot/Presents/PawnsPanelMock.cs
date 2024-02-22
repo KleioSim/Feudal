@@ -16,10 +16,9 @@ partial class PawnsPanelMock : MockControl<PawnsPanelView, ISessionModel>
             {
 
                 var terrain = session.GenerateTerrain((i, i), TerrainType.Plain);
-                var workHood = session.GenerateTerrainWorkHood(terrain);
 
                 var task = session.GenerateTask();
-                task.Working = session.GenerateProgressWorking(workHood);
+                task.Working = terrain.GenerateProgressWorking();
             }
 
             return new SessionModel() { Session = session };

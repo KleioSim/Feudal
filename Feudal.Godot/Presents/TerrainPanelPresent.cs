@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Feudal.Interfaces;
+using System;
 using System.Linq;
 
 namespace Feudal.Godot.Presents;
@@ -22,10 +23,10 @@ partial class TerrainPanelPresent : PresentControl<TerrainPanelView, ISessionMod
             view.ResourceArray.TerrainPos = terrain.Position;
         }
 
-        view.WorkHoodPanel.Visible = terrain.WorkHood.OptionWorkings.Any();
+        view.WorkHoodPanel.Visible = ((IWorkHood)terrain).OptionWorkings.Any();
         if (view.WorkHoodPanel.Visible)
         {
-            view.WorkHoodPanel.Id = terrain.WorkHood;
+            view.WorkHoodPanel.Id = terrain;
         }
     }
 }

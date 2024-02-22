@@ -46,7 +46,7 @@ partial class WorkHoodPresent : PresentControl<WorkHoodView, ISessionModel>
             .Where(x => x != view.CurrentWorking.Id)
             .Select(x => x as object).ToHashSet());
 
-        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood == view.Id);
+        var task = model.Session.Tasks.Values.SingleOrDefault(x => x.Working.WorkHood == workHood);
         if (task == null)
         {
             view.CurrentLabor.Visible = false;
