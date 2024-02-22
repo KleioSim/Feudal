@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public interface IWorkHood
 {
-    IWorking CurrentWorking { get; }
-
     IEnumerable<IWorking> OptionWorkings { get; }
 }
 
