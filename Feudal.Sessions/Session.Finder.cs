@@ -9,11 +9,7 @@ partial class Session
     {
         public Func<(int x, int y), ITerrain> FindTerrain { get; internal set; }
 
-        public Func<(int x, int y), IWorkHood> FindWorkHoodByPos { get; internal set; }
-
         public Func<string, IWorking> FindWorking { get; internal set; }
-
-        public Func<string, IWorkHood> FindWorkHood { get; internal set; }
 
         public Func<(int x, int y), IEnumerable<IWorking>> FindWorkingsInTerrain { get; internal set; }
 
@@ -25,15 +21,13 @@ partial class Session
 
         public Func<ILabor, ITask> FindTaskByLabor { get; internal set; }
 
+        public Func<ITerrain, IEnumerable<ItemChange<IWorking>>> FindWorkingChanges { get; internal set; }
+
         public Finder(Session session)
         {
-            FindWorking = (id) => session.workHoodManager.FindWorking(id);
+            FindWorking = (id) => session.workingManager[id];
 
             FindTerrain = (position) => session.Terrains[position];
-
-            FindWorkHoodByPos = (position) => session.workHoodManager.AddOrFindTerrainWorkHood(position);
-
-            FindWorkHood = (id) => session.WorkHoods[id];
 
             FindResourceByTerrainType = (terrainType) => session.resourceManager.GetResourcesByTerrainType(terrainType);
 
@@ -42,6 +36,8 @@ partial class Session
             FindLabor = (id) => session.clanManager.FindLabor(id);
 
             FindTaskByLabor = (labor) => session.Tasks.Values.SingleOrDefault(x => x.Labor == labor);
+
+            FindWorkingChanges = (terrain) => session.workingManager.FindWorkingChanges(terrain);
         }
     }
 }

@@ -22,22 +22,20 @@ partial class Session : ISession
 
     public IReadOnlyDictionary<(int x, int y), ITerrain> Terrains => terrainManager;
 
-    public IReadOnlyDictionary<object, IWorkHood> WorkHoods => workHoodManager;
-
     public IReadOnlyDictionary<object, IClan> Clans => clanManager;
 
     internal readonly TaskManager taskManager = new TaskManager();
     internal readonly TerrainManager terrainManager = new TerrainManager();
-    internal readonly WorkHoodManager workHoodManager = new WorkHoodManager();
     internal readonly ResourceManager resourceManager = new ResourceManager();
     internal readonly ClanManager clanManager = new ClanManager();
+    internal readonly WorkingManager workingManager = new WorkingManager();
 
     public Session()
     {
 
         var finder = new Finder(this);
 
-        WorkHoodManager.Finder = finder;
+        //WorkHoodManager.Finder = finder;
         TerrainManager.Finder = finder;
         TaskManager.Finder = finder;
         ResourceManager.Finder = finder;
@@ -97,10 +95,8 @@ partial class Session : ISession
                 break;
             case Command_SwitchCurrentWorking cmdSwitchCurrentWorking:
                 {
-                    workHoodManager.SwitchCurrentWorking(cmdSwitchCurrentWorking.WorkingId);
-
-                    var working = workHoodManager.FindWorking(cmdSwitchCurrentWorking.WorkingId);
-                    var task = taskManager.Values.SingleOrDefault(x => x.Working.WorkHood == working.WorkHood);
+                    var working = workingManager[cmdSwitchCurrentWorking.WorkingId];
+                    var task = taskManager.Values.SingleOrDefault(x => x.Working == working);
                     if (task != null)
                     {
                         taskManager.RelaseTask(task.Labor.Id, task.Working.Id);

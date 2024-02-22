@@ -31,14 +31,12 @@ internal class DiscoverTerrain : Working, IProgressWorking
 
     public override IEffectValue GetEffectValue()
     {
-        if (WorkHood is not ITerrainWorkHood terrainWorkHood)
+        if (WorkHood is not ITerrain terrainWorkHood)
         {
             throw new Exception();
         }
 
-        var terrain = WorkHoodManager.Finder.FindTerrain(terrainWorkHood.Position);
-
-        var effects = new[] { new Effect() { Desc = terrain.TerrainType.ToString(), Percent = GetEffect(terrain.TerrainType) } };
+        var effects = new[] { new Effect() { Desc = terrainWorkHood.TerrainType.ToString(), Percent = GetEffect(terrainWorkHood.TerrainType) } };
 
         var effectValue = new EffectValue() { BaseValue = 20, Effects = effects };
 

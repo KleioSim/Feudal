@@ -68,7 +68,7 @@ partial class WorkingItemMock : MockControl<WorkingItemView, ISessionModel>
         }
     }
 
-    private IWorkHood workHood => Present.Model.Session.WorkHoods.Values.SingleOrDefault();
+    private IWorkHood workHood => ((IWorking)View.Id).WorkHood;
 }
 
 class MockProgressWorking : IProgressWorking

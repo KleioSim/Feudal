@@ -14,7 +14,26 @@ class Terrain : ITerrain
 
     public bool IsDiscoverd { get; set; }
 
-    public IWorkHood WorkHood => Finder.FindWorkHoodByPos(this.Position);
+    public IEnumerable<IWorking> OptionWorkings
+    {
+        get
+        {
+            var workingChanges = Finder.FindWorkingChanges(this);
+
+            var needRemoves = workingChanges.Where(change => change.ChangeType == ItemChangeType.Remove)
+                .Select(x => x.Item);
+
+            var needAdds = workingChanges.Where(change => change.ChangeType == ItemChangeType.Add)
+                .Select(x => x.Item);
+
+            optionWorkings.RemoveAll(x => needRemoves.Contains(x));
+            optionWorkings.AddRange(needAdds);
+
+            return optionWorkings;
+        }
+    }
+
+    private List<IWorking> optionWorkings = new List<IWorking>();
 
     private HashSet<IResource> resources = new HashSet<IResource>();
 
