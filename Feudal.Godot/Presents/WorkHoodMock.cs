@@ -76,20 +76,13 @@ partial class WorkHoodMock : MockControl<WorkHoodView, ISessionModel>
 
 class MockWorkHood : IWorkHood
 {
-    private static int count = 0;
-
-    public string Id { get; }
+    public string Id => throw new System.Exception();
 
     public IWorking CurrentWorking => throw new System.Exception();
 
     public IEnumerable<IWorking> OptionWorkings => MockOptionWorkings;
 
     public List<IWorking> MockOptionWorkings = new List<IWorking>();
-
-    public MockWorkHood()
-    {
-        Id = $"WORK_HOOD{count++}";
-    }
 }
 
 class MockTerrainWorkHood : MockWorkHood, ITerrainWorkHood

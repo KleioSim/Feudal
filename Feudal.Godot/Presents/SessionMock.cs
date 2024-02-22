@@ -20,9 +20,9 @@ internal class SessionMock : ISession
 
     public IReadOnlyDictionary<(int x, int y), ITerrain> Terrains => MockTerrains;
 
-    public IReadOnlyDictionary<object, IWorkHood> WorkHoods => MockWorkHoods;
+    public IReadOnlyDictionary<object, IWorkHood> WorkHoods => throw new Exception();
 
-    public Dictionary<object, IWorkHood> MockWorkHoods { get; } = new Dictionary<object, IWorkHood>();
+    //public Dictionary<object, IWorkHood> MockWorkHoods { get; } = new Dictionary<object, IWorkHood>();
 
     public Dictionary<(int x, int y), ITerrain> MockTerrains { get; } = new Dictionary<(int x, int y), ITerrain>();
 
@@ -41,7 +41,7 @@ internal class SessionMock : ISession
     internal MockWorkHood GenerateWorkHood()
     {
         var workHood = new MockWorkHood();
-        MockWorkHoods.Add(workHood.Id, workHood);
+        //MockWorkHoods.Add(workHood.Id, workHood);
         return workHood;
     }
 

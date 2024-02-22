@@ -97,7 +97,7 @@ class MockProgressWorking : IProgressWorking
 
     public void OnFinish(Action<ICommand> SendCommand)
     {
-        GD.Print($"Working:{Id} Finsihed, WorkHood:{WorkHood.Id}");
+        GD.Print($"Working:{Id} Finsihed, WorkHood:{WorkHood}");
     }
 }
 

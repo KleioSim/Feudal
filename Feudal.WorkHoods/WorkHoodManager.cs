@@ -22,7 +22,7 @@ public partial class WorkHoodManager : IReadOnlyDictionary<object, IWorkHood>
 
     internal IWorkHood AddOrFindTerrainWorkHood((int x, int y) position)
     {
-        var workHood = dict.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == position);
+        var workHood = dict.Values.OfType<ITerrainWorkHood>().SingleOrDefault(x => x.Position == position) as TerrainWorkHood;
         if (workHood == null)
         {
             workHood = new TerrainWorkHood(position);
