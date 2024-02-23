@@ -2,7 +2,7 @@
 
 namespace Feudal.Workings;
 
-internal class Hunting : Working, IProductWorking
+public class Hunting : Working, IProductWorking
 {
     public ProductType ProductType => ProductType.Food;
 

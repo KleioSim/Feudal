@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.Workings;
 
 namespace Feudal.Resources;
 
@@ -8,8 +9,8 @@ class FatSoil : IResource
 
     public string Name => this.GetType().Name;
 
-    public IEnumerable<string> GetWorkings()
+    public IEnumerable<Type> GetWorkingTypes()
     {
-        return new[] { "BuildingFarm" };
+        return new[] { typeof(BuildingFarm) };
     }
 }

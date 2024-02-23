@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
+    <ProjectReference Include="..\Feudal.Workings\Feudal.Workings.csproj" />
   </ItemGroup>
 
 </Project>

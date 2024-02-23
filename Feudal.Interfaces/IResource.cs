@@ -6,5 +6,5 @@ public interface IResource
 
     string Name { get; }
 
-    IEnumerable<string> GetWorkings();
+    IEnumerable<Type> GetWorkingTypes();
 }

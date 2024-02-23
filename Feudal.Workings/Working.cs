@@ -2,7 +2,7 @@
 
 namespace Feudal.Workings;
 
-internal abstract class Working : IWorking
+public abstract class Working : IWorking
 {
     public static IFinder Finder { get; set; }
 

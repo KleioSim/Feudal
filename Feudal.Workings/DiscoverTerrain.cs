@@ -3,7 +3,7 @@ using Feudal.Interfaces;
 
 namespace Feudal.Workings;
 
-internal class DiscoverTerrain : Working, IProgressWorking
+public class DiscoverTerrain : Working, IProgressWorking
 {
     public DiscoverTerrain(IWorkHood workHood) : base(workHood)
     {

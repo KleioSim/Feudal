@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.Workings;
 
 namespace Feudal.Resources;
 
@@ -8,8 +9,8 @@ class Deer : IResource
 
     public string Name => this.GetType().Name;
 
-    public IEnumerable<string> GetWorkings()
+    public IEnumerable<Type> GetWorkingTypes()
     {
-        return new[] { "Hunting" };
+        return new[] { typeof(Hunting) };
     }
 }

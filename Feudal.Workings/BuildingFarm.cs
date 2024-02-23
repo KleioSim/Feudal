@@ -3,7 +3,7 @@ using Feudal.Interfaces;
 
 namespace Feudal.Workings;
 
-internal class BuildingFarm : Working, IProgressWorking
+public class BuildingFarm : Working, IProgressWorking
 {
     public float Percent { get; set; }
 
