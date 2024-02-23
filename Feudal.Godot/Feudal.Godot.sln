@@ -15,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.Tasks", "..\Feudal.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.Terrains", "..\Feudal.Terrains\Feudal.Terrains.csproj", "{E56CBD92-75C2-4687-A3CE-614CD5E26CCD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.WorkHoods", "..\Feudal.WorkHoods\Feudal.WorkHoods.csproj", "{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.Resources", "..\Feudal.Resources\Feudal.Resources.csproj", "{64802A20-F4BE-4DCF-BE37-C4C6D101121D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.Commands", "..\Feudal.Commands\Feudal.Commands.csproj", "{1E0375C0-A77C-4935-92CD-3180E4EBE780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.Commands", "..\Feudal.Commands\Feudal.Commands.csproj", "{1E0375C0-A77C-4935-92CD-3180E4EBE780}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.Clans", "..\Feudal.Clans\Feudal.Clans.csproj", "{FEB6AA1D-D9A1-4EED-922C-DEC93634BDE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.Clans", "..\Feudal.Clans\Feudal.Clans.csproj", "{FEB6AA1D-D9A1-4EED-922C-DEC93634BDE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.Workings", "..\Feudal.Workings\Feudal.Workings.csproj", "{B6F5B914-9E83-4670-84AA-D55021655C60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,14 +79,6 @@ Global
 		{E56CBD92-75C2-4687-A3CE-614CD5E26CCD}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
 		{E56CBD92-75C2-4687-A3CE-614CD5E26CCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E56CBD92-75C2-4687-A3CE-614CD5E26CCD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
-		{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98B5824B-3B2A-4C9A-810A-A72DF28DFF0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{64802A20-F4BE-4DCF-BE37-C4C6D101121D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{64802A20-F4BE-4DCF-BE37-C4C6D101121D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64802A20-F4BE-4DCF-BE37-C4C6D101121D}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -111,6 +103,14 @@ Global
 		{FEB6AA1D-D9A1-4EED-922C-DEC93634BDE4}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
 		{FEB6AA1D-D9A1-4EED-922C-DEC93634BDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEB6AA1D-D9A1-4EED-922C-DEC93634BDE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6F5B914-9E83-4670-84AA-D55021655C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F5B914-9E83-4670-84AA-D55021655C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F5B914-9E83-4670-84AA-D55021655C60}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F5B914-9E83-4670-84AA-D55021655C60}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F5B914-9E83-4670-84AA-D55021655C60}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F5B914-9E83-4670-84AA-D55021655C60}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
+		{B6F5B914-9E83-4670-84AA-D55021655C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F5B914-9E83-4670-84AA-D55021655C60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

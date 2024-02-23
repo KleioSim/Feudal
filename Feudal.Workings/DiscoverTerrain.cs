@@ -1,9 +1,7 @@
 ﻿using Feudal.Commands;
 using Feudal.Interfaces;
-using Feudal.WorkHoods;
-//using Feudal.Terrains;
 
-namespace Feudal.WorkHoods.Workings;
+namespace Feudal.Workings;
 
 internal class DiscoverTerrain : Working, IProgressWorking
 {

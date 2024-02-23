@@ -1,6 +1,6 @@
 ﻿using Feudal.Interfaces;
 
-namespace Feudal.WorkHoods.Workings;
+namespace Feudal.Workings;
 
 internal abstract class Working : IWorking
 {

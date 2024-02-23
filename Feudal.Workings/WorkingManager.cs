@@ -1,8 +1,7 @@
 ﻿using Feudal.Interfaces;
-using Feudal.WorkHoods.Workings;
 using System.Reflection;
 
-namespace Feudal.WorkHoods;
+namespace Feudal.Workings;
 
 public partial class WorkingManager
 {

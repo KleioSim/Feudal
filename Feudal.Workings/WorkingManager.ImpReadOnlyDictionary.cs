@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Feudal.WorkHoods;
+namespace Feudal.Workings;
 
 public partial class WorkingManager : IReadOnlyDictionary<object, IWorking>
 {

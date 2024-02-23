@@ -1,7 +1,7 @@
 ﻿using Feudal.Commands;
 using Feudal.Interfaces;
 
-namespace Feudal.WorkHoods.Workings;
+namespace Feudal.Workings;
 
 internal class BuildingFarm : Working, IProgressWorking
 {
