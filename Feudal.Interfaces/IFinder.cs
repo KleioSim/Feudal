@@ -10,6 +10,7 @@ public interface IFinder
     Func<string, ILabor> FindLabor { get; }
     Func<ILabor, ITask> FindTaskByLabor { get; }
     Func<ITerrain, IEnumerable<ItemChange<IWorking>>> FindWorkingChanges { get; }
+    Func<ITerrain, IEnumerable<IWorking>> FindTerrainWorkings { get; }
 }
 
 public class ItemChange<T>

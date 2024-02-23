@@ -10,6 +10,8 @@ public partial class WorkingManager
 
     private Dictionary<string, Type> workingTypes { get; } = Assembly.GetExecutingAssembly().GetTypes().ToDictionary(x => x.Name, x => x);
 
+    private Dictionary<IWorkHood, List<IWorking>> workhood2Workings = new Dictionary<IWorkHood, List<IWorking>>();
+
     internal IEnumerable<ItemChange<IWorking>> FindWorkingChanges(ITerrain terrain)
     {
         var refreshWorkingTypes = terrain.IsDiscoverd ? terrain.Resources.SelectMany(x => x.GetWorkings()).Select(x => workingTypes[x]) : new[] { typeof(DiscoverTerrain) };
@@ -35,5 +37,35 @@ public partial class WorkingManager
 
         return list;
 
+    }
+
+    internal IEnumerable<IWorking> FindWorking(ITerrain terrain)
+    {
+        if (!workhood2Workings.TryGetValue(terrain, out List<IWorking> workings))
+        {
+            workings = new List<IWorking>();
+            workhood2Workings.Add(terrain, workings);
+        }
+
+        var refreshWorkingTypes = terrain.IsDiscoverd ? terrain.Resources.SelectMany(x => x.GetWorkings()).Select(x => workingTypes[x]) : new[] { typeof(DiscoverTerrain) };
+
+        var needRemoveWorkings = workings.Where(x => !refreshWorkingTypes.Contains(x.GetType())).ToArray();
+        var needAddWorkings = refreshWorkingTypes.Where(type => workings.All(x => x.GetType() != type))
+            .Select(type => Activator.CreateInstance(type, new object[] { terrain }) as IWorking)
+            .ToArray();
+
+        foreach (var remove in needRemoveWorkings)
+        {
+            dict.Remove(remove.Id);
+            workings.Remove(remove);
+        }
+
+        foreach (var add in needAddWorkings)
+        {
+            dict.Add(add!.Id, add);
+            workings.Add(add);
+        }
+
+        return workings;
     }
 }
